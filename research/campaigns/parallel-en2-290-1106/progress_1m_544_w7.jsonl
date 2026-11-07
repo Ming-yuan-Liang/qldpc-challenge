@@ -1,0 +1,16 @@
+{"worker": 7, "chunk": 35, "seed": 55261214, "trials": 4000, "pair_depth": 10, "d": 90, "side": "Z", "seconds": 445.2}
+{"worker": 7, "chunk": 49, "seed": 69261256, "trials": 4000, "pair_depth": 10, "d": 92, "side": "Z", "seconds": 479.2}
+{"worker": 7, "chunk": 63, "seed": 83261298, "trials": 4000, "pair_depth": 10, "d": 90, "side": "Z", "seconds": 464.7}
+{"worker": 7, "chunk": 77, "seed": 97261340, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 442.8}
+{"worker": 7, "chunk": 91, "seed": 111261382, "trials": 4000, "pair_depth": 10, "d": 92, "side": "X", "seconds": 397.8}
+{"worker": 7, "chunk": 105, "seed": 125261424, "trials": 4000, "pair_depth": 10, "d": 92, "side": "X", "seconds": 408.2}
+{"worker": 7, "chunk": 119, "seed": 139261466, "trials": 4000, "pair_depth": 10, "d": 92, "side": "Z", "seconds": 400.1}
+{"worker": 7, "chunk": 133, "seed": 153261508, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 381.6}
+{"worker": 7, "chunk": 147, "seed": 167261550, "trials": 4000, "pair_depth": 10, "d": 86, "side": "X", "witness_file": "progress_1m_544_w7.jsonl.witness-86-c147.json", "seconds": 402.5}
+{"worker": 7, "chunk": 161, "seed": 181261592, "trials": 4000, "pair_depth": 10, "d": 94, "side": "X", "seconds": 408.1}
+{"worker": 7, "chunk": 175, "seed": 195261634, "trials": 4000, "pair_depth": 10, "d": 88, "side": "X", "seconds": 404.8}
+{"worker": 7, "chunk": 189, "seed": 209261676, "trials": 4000, "pair_depth": 10, "d": 88, "side": "X", "seconds": 393.1}
+{"worker": 7, "chunk": 203, "seed": 223261718, "trials": 4000, "pair_depth": 10, "d": 94, "side": "X", "seconds": 351.8}
+{"worker": 7, "chunk": 217, "seed": 237261760, "trials": 4000, "pair_depth": 10, "d": 92, "side": "Z", "seconds": 371.2}
+{"worker": 7, "chunk": 231, "seed": 251261802, "trials": 4000, "pair_depth": 10, "d": 84, "side": "X", "witness_file": "progress_1m_544_w7.jsonl.witness-84-c231.json", "seconds": 315.7}
+{"worker": 7, "chunk": 245, "seed": 265261844, "trials": 4000, "pair_depth": 10, "d": 92, "side": "X", "seconds": 280.0}

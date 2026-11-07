@@ -1,0 +1,17 @@
+{"worker": 12, "chunk": 12, "seed": 32261237, "trials": 4000, "pair_depth": 10, "d": 124, "side": "Z", "seconds": 579.1}
+{"worker": 12, "chunk": 26, "seed": 46261279, "trials": 4000, "pair_depth": 10, "d": 122, "side": "X", "seconds": 557.6}
+{"worker": 12, "chunk": 40, "seed": 60261321, "trials": 4000, "pair_depth": 10, "d": 124, "side": "X", "seconds": 567.1}
+{"worker": 12, "chunk": 54, "seed": 74261363, "trials": 4000, "pair_depth": 10, "d": 122, "side": "Z", "seconds": 565.3}
+{"worker": 12, "chunk": 68, "seed": 88261405, "trials": 4000, "pair_depth": 10, "d": 120, "side": "Z", "seconds": 561.2}
+{"worker": 12, "chunk": 82, "seed": 102261447, "trials": 4000, "pair_depth": 10, "d": 124, "side": "X", "seconds": 560.8}
+{"worker": 12, "chunk": 96, "seed": 116261489, "trials": 4000, "pair_depth": 10, "d": 112, "side": "X", "witness_file": "progress_1m_684_w12.jsonl.witness-112-c96.json", "seconds": 568.0}
+{"worker": 12, "chunk": 110, "seed": 130261531, "trials": 4000, "pair_depth": 10, "d": 122, "side": "X", "seconds": 561.0}
+{"worker": 12, "chunk": 124, "seed": 144261573, "trials": 4000, "pair_depth": 10, "d": 122, "side": "X", "seconds": 558.0}
+{"worker": 12, "chunk": 138, "seed": 158261615, "trials": 4000, "pair_depth": 10, "d": 124, "side": "X", "seconds": 551.3}
+{"worker": 12, "chunk": 152, "seed": 172261657, "trials": 4000, "pair_depth": 10, "d": 120, "side": "X", "seconds": 559.1}
+{"worker": 12, "chunk": 166, "seed": 186261699, "trials": 4000, "pair_depth": 10, "d": 124, "side": "Z", "seconds": 556.1}
+{"worker": 12, "chunk": 180, "seed": 200261741, "trials": 4000, "pair_depth": 10, "d": 116, "side": "X", "witness_file": "progress_1m_684_w12.jsonl.witness-116-c180.json", "seconds": 558.8}
+{"worker": 12, "chunk": 194, "seed": 214261783, "trials": 4000, "pair_depth": 10, "d": 122, "side": "Z", "seconds": 550.1}
+{"worker": 12, "chunk": 208, "seed": 228261825, "trials": 4000, "pair_depth": 10, "d": 124, "side": "X", "seconds": 559.3}
+{"worker": 12, "chunk": 222, "seed": 242261867, "trials": 4000, "pair_depth": 10, "d": 118, "side": "X", "witness_file": "progress_1m_684_w12.jsonl.witness-118-c222.json", "seconds": 551.4}
+{"worker": 12, "chunk": 236, "seed": 256261909, "trials": 4000, "pair_depth": 10, "d": 120, "side": "Z", "seconds": 547.6}

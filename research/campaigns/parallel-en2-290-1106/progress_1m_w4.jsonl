@@ -1,0 +1,4 @@
+{"worker": 4, "chunk": 4, "seed": 24261121, "trials": 4000, "pair_depth": 10, "d": 88, "side": "X", "seconds": 311.8}
+{"worker": 4, "chunk": 12, "seed": 32261145, "trials": 4000, "pair_depth": 10, "d": 92, "side": "Z", "seconds": 315.8}
+{"worker": 4, "chunk": 20, "seed": 40261169, "trials": 4000, "pair_depth": 10, "d": 94, "side": "X", "seconds": 339.9}
+{"worker": 4, "chunk": 28, "seed": 48261193, "trials": 4000, "pair_depth": 10, "d": 88, "side": "X", "seconds": 368.9}

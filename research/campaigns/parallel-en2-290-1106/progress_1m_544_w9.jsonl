@@ -1,0 +1,16 @@
+{"worker": 9, "chunk": 37, "seed": 57261220, "trials": 4000, "pair_depth": 10, "d": 92, "side": "Z", "seconds": 459.6}
+{"worker": 9, "chunk": 51, "seed": 71261262, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 513.4}
+{"worker": 9, "chunk": 65, "seed": 85261304, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 485.6}
+{"worker": 9, "chunk": 79, "seed": 99261346, "trials": 4000, "pair_depth": 10, "d": 92, "side": "X", "seconds": 442.2}
+{"worker": 9, "chunk": 93, "seed": 113261388, "trials": 4000, "pair_depth": 10, "d": 90, "side": "Z", "seconds": 394.8}
+{"worker": 9, "chunk": 107, "seed": 127261430, "trials": 4000, "pair_depth": 10, "d": 92, "side": "X", "seconds": 415.9}
+{"worker": 9, "chunk": 121, "seed": 141261472, "trials": 4000, "pair_depth": 10, "d": 88, "side": "Z", "seconds": 382.4}
+{"worker": 9, "chunk": 135, "seed": 155261514, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 374.1}
+{"worker": 9, "chunk": 149, "seed": 169261556, "trials": 4000, "pair_depth": 10, "d": 94, "side": "X", "seconds": 412.6}
+{"worker": 9, "chunk": 163, "seed": 183261598, "trials": 4000, "pair_depth": 10, "d": 90, "side": "Z", "seconds": 416.3}
+{"worker": 9, "chunk": 177, "seed": 197261640, "trials": 4000, "pair_depth": 10, "d": 90, "side": "Z", "seconds": 417.2}
+{"worker": 9, "chunk": 191, "seed": 211261682, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 391.7}
+{"worker": 9, "chunk": 205, "seed": 225261724, "trials": 4000, "pair_depth": 10, "d": 88, "side": "X", "seconds": 360.2}
+{"worker": 9, "chunk": 219, "seed": 239261766, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 356.2}
+{"worker": 9, "chunk": 233, "seed": 253261808, "trials": 4000, "pair_depth": 10, "d": 92, "side": "X", "seconds": 300.9}
+{"worker": 9, "chunk": 247, "seed": 267261850, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 281.6}

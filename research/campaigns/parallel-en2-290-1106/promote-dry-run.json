@@ -1,0 +1,70 @@
+[
+ {
+  "schema": "qldpc-promote/1",
+  "ok": false,
+  "slug": null,
+  "title": null,
+  "branch": null,
+  "files": {},
+  "body_file": null,
+  "gates": {},
+  "blocked_by": [
+   "deepest fresh-seed rung is 24,260 trials per side, below the 1,000,000 this module requires before it will reuse a witness instead of re-searching; run a deeper rung, or package with ./qldpc submit, which searches again itself"
+  ],
+  "needs_human": [],
+  "commands": [],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 20000,
+     "d": 88,
+     "fresh": true,
+     "label": "fresh-seed rung seed 10006 (5x4,000-trial checkpointed chunks)"
+    },
+    {
+     "trials": 20000,
+     "d": 88,
+     "fresh": true,
+     "label": "fresh-seed rung seed 20006"
+    },
+    {
+     "trials": 20000,
+     "d": 88,
+     "fresh": true,
+     "label": "fresh-seed rung seed 30006"
+    },
+    {
+     "trials": 8000,
+     "d": 88,
+     "fresh": true,
+     "label": "trusted-gate refutation, seed 827912269"
+    },
+    {
+     "trials": 24260,
+     "d": 88,
+     "fresh": true,
+     "label": "gate_changed fast battery, seed 20261106"
+    },
+    {
+     "trials": 24260,
+     "d": 88,
+     "fresh": true,
+     "label": "gate_changed fast battery, seed 20261107"
+    },
+    {
+     "trials": 24260,
+     "d": 88,
+     "fresh": true,
+     "label": "gate_changed fast battery, seed 20261108"
+    }
+   ],
+   "cumulative_best_bound": 88,
+   "claimed_d": 88,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 7,
+   "deepest_fresh_trials": 24260,
+   "trials_spent": 140780,
+   "fresh_rungs_total": 7
+  }
+ }
+]

@@ -1,0 +1,5 @@
+{"worker": 0, "chunk": 0, "seed": 20261109, "trials": 4000, "pair_depth": 10, "d": 86, "side": "Z", "witness_file": "timing_probe.jsonl.witness-86-c0.json", "seconds": 235.8}
+{"worker": 0, "chunk": 8, "seed": 28261133, "trials": 4000, "pair_depth": 10, "d": 86, "side": "Z", "witness_file": "timing_probe.jsonl.witness-86-c8.json", "seconds": 310.2}
+{"worker": 0, "chunk": 16, "seed": 36261157, "trials": 4000, "pair_depth": 10, "d": 92, "side": "X", "seconds": 317.1}
+{"worker": 0, "chunk": 24, "seed": 44261181, "trials": 4000, "pair_depth": 10, "d": 90, "side": "Z", "seconds": 344.9}
+{"worker": 0, "chunk": 32, "seed": 52261205, "trials": 4000, "pair_depth": 10, "d": 92, "side": "Z", "seconds": 375.7}

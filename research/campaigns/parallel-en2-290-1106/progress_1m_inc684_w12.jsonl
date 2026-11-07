@@ -1,0 +1,17 @@
+{"worker": 12, "chunk": 12, "seed": 32270237, "trials": 4000, "pair_depth": 10, "d": 123, "side": "X", "seconds": 697.0}
+{"worker": 12, "chunk": 26, "seed": 46270279, "trials": 4000, "pair_depth": 10, "d": 122, "side": "X", "seconds": 693.6}
+{"worker": 12, "chunk": 40, "seed": 60270321, "trials": 4000, "pair_depth": 10, "d": 125, "side": "X", "seconds": 721.8}
+{"worker": 12, "chunk": 54, "seed": 74270363, "trials": 4000, "pair_depth": 10, "d": 124, "side": "Z", "seconds": 712.6}
+{"worker": 12, "chunk": 68, "seed": 88270405, "trials": 4000, "pair_depth": 10, "d": 120, "side": "Z", "seconds": 703.0}
+{"worker": 12, "chunk": 82, "seed": 102270447, "trials": 4000, "pair_depth": 10, "d": 121, "side": "X", "seconds": 584.9}
+{"worker": 12, "chunk": 96, "seed": 116270489, "trials": 4000, "pair_depth": 10, "d": 120, "side": "Z", "seconds": 648.0}
+{"worker": 12, "chunk": 110, "seed": 130270531, "trials": 4000, "pair_depth": 10, "d": 122, "side": "X", "seconds": 628.6}
+{"worker": 12, "chunk": 124, "seed": 144270573, "trials": 4000, "pair_depth": 10, "d": 123, "side": "X", "seconds": 631.0}
+{"worker": 12, "chunk": 138, "seed": 158270615, "trials": 4000, "pair_depth": 10, "d": 116, "side": "Z", "seconds": 628.4}
+{"worker": 12, "chunk": 152, "seed": 172270657, "trials": 4000, "pair_depth": 10, "d": 124, "side": "X", "seconds": 623.4}
+{"worker": 12, "chunk": 166, "seed": 186270699, "trials": 4000, "pair_depth": 10, "d": 122, "side": "X", "seconds": 614.4}
+{"worker": 12, "chunk": 180, "seed": 200270741, "trials": 4000, "pair_depth": 10, "d": 120, "side": "X", "seconds": 584.2}
+{"worker": 12, "chunk": 194, "seed": 214270783, "trials": 4000, "pair_depth": 10, "d": 125, "side": "Z", "seconds": 618.9}
+{"worker": 12, "chunk": 208, "seed": 228270825, "trials": 4000, "pair_depth": 10, "d": 124, "side": "X", "seconds": 621.8}
+{"worker": 12, "chunk": 222, "seed": 242270867, "trials": 4000, "pair_depth": 10, "d": 123, "side": "X", "seconds": 640.9}
+{"worker": 12, "chunk": 236, "seed": 256270909, "trials": 4000, "pair_depth": 10, "d": 120, "side": "Z", "seconds": 610.3}

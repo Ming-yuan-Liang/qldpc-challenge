@@ -1,0 +1,4 @@
+{"worker": 2, "chunk": 2, "seed": 22261115, "trials": 4000, "pair_depth": 10, "d": 90, "side": "Z", "seconds": 312.3}
+{"worker": 2, "chunk": 10, "seed": 30261139, "trials": 4000, "pair_depth": 10, "d": 92, "side": "Z", "seconds": 316.6}
+{"worker": 2, "chunk": 18, "seed": 38261163, "trials": 4000, "pair_depth": 10, "d": 86, "side": "Z", "witness_file": "progress_1m_w2.jsonl.witness-86-c18.json", "seconds": 341.2}
+{"worker": 2, "chunk": 26, "seed": 46261187, "trials": 4000, "pair_depth": 10, "d": 92, "side": "X", "seconds": 368.5}

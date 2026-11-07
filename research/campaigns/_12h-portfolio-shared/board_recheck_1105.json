@@ -1,0 +1,44 @@
+[
+ {
+  "slug": "684-14-110-cirepack",
+  "structural": "ok",
+  "cell": "unrestricted/weight-9plus",
+  "d": 110,
+  "w": 16,
+  "kd2n": 247.661,
+  "cells": [
+   {
+    "cell": [
+     "unrestricted",
+     "weight-any"
+    ],
+    "peers": 2900,
+    "on_frontier": true,
+    "dominates": [
+     "[[690,12,84]]"
+    ],
+    "dominated_by": []
+   }
+  ]
+ },
+ {
+  "slug": "684-8-110-cirepack",
+  "structural": "ok",
+  "cell": "unrestricted/weight-9plus",
+  "d": 110,
+  "w": 18,
+  "kd2n": 141.52,
+  "cells": [
+   {
+    "cell": [
+     "unrestricted",
+     "weight-any"
+    ],
+    "peers": 2900,
+    "on_frontier": true,
+    "dominates": [],
+    "dominated_by": []
+   }
+  ]
+ }
+]

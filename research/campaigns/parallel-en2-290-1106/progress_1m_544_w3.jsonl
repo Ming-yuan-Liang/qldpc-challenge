@@ -1,0 +1,15 @@
+{"worker": 3, "chunk": 45, "seed": 65261244, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 430.3}
+{"worker": 3, "chunk": 59, "seed": 79261286, "trials": 4000, "pair_depth": 10, "d": 88, "side": "X", "seconds": 437.9}
+{"worker": 3, "chunk": 73, "seed": 93261328, "trials": 4000, "pair_depth": 10, "d": 92, "side": "Z", "seconds": 451.0}
+{"worker": 3, "chunk": 87, "seed": 107261370, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 393.0}
+{"worker": 3, "chunk": 101, "seed": 121261412, "trials": 4000, "pair_depth": 10, "d": 88, "side": "Z", "seconds": 391.0}
+{"worker": 3, "chunk": 115, "seed": 135261454, "trials": 4000, "pair_depth": 10, "d": 94, "side": "X", "seconds": 378.4}
+{"worker": 3, "chunk": 129, "seed": 149261496, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 381.6}
+{"worker": 3, "chunk": 143, "seed": 163261538, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 377.9}
+{"worker": 3, "chunk": 157, "seed": 177261580, "trials": 4000, "pair_depth": 10, "d": 92, "side": "X", "seconds": 362.9}
+{"worker": 3, "chunk": 171, "seed": 191261622, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 374.9}
+{"worker": 3, "chunk": 185, "seed": 205261664, "trials": 4000, "pair_depth": 10, "d": 94, "side": "X", "seconds": 401.0}
+{"worker": 3, "chunk": 199, "seed": 219261706, "trials": 4000, "pair_depth": 10, "d": 90, "side": "X", "seconds": 393.6}
+{"worker": 3, "chunk": 213, "seed": 233261748, "trials": 4000, "pair_depth": 10, "d": 86, "side": "Z", "witness_file": "progress_1m_544_w3.jsonl.witness-86-c213.json", "seconds": 366.6}
+{"worker": 3, "chunk": 227, "seed": 247261790, "trials": 4000, "pair_depth": 10, "d": 84, "side": "X", "witness_file": "progress_1m_544_w3.jsonl.witness-84-c227.json", "seconds": 355.4}
+{"worker": 3, "chunk": 241, "seed": 261261832, "trials": 4000, "pair_depth": 10, "d": 88, "side": "X", "seconds": 349.9}
