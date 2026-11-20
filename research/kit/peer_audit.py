@@ -4,7 +4,9 @@ AGENTS.md and research/AUTORESEARCH.md section 5b require that a candidate whose
 only strict gain over a board entry is d (same n, k, and max check weight) be
 re-measured beside that entry at one budget with ``research/audits/leader_audit.py
 pair`` before it is packaged: both distances are witness-backed upper bounds, and
-a gain on d alone is where an inflated bound shows up. Two paths package a
+a gain on d alone is where an inflated bound shows up. A d = 1 entry is a
+placeholder, not a suspect distance claim, so it is never a d-only peer: beating
+one on d alone owes no audit. Two paths package a
 candidate, ``research/kit/promote.py`` and ``./qldpc submit``, and both call this
 module, so the rule cannot drift between them (issue #4236).
 
@@ -89,6 +91,8 @@ def d_only_peers(candidate, board):
     recorded weight cannot be compared and is skipped.
     """
     n, k, d, w = candidate["n"], candidate["k"], candidate["d"], candidate.get("w")
+    if d is None or d <= 1:
+        return []
     code_type = candidate.get("code_type", "CSS")
     wc = _WEIGHT_ORDER.get(candidate.get("weight_class"), 9)
     lc = _LOCAL_ORDER.get(candidate.get("locality_class"), 9)
@@ -99,7 +103,9 @@ def d_only_peers(candidate, board):
         if _WEIGHT_ORDER.get(b.get("weight_class"), 9) > wc \
                 or _LOCAL_ORDER.get(b.get("locality_class"), 9) > lc:
             continue
-        if (b["n"], b["k"], b["w"]) == (n, k, w) and b["d"] < d:
+        # a d = 1 entry is a placeholder, not a real distance claim: beating it
+        # on d alone is not the suspect (inflated-bound) pattern.
+        if (b["n"], b["k"], b["w"]) == (n, k, w) and b.get("d", 0) > 1 and b["d"] < d:
             out.append(describe(b))
     return out
 
@@ -114,15 +120,23 @@ def pair_command(candidate_path, *, trials=DEFAULT_TRIALS, seeds=DEFAULT_SEEDS,
             f"--json-out {out}")
 
 
-def record(candidate, peers, results, decision, *, trials, seeds, pair_depth,
-           threads, exit_code, today=None):
+def record(candidate, peers, results, decision, *, trials=None, seeds=None, pair_depth=None,
+           threads=1, exit_code=0, today=None, backend="ris", seconds=None, tool=None):
     """Return the audit record ``leader_audit.py pair --json-out`` writes."""
-    return {"schema": AUDIT_SCHEMA, "candidate": str(candidate),
-            "peers": [str(p) for p in peers], "trials": int(trials),
-            "seeds": [int(s) for s in seeds], "pair_depth": int(pair_depth),
-            "threads": int(threads), "decision": str(decision),
-            "exit_code": int(exit_code), "results": list(results),
-            "recorded": today or datetime.date.today().isoformat()}
+    rec = {"schema": AUDIT_SCHEMA, "candidate": str(candidate),
+           "peers": [str(p) for p in peers], "backend": str(backend),
+           "threads": int(threads), "decision": str(decision),
+           "exit_code": int(exit_code), "results": list(results),
+           "recorded": today or datetime.date.today().isoformat()}
+    if backend == "qedist":
+        rec["tool"] = str(tool or "qedist")
+        if seconds is not None:
+            rec["seconds"] = float(seconds)
+    else:
+        rec["trials"] = int(trials) if trials is not None else 0
+        rec["seeds"] = [int(s) for s in (seeds or ())]
+        rec["pair_depth"] = int(pair_depth) if pair_depth is not None else 0
+    return rec
 
 
 def load_audit(path):
@@ -182,23 +196,36 @@ def blockers(peers, audit, *, required_trials=None, required_pair_depth=None,
         meaning = _MEANING.get(head, "only a `credible` decision discharges the audit")
         problems.append(f"the recorded peer audit's decision is "
                         f"{decision or 'missing'!r}: {meaning}")
-    trials = audit.get("trials")
-    if not _positive_int(trials):
-        problems.append("the recorded peer audit carries no trials, so its depth "
-                        "cannot be checked")
-    elif required_trials and trials < required_trials:
-        problems.append(f"the recorded peer audit was read at {trials:,} trials, "
-                        f"shallower than the {required_trials:,} the claim rests on: "
-                        f"an instrument artifact, not a distance difference ({RULE})")
-    depth = audit.get("pair_depth")
-    if not _positive_int(depth):
-        problems.append("the recorded peer audit carries no pair_depth")
-    elif required_pair_depth and depth < required_pair_depth:
-        problems.append(f"the recorded peer audit used pair depth {depth}, shallower "
-                        f"than the {required_pair_depth} the claim's own search used")
-    seeds = audit.get("seeds")
-    if not isinstance(seeds, list) or not seeds:
-        problems.append("the recorded peer audit carries no seeds")
+    if audit.get("backend") == "qedist":
+        secs = audit.get("seconds")
+        if not isinstance(secs, (int, float)) or isinstance(secs, bool) or secs <= 0:
+            problems.append("the recorded qedist peer audit carries no seconds, so its "
+                            "budget cannot be checked")
+        if not audit.get("tool"):
+            problems.append("the recorded qedist peer audit carries no tool name")
+        for res in audit.get("results") or []:
+            if not res.get("d_exact") and res.get("lower_bound") is None:
+                problems.append("the recorded qedist peer audit carries no proved bound "
+                                f"for {res.get('stem') or res.get('entry') or 'an entry'}")
+                break
+    else:
+        trials = audit.get("trials")
+        if not _positive_int(trials):
+            problems.append("the recorded peer audit carries no trials, so its depth "
+                            "cannot be checked")
+        elif required_trials and trials < required_trials:
+            problems.append(f"the recorded peer audit was read at {trials:,} trials, "
+                            f"shallower than the {required_trials:,} the claim rests on: "
+                            f"an instrument artifact, not a distance difference ({RULE})")
+        depth = audit.get("pair_depth")
+        if not _positive_int(depth):
+            problems.append("the recorded peer audit carries no pair_depth")
+        elif required_pair_depth and depth < required_pair_depth:
+            problems.append(f"the recorded peer audit used pair depth {depth}, shallower "
+                            f"than the {required_pair_depth} the claim's own search used")
+        seeds = audit.get("seeds")
+        if not isinstance(seeds, list) or not seeds:
+            problems.append("the recorded peer audit carries no seeds")
     audited = {peer_slug(p) for p in (audit.get("peers") or [])} - {""}
     missing = [p for p in peers if peer_slug(p) not in audited]
     if missing:
@@ -212,6 +239,11 @@ def summary(audit):
     """Return one line describing a checkable audit, for a body or a log."""
     if not is_checkable(audit):
         return str(audit or "")
+    if audit.get("backend") == "qedist":
+        secs = audit.get("seconds")
+        budget = f"{secs:g}s" if isinstance(secs, (int, float)) and not isinstance(secs, bool) else "unrecorded"
+        return (f"{audit.get('decision', '')}; {audit.get('tool', 'qedist')} {budget}, "
+                f"threads {audit.get('threads', 'unrecorded')}")
     seeds = ", ".join(str(s) for s in (audit.get("seeds") or [])) or "unrecorded"
     trials = audit.get("trials")
     depth = f"{trials:,}" if _positive_int(trials) else "unrecorded"

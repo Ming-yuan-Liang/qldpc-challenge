@@ -1,5 +1,5 @@
 {
- "schema_version": "0.1",
+ "schema_version": "0.5",
  "name": "[[15,7,3]] quantum Hamming code, single-layer 2D-local layout",
  "code_type": "CSS",
  "n": 15,
@@ -191,5 +191,115 @@
    ]
   ],
   "layers": 1
+ },
+ "circuit": {
+  "d_circ": {
+   "Z": {
+    "value": 3,
+    "confidence": "upper_bound",
+    "witness": [
+     678,
+     711,
+     757
+    ]
+   },
+   "X": {
+    "value": 3,
+    "confidence": "upper_bound",
+    "witness": [
+     252,
+     294,
+     789
+    ]
+   }
+  },
+  "rounds": 3,
+  "stim_version": "1.16.0",
+  "notes": "SAT-scheduled interleaved X+Z extraction with 1-flag co-scheduled into idle ancilla slots (10 CX layers, 12 TICKs/round, 31 qubits total; replaces 50.3-TICK/round schedule); witnesses from RIS on ker(H_dem) at twice the gate trial budget.",
+  "contributed_by": {
+   "by": [
+    "@FarLab"
+   ],
+   "date": "2026-11-19",
+   "method": "SAT interleaved X+Z + co-scheduled minimal-flag schedule search, verified by verify/circuit_verify.py"
+  },
+  "ler": {
+   "X": [
+    {
+     "p": 0.005,
+     "shots": 10000,
+     "failures": 4550,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.275929763,
+     "ci95": [
+      0.260805782,
+      0.293496032
+     ]
+    },
+    {
+     "p": 0.002,
+     "shots": 10000,
+     "failures": 1207,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.043990087,
+     "ci95": [
+      0.041503046,
+      0.046622623
+     ]
+    },
+    {
+     "p": 0.001,
+     "shots": 10000,
+     "failures": 360,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.012300104,
+     "ci95": [
+      0.011085044,
+      0.013646759
+     ]
+    }
+   ],
+   "Z": [
+    {
+     "p": 0.005,
+     "shots": 10000,
+     "failures": 4535,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.273467255,
+     "ci95": [
+      0.258645341,
+      0.290601394
+     ]
+    },
+    {
+     "p": 0.002,
+     "shots": 10000,
+     "failures": 1369,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.050576871,
+     "ci95": [
+      0.047871021,
+      0.053432199
+     ]
+    },
+    {
+     "p": 0.001,
+     "shots": 10000,
+     "failures": 412,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.01412882,
+     "ci95": [
+      0.012818298,
+      0.015571542
+     ]
+    }
+   ]
+  }
  }
 }

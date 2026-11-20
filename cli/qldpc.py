@@ -69,6 +69,7 @@ import heuristic_distance as hd  # noqa: E402
 # Reuse the site's computed-cell + Pareto-frontier helpers so the PR body
 # states exactly what the board will show (no drift between the two).
 import coordination  # noqa: E402
+import frontier  # noqa: E402
 import frontier_history  # noqa: E402
 import peer_audit  # noqa: E402
 from build import LOCALITY_LABEL, WEIGHT_LABEL, cells, pareto  # noqa: E402
@@ -341,12 +342,47 @@ def _reuse_accelerator_requirement(args):
                 "without a deep pass behind it; give it the accelerator's "
                 "budget or drop the flag")
         trials = int(args.fast_trials)
-        if trials < REUSE_MIN_FAST_TRIALS:
-            print(f"  --reuse-witnesses: {trials:,} accelerator trials is "
-                  f"below the {REUSE_MIN_FAST_TRIALS:,} per side that "
-                  f"research/kit/promote.py requires before it reuses a "
-                  f"witness; the claim will be thinner than a normal "
-                  f"submit's", flush=True)
+        floor = int(getattr(args, "min_fast_trials", REUSE_MIN_FAST_TRIALS) or 0)
+        if trials < floor:
+            raise SystemExit(
+                f"--reuse-witnesses: {trials:,} accelerator trials is below "
+                f"the {floor:,} per side that research/kit/promote.py requires "
+                "before it reuses a witness; raise --fast-trials, or lower "
+                "--min-fast-trials to say the thinner claim is intended")
+
+
+def _accelerator_requirement(args):
+    """Refuse to skip the accelerator pass silently.
+
+    ``--fast-trials N`` with N > 0 names the depth the claim is supposed to
+    have. When the C++ accelerator is not built the pass used to be skipped
+    without a word and the entry filed at RIS depth alone, which is how the
+    generalized-bicycle filings of 2026-11-17 reached CI with claims its own
+    pass refuted by a factor of two or three. Filing without the pass is
+    still possible, but only by asking for it with ``--fast-trials 0``, which
+    the PR body then records.
+    """
+    fast = int(getattr(args, "fast_trials", 0) or 0)
+    if fast > 0 and hd._fast is None:
+        raise SystemExit(
+            "the C++ accelerator (verify/gf2_fast) is not built, so the "
+            f"--fast-trials {fast:,} pass would not run and the claim would "
+            "rest on the RIS pass alone; build it (make fast) or pass "
+            "--fast-trials 0 to file without it, which the PR body then says")
+
+
+def _depth_line(args):
+    """One line on the search depth behind the claim, for the PR body."""
+    trials = int(getattr(args, "trials", 0) or 0)
+    fast = int(getattr(args, "fast_trials", 0) or 0)
+    reused = bool(getattr(args, "reuse_witnesses", False))
+    parts = ["witnesses reused from the draft" if reused
+             else f"RIS {trials:,} trials per side"]
+    if fast > 0 and hd._fast is not None:
+        parts.append(f"accelerator {fast:,} trials per side at pair depth 8")
+    else:
+        parts.append("no accelerator pass (--fast-trials 0)")
+    return "; ".join(parts)
 
 
 def _provenance(args, draft=None):
@@ -367,6 +403,8 @@ def _provenance(args, draft=None):
             "date": args.date or datetime.date.today().isoformat()}
     if args.model:
         prov["model"] = args.model
+    if getattr(args, "harness", ""):
+        prov["harness"] = args.harness
     if args.notes:
         prov["notes"] = args.notes
     budget = search_budget_from_args(args)
@@ -947,6 +985,7 @@ def pr_body(doc, report, args, out, note_out=None):
            if stab else ""),
         f"- Distance confidence: {conf_line}"
         + (" (Pauli weight, one side)" if stab else ""),
+        f"- Local search depth: {_depth_line(args)}",
     ]
     circ = doc.get("circuit")
     if circ:
@@ -995,6 +1034,11 @@ def pr_body(doc, report, args, out, note_out=None):
         lines.append(f"- Gain over {', '.join(peers)} is on d alone; matched-depth "
                      f"peer audit (`research/audits/leader_audit.py pair`): "
                      f"{peer_audit.summary(audit)}")
+    dominated_by = getattr(args, "_non_frontier", None) or []
+    if dominated_by:
+        # --allow-non-frontier: the dominators, where the reviewer reads the
+        # claim, and that the entry is a record and not a frontier advance.
+        lines.append(frontier.body_line(dominated_by))
     lines += [
         f"Score kd^2/n = {round(k * d * d / n, 3)}, max check weight {wmax}, "
         f"locality class {comp.get('locality_class', 'unknown')}.",
@@ -1005,8 +1049,7 @@ def pr_body(doc, report, args, out, note_out=None):
     if note_out:
         lines += [f"Research note: `{_repo_path(note_out)}`", ""]
     else:
-        lines += [f"(Add a research note at notes/{n}-{k}-{d}.md; see "
-                  f"notes/TEMPLATE.md.)", ""]
+        lines += ["(Optionally add a research note; see notes/TEMPLATE.md.)", ""]
     # No draft footer: 'edit before requesting review' is itself a scaffolding
     # marker the prose check rejects. The reminder lives in the CLI output.
     return "\n".join(ln for ln in lines if ln is not None)
@@ -1169,13 +1212,15 @@ def validate_authors(authors, anonymous=False):
     return normalized
 
 
-def dry_run_summary(doc, report, out):
+def dry_run_summary(doc, report, out, novelty=None):
     """Print a screen-sized preview of what submit would write.
 
     The parameters and score, the distance claim per side, the computed track
-    cells, and the provenance the contributor chose. Replaces the old
-    truncated JSON prefix, which never reached the fields a contributor
-    actually wants to confirm (issue #637).
+    cells, the frontier verdict, and the provenance the contributor chose.
+    Replaces the old truncated JSON prefix, which never reached the fields a
+    contributor actually wants to confirm (issue #637). ``novelty`` is what
+    ``_frontier_check`` recorded: a dominated code is shown as one here, so a
+    dry run read by eye says what the real run would refuse (issue #5700).
     """
     comp = report.get("computed", {})
     entry = _entry_for(doc, report)
@@ -1200,6 +1245,14 @@ def dry_run_summary(doc, report, out):
         f"  distance     d <= {dist['d']} (upper_bound)",
         "               " + "  |  ".join(per_side),
     ]
+    if novelty is not None:
+        doms = novelty.get("dominated_by") or []
+        lines.append("  frontier     " + (
+            "board-advancing: no entry in its track cell dominates it" if not doms
+            else f"NOT board-advancing: dominated by {', '.join(doms)}"
+            + (" (filed as a non-frontier record)"
+               if novelty.get("filed_as_non_frontier") else
+               "; the real run refuses this without --allow-non-frontier")))
     circ = doc.get("circuit")
     if circ:
         dc = circ["d_circ"]
@@ -1400,6 +1453,172 @@ def _peer_audit_check(doc, report, args, res, slug):
     return 1
 
 
+def _code_axes_doc(doc):
+    n, k = doc["n"], doc["k"]
+    dist = doc.get("distance") or {}
+    d = dist.get("d")
+    if d is None and isinstance(dist.get("X"), dict):
+        d = dist["X"].get("value")
+    d = int(d)
+    checks = doc.get("checks") or {}
+    if "S" in checks:
+        w = max(len(set(s.get("X", [])) | set(s.get("Z", []))) for s in checks["S"])
+    elif "X" in checks:
+        w = max({*(len(r) for r in checks["X"]), *(len(r) for r in checks["Z"])})
+    else:
+        w = None
+    return n, k, d, int(w) if w is not None else None
+
+
+def _same_code_doc(new, old):
+    return (new.get("checks") == old.get("checks"))
+
+
+def _strictly_improves_doc(new, old):
+    n_n, k_n, d_n, w_n = _code_axes_doc(new)
+    n_o, k_o, d_o, w_o = _code_axes_doc(old)
+    if w_n is None or w_o is None:
+        return False
+    return (n_n <= n_o and k_n >= k_o and d_n >= d_o and w_n <= w_o
+            and (n_n < n_o or k_n > k_o or d_n > d_o or w_n < w_o))
+
+
+def _compare_status_doc(new, old):
+    if _strictly_improves_doc(new, old):
+        return "strictly better"
+    if _strictly_improves_doc(old, new):
+        return "strictly worse"
+    n_n, k_n, d_n, w_n = _code_axes_doc(new)
+    n_o, k_o, d_o, w_o = _code_axes_doc(old)
+    if (n_n, k_n, d_n, w_n) == (n_o, k_o, d_o, w_o):
+        return "lateral"
+    return "lateral"
+
+
+def _suggested_slug_doc(slug, out_dir):
+    for letter in "bcdefghijklmnopqrstuvwxyz":
+        cand = f"{slug}-{letter}.json"
+        if not os.path.exists(os.path.join(out_dir, cand)):
+            return f"{slug}-{letter}"
+    i = 2
+    while os.path.exists(os.path.join(out_dir, f"{slug}-{i}.json")):
+        i += 1
+    return f"{slug}-{i}"
+
+
+def _revision_check(doc, report, args, res, slug=None):
+    n, k, d = doc["n"], doc["k"], doc["distance"]["d"]
+    if slug is None:
+        slug = getattr(args, "slug", "") or f"{n}-{k}-{d}"
+    out_dir = args.out
+    code_path = os.path.join(out_dir, f"{slug}.json")
+    if not os.path.exists(code_path):
+        res["revision"] = {"is_revision": False, "is_overwrite": False}
+        res["is_revision"] = False
+        res["is_overwrite"] = False
+        return 0
+    try:
+        with open(code_path, encoding="utf-8") as fh:
+            old_doc = json.load(fh)
+    except (OSError, ValueError):
+        res["revision"] = {"is_revision": True, "is_overwrite": True,
+                           "unreadable": True}
+        return 0
+    old_slug = os.path.basename(code_path)
+    same = _same_code_doc(doc, old_doc)
+    allowed = False
+    if same:
+        n_n, k_n, d_n, w_n = _code_axes_doc(doc)
+        n_o, k_o, d_o, w_o = _code_axes_doc(old_doc)
+        if (n_n == n_o and k_n == k_o and w_n == w_o and d_n <= d_o):
+            allowed = True
+    status = _compare_status_doc(doc, old_doc)
+    res["revision"] = {"is_revision": True, "is_overwrite": True,
+                       "existing": code_path, "same_code": same,
+                       "comparison": status if same else "distinct code",
+                       "strictly_better": allowed}
+    res["is_revision"] = True
+    res["is_overwrite"] = True
+    res["overwrites"] = code_path
+    res["overwritten_entry"] = code_path
+    res["revision_status"] = status if same else "distinct code collides"
+    res["comparison"] = status if same else "distinct code collides"
+    if allowed:
+        return 0
+    status = _compare_status_doc(doc, old_doc)
+    if not same:
+        suggested = _suggested_slug_doc(slug, out_dir)
+        problems = [f"{code_path} overwrites existing entry {old_slug}; "
+                    f"new version is {status}; does not advance over the "
+                    f"version it replaces; distinct code collides with the "
+                    f"existing entry; file it as a suffixed slug "
+                    f"({suggested}) instead of overwriting (re-run with "
+                    f"--slug {suggested})"]
+    else:
+        problems = [f"{code_path} overwrites existing entry {old_slug}; "
+                    f"new version is {status}; does not advance over the "
+                    f"version it replaces (re-run with --slug "
+                    f"{_suggested_slug_doc(slug, out_dir)} to file it as a "
+                    f"new entry)"]
+    if args.dry_run:
+        res.setdefault("would_refuse", []).extend(problems)
+        print("\n--dry-run: the real run would be refused as a revision/overwrite:")
+        for p in problems:
+            print(f"  {p}")
+        return 0
+    print("\nsubmission refused; nothing written to the board:")
+    for p in problems:
+        print(f"  {p}")
+    res["error"] = {"stage": "revision", "class": "revision",
+                    "message": "; ".join(problems)}
+    return 1
+
+
+def _frontier_check(doc, report, args, res):
+    """Refuse a code an entry in its track cell dominates (AGENTS.md, The motto).
+
+    The gate labels novelty and never refuses on it: ``passed`` certifies a
+    valid code and ``board_advancing`` a frontier one. This path writes the
+    frontier claim into a PR body, so this is where the label is a condition
+    (issue #5700). The rule is ``research/kit/frontier.py``'s, shared with
+    ``research/kit/promote.py``; the board is the one the site sees, the same
+    rows the peer audit and the body's frontier section read, and a tie on
+    all of (n, k, d, w) is not dominance. ``--allow-non-frontier`` files the
+    entry anyway, and the body then names the dominators and calls it a
+    record. Returns an exit code; 0 means proceed. A dry run reports what the
+    real run would refuse and proceeds, as the peer audit's does.
+    """
+    doms = frontier.dominators(_entry_for(doc, report), _load_board_entries())
+    allowed = bool(getattr(args, "allow_non_frontier", False))
+    args._non_frontier = list(doms) if (doms and allowed) else []
+    res["novelty"] = {"board_advancing": not doms, "dominated_by": list(doms),
+                      "filed_as_non_frontier": bool(doms and allowed)}
+    if not doms:
+        if allowed:
+            print("  note: --allow-non-frontier given, but no entry in its track "
+                  "cell dominates this code; the flag is not needed")
+        return 0
+    if allowed:
+        print(f"  note: not board-advancing: dominated in its track cell by "
+              f"{', '.join(doms)}; filed as a non-frontier record "
+              f"(--allow-non-frontier), which the PR body says")
+        return 0
+    problems = frontier.blockers(
+        doms, False, attach="re-run submit with --allow-non-frontier to file "
+                            "it as a non-frontier record")
+    if args.dry_run:
+        res.setdefault("would_refuse", []).extend(problems)
+        print("\n--dry-run: the real run would be refused as not board-advancing:")
+        for p in problems:
+            print(f"  {p}")
+        return 0
+    print("\nsubmission refused; nothing written to the board:")
+    for p in problems:
+        print(f"  {p}")
+    res["error"] = {"stage": "frontier", "message": "; ".join(problems)}
+    return 1
+
+
 def cmd_submit(args):
     res = _result(args)
     res["stage"] = "build"
@@ -1413,6 +1632,7 @@ def cmd_submit(args):
                          "to take witnesses from (only a .json draft carries "
                          "distance witnesses); drop the flag")
     _reuse_accelerator_requirement(args)
+    _accelerator_requirement(args)
     if args.coords:                      # explicit coords file overrides
         cz = np.load(args.coords) if args.coords.endswith(".npz") else None
         coords = (_pick(cz, ("coords", "coordinates", "xy"))
@@ -1452,11 +1672,17 @@ def cmd_submit(args):
     n, k, d = doc["n"], doc["k"], doc["distance"]["d"]
     print(f"  OK  verified. score kd^2/n = {round(k * d * d / n, 3)}")
 
-    slug = f"{n}-{k}-{d}"
+    slug = getattr(args, "slug", "") or f"{n}-{k}-{d}"
     res.update(slug=slug, n=n, k=k, d=d, code_type=doc.get("code_type", "CSS"),
                score=round(k * d * d / n, 3),
                earned_distance=report.get("earned_distance"))
+    rc = _revision_check(doc, report, args, res, slug=slug)
+    if rc:
+        return rc
     rc = _peer_audit_check(doc, report, args, res, slug)
+    if rc:
+        return rc
+    rc = _frontier_check(doc, report, args, res)
     if rc:
         return rc
     out = os.path.join(args.out, f"{slug}.json")
@@ -1480,7 +1706,7 @@ def cmd_submit(args):
                    would_write_circuits=circuits_dir if circuit_files else None,
                    doc=doc)
         if not args.json:
-            print(dry_run_summary(doc, report, out))
+            print(dry_run_summary(doc, report, out, novelty=res.get("novelty")))
         return 0
     res["stage"] = "write"
     os.makedirs(args.out, exist_ok=True)
@@ -1614,10 +1840,17 @@ def open_pr(slug, out, note_out=None, title=None, body_file=None, root=None,
     create = ["gh", "pr", "create", "--title", title]
     create += ["--body-file", body_file] if body_file else ["--fill"]
     checkout = ["git", "checkout", "-b", branch] + ([base_ref] if base_ref else [])
+    # The scope check CI runs, on the commit and before the push: a branch
+    # started from an earlier submit branch rather than from main carries that
+    # branch's entry too, and the PR it opens is the multi-code PR issue #5700
+    # saw (#5653). Caught here it costs a `git checkout`, not a review.
+    scope = [sys.executable, os.path.join("verify", "check_submission_scope.py"),
+             "--base", base_ref or "origin/main"]
     cmds = [
         checkout,
         add,
         ["git", "commit", "-m", title],
+        scope,
         ["git", "push", "-u", "origin", branch],
         create,
     ]
@@ -3031,9 +3264,20 @@ def main(argv=None):
                    help="how the code was built (family, polynomials, search)")
     s.add_argument("--model", default="",
                    help="self-reported model that produced it, named to a specific "
-                        "version, e.g. 'Claude Opus 4.8' (not a bare 'Claude'), or "
-                        "'human' (claimed, not verified; the verifier requires a "
+                        "version, e.g. 'Claude Opus 4.8' (not a bare 'Claude'). If "
+                        "you do not know the exact model/version, omit this flag; "
+                        "do not use 'human' as a placeholder -- 'human' claims a "
+                        "person, not a model, produced the code. "
+                        "'human' is claimed, not verified; the verifier requires a "
                         "version if a model is named)")
+    s.add_argument("--harness", default="",
+                   help="optional, self-reported agent harness or tooling that ran "
+                        "the model, e.g. 'OpenCode agent harness'. Recorded in "
+                        "provenance.harness, separate from --model so model "
+                        "attribution stays clean. Omit when no harness was involved "
+                        "or when the harness is already named inside --model. "
+                        "May be given without --model to credit tooling alone; "
+                        "provenance.harness is then recorded with no subject.")
     s.add_argument("--notes", default="")
     s.add_argument("--note-file", default="",
                    help="markdown research note staged as notes/<slug>.md and "
@@ -3132,11 +3376,32 @@ def main(argv=None):
                         "board entry is on d alone (same n, k, and check weight), "
                         "and it must be credible, at least as deep as this run's "
                         "search, and cover every such entry (issue #4236)")
+    s.add_argument("--allow-non-frontier", action="store_true",
+                   help="submit a code that an entry in its track cell dominates "
+                        "on (n, k, d, w). Without it such a code is refused with "
+                        "the entry named: it passes the gate and is a non-frontier "
+                        "result (AGENTS.md, The motto), and the greedy campaigns of "
+                        "issue #5700 filed dozens of them as frontier advances. "
+                        "With it the PR body names the dominators and calls the "
+                        "entry a record, not an advance")
     s.add_argument("--fast-trials", type=int, default=2_000_000,
-                   help="gf2_fast trials used to tighten the claim "
-                        "(0 disables the accelerator)")
+                   help="gf2_fast trials used to tighten the claim. 0 disables "
+                        "the accelerator and the PR body says so; a positive "
+                        "budget is refused when the accelerator is not built, "
+                        "so the pass is never skipped silently")
+    s.add_argument("--min-fast-trials", type=int, default=REUSE_MIN_FAST_TRIALS,
+                   help="the accelerator budget a --reuse-witnesses run must "
+                        "have (default: research/kit/promote.py's floor); "
+                        "lower it to file a thinner claim knowingly")
     s.add_argument("--seed", type=int, default=0)
     s.add_argument("--out", default=os.path.join(_ROOT, "codes"))
+    s.add_argument("--slug", default="",
+                   help="override the board slug (default <n>-<k>-<d>) used for "
+                        "codes/<slug>.json, notes/<slug>.md, circuits/<slug>/, "
+                        "the PR branch, and the PR body. Use a suffixed slug "
+                        "(e.g. 32-14-4-b) when a distinct code collides with "
+                        "an existing entry on (n, k, d), instead of "
+                        "overwriting it (issue #5732).")
     s.add_argument("--force", action="store_true",
                    help="overwrite an existing codes/<slug>.json")
     s.add_argument("--dry-run", action="store_true",

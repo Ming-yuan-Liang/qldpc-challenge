@@ -48,13 +48,17 @@ nothing; **audit** re-prices or triages what already exists.
 | `build_96_8_12_2bga.py` | rebuild | the [[96,8,12]] 2BGA code on D_4 x Z_6 from the paper's supports |
 | `build_dense_surface.py` | rebuild | the dense-packed surface entries ([[101,5,5]] and its larger sizes) as (HX, HZ, coords) |
 | `foldbound.py` | audit | distance upper bound by folding a code onto a symmetric subspace; a refuter, not a layout tool |
-| `annihilator_sweep.py` | audit | the annihilator attack over the board's uncertified block-shaped entries (issue #2706) |
+| `qedist_audit.py` | audit | certify a challenge CSS code's exact distance with the optional external QEDist tool (research/kit/qedist.py); evidence only, not board certification || `annihilator_sweep.py` | audit | the annihilator attack over the board's uncertified block-shaped entries (issue #2706) |
 | `board_bar.py` | audit | the smallest undominated d for a candidate (n, k, w), read off the board before any distance search |
 | `does_it_advance.py` | audit | mirror of the gate's novelty block: would this candidate beat the board, and on which axes, before paying for the gate |
 | `derive_provenance.py` | audit | literature-versus-discovered provenance for every entry from the isomorphism check (issue #1279) |
+| `reachability_campaign.py` | canonical | unified reachability campaign driver: enumerates parents, runs the distance ladder, asks `kit/dedup_oracle.py` whether the board or an open PR already holds each child (issue #6814), and stages the rest (issue #5822) |
+| `reachability_campaign_k.py` | canonical | reachability campaign variant: TARGET=k mode for missing-k (k-gap) fills (issue #6495) |
+| `revision_harvest.py` | canonical | distance-revision harvest (campaign 5 of issue #6198, issue #6813): runs `audits/leader_audit.py`'s RIS search at the reachability campaign's depth-proportional budget over board entries, staged candidates, open-PR codes, or the entries a fieldnote names, and emits each tightening as a revision candidate with its PR body; `--apply` performs the filing steps of `audits/README.md` in a checkout |
 | `arxiv_watch.py` | audit | arXiv triage for papers that may carry a board-relevant code; claims, never distances |
 | `circuit_autogen.py` | canonical | memory-circuit generation behind `qldpc submit` (issue #1848); flagged schedules (Johnson-coil and span flags) and the invariant two-block decomposition of the issue #4231 sweep |
 | `circuit_backfill.py` | canonical | the same circuit path over board entries that have no circuit tier (issue #1026) |
+| `ler_priority.py` | audit | the logical-error-rate backfill queue: circuit-bearing entries without `circuit.ler`, shallowest schedule first by TICK layers per round, with the `verify/ler_measure.py` command per entry (issue #6834) |
 | `circuit_seed.py` | rebuild | the circuit-tier seed artifact for a rotated-surface-code entry (RFC 0001 Phase A) |
 
 ## Easily confused

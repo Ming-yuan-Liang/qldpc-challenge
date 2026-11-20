@@ -43,6 +43,16 @@
 (3,7): 900</div></details>
 <div class=kv title="Euclidean support diameter of the stored distance witnesses in the verified layout, in units of the qubit spacing: how far the exhibited logicals spread, which governs the cost of using them (lattice surgery, logical measurement). An upper bound on the spread of the exhibited logicals only: the witnesses bound the logical weight from above and are not claimed minimal, so a tighter logical may exist."><b>witness diameter</b> X 8.0623 &middot; Z 7.2801 <span class=claimed>(Euclidean support diameter of the stored distance witnesses in the layout; an upper bound on the exhibited logicals&rsquo; spread, not a minimum over all logicals)</span></div>
 </section>
+<section class=blk><h3>Circuit tier</h3>
+<div class=kv style="color:var(--mut)">syndrome-extraction memory circuits committed under <a href="https://github.com/unitaryfoundation/qldpc-challenge/blob/main/circuits/90-8-10">circuits/90-8-10/</a> &middot; canonical noise recipe, 10 rounds, stim 1.16.0</div>
+<div class=kv title="schedule of the committed memory circuits, computed at build time and never ranked: qubits is every qubit the circuit addresses (data, ancilla, and flag), layers is the number of TICK-delimited parallel gate layers in the whole memory experiment, layers per round divides the layers between the data preparation and the final readout by the rounds, 2q layers and 2q gates per round are the two-qubit-gate layers and gates of one extraction round, 2q gates per layer is their mean over the two-qubit layers (the parallelism), and qubit-layers is qubits times layers, a spacetime volume"><b>schedule</b> <span class=claimed>(computed from the committed circuits; displayed, never ranked)</span></div><table class="lerpts sched"><thead><tr><th>basis</th><th>qubits</th><th>layers</th><th>layers / round</th><th>2q layers / round</th><th>2q gates / round</th><th>2q gates / layer</th><th>qubit-layers</th></tr></thead><tbody><tr><td>X, Z</td><td class=num>450</td><td class=num>172</td><td class=num>17</td><td class=num>15</td><td class=num>1,080</td><td class=num>72.0</td><td class=num>77,400</td></tr></tbody></table>
+<div class=kv><b>d_circ</b> &le; 10 <span class=claimed>(min over bases; penalty-only, each basis clamped to the distance of the logical it protects, so the min is &le; d)</span> &middot; 17 layers per round <span class=claimed>(the deeper basis; computed, never ranked)</span></div>
+<div class=kv><b>d_circ^X</b> 10 &middot; fault-set witness of 10 mechanisms (claimed upper_bound)</div>
+<details><summary>witness fault set (mechanism indices in the DEM derived from the committed .stim, 10)</summary><div class=wit>[51572, 51573, 51582, 51584, 51594, 51595, 51603, 51639, 51643, 51656]</div></details>
+<div class=kv><b>d_circ^Z</b> 10 &middot; fault-set witness of 10 mechanisms (claimed upper_bound)</div>
+<details><summary>witness fault set (mechanism indices in the DEM derived from the committed .stim, 10)</summary><div class=wit>[51586, 51588, 51591, 51593, 51627, 51628, 51631, 51632, 51646, 51648]</div></details>
+<div class=kv style="color:var(--mut)">no measured logical error rate yet; d_circ is a floor, and the measured tier records the prefactor it cannot see</div>
+</section>
 <section class=blk><h3>Verified 2D layout</h3>
 <div class=kv style="color:var(--mut)">as measured by the verifier: every check drawn over the submitted coordinates; the interaction radius is the longest dashed pair</div>
 <div class=kv style="color:var(--mut)">layout contributed by <a href="https://github.com/dorakingx">@dorakingx</a> &middot; Simulated annealing over site assignments on an integer grid with the repo&#x27;s own research/local2d/fold_layout.search_layout (max-diameter objective, several bounding boxes and seeds); single layer at radius 4 tried first, then two layers at 7. Radius and per-site occupancy re-measured with the verifier&#x27;s rule. &middot; 2026-10-04</div>
@@ -53,7 +63,7 @@
 <div class=kv><b>authors</b> Bravyi, Sergey and Cross, Andrew W. and Gambetta, Jay M. and Maslov, Dmitri and Rall, Patrick and Yoder, Theodore J.</div>
 <div class=kv><b>provenance</b> literature baseline</div>
 <div class=kv><b>construction</b> Bivariate bicycle code, orders (15, 3), A=x<sup>9</sup> + y<sup>2</sup> + y, B=x<sup>7</sup> + x<sup>2</sup> + 1 (periodic boundary conditions).</div>
-<div class=kv><b>model</b> <span class=claimed>classical construction (no AI model)</span></div>
+<div class=kv><b>model</b> <span class=modelmark></span>human <span class=claimed>(claimed, not verified)</span></div>
 <div class=kv><b>reference</b> <a href="https://arxiv.org/abs/2308.07915">arXiv:2308.07915</a></div>
 <div class=kv><b>date</b> 2023-08-15</div>
 <div class=kv><b>notes</b> Distance d=10 established in arXiv:2308.07915 (Table 3); witness here is a decoder-found logical operator of that weight (upper bound).</div>
@@ -61,7 +71,23 @@
 <div class=kv><b>locality</b> 2D-local bilayer <span class=claimed>(computed from the layout)</span></div>
 <div class=kv><b>weight class</b> weight ≤ 6 <span class=claimed>(computed)</span></div>
 </section>
-<section class=blk><h3>How this code was found</h3><div class=kv style="color:var(--mut)">no research note was staged with this submission &mdash; notes are requested for new submissions (<a href="https://github.com/unitaryfoundation/qldpc-challenge/blob/main/notes">notes/README.md</a>)</div></section>
+<section class=blk><h3>How this code was found</h3><div class=kv style="color:var(--mut)">the research note submitted with this code &middot; <a href="https://github.com/unitaryfoundation/qldpc-challenge/blob/main/notes/90-8-10.md">raw markdown</a> &middot; <a href="../research-log.html">all notes</a></div><div class=notebody><h3>[[90,8,10]] — Bivariate bicycle code, orders (15, 3), A=x<b>9 + y</b>2 + y, B=x<b>7 + x</b>2 + 1 (pe</h3>
+<h4>Direction &amp; hypothesis</h4>
+<p>Bivariate bicycle code, orders (15, 3), A=x<b>9 + y</b>2 + y, B=x<b>7 + x</b>2 + 1 (periodic boundary conditions).</p>
+<p>Origin: baseline.</p>
+<p>References: arXiv:2308.07915.</p>
+<p>Distance d=10 established in arXiv:2308.07915 (Table 3); witness here is a decoder-found logical operator of that weight (upper bound).</p>
+<h4>What was searched</h4>
+<p>Baseline contribution: parameters taken from the cited source; no original search performed for this entry.</p>
+<h4>Evidence trail</h4>
+<p>Witness-backed upper bound: d_X &lt;= 10 (upper_bound), d_Z &lt;= 10 (upper_bound), so d &lt;= 10. Verified by verify/validate_candidate.py (passed: true).</p>
+<h4>Dead ends</h4>
+<p>Not recorded for this entry.</p>
+<h4>Tools</h4>
+<p>Model: human. Authors: Bravyi, Sergey, Cross, Andrew W., Gambetta, Jay M., Maslov, Dmitri, Rall, Patrick, Yoder, Theodore J.. Verified with verify/validate_candidate.py via research/kit/coordination.py gate.</p>
+<h4>Reproduction</h4>
+<p>Bivariate bicycle code, orders (15, 3), A=x<b>9 + y</b>2 + y, B=x<b>7 + x</b>2 + 1 (periodic boundary conditions).</p>
+<p>Max check weight: 6. Matrices in codes/90-8-10.json.</p></div></section>
 <section class=blk><h3>Parity checks</h3>
 <div class=kv><b>X-checks</b> 45 (max weight 6) &middot; <b style="min-width:auto">Z-checks</b> 45 (max weight 6)</div>
 <details><summary>H_X (45 checks, sparse supports)</summary><div class=wit>[1, 2, 27, 45, 51, 66]

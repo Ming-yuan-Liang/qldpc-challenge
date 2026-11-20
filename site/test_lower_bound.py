@@ -23,7 +23,19 @@ def test_the_badge_reads_as_an_interval_below_the_witness():
     assert 'class="b ub"' in build.badge("ub") and 'class="b ub"' in build.badge("ub", None)
     assert 'class="b ub"' in build.badge("ub", 1), "d >= 1 is the trivial bound and earns nothing"
     mark = build.badge("ub", 7)
-    assert 'class="b lb"' in mark and mark.endswith(">7 &le; d &le;</span>")
+    assert 'class="b ivl"' in mark and mark.endswith(">7 &le; d &le;</span>")
+
+
+def test_no_badge_modifier_is_also_a_standalone_rule():
+    """`.b.lb` once shared its modifier with `.lb`, the leaderboard card, and the
+    interval badge took the card's margin, border and radius."""
+    import re
+    build = load_site_build()
+    marks = build.badge("exact") + build.badge("ub") + build.badge("ub", 7)
+    modifiers = {c for cls in re.findall(r'class="([^"]+)"', marks) for c in cls.split()} - {"b"}
+    assert modifiers == {"exact", "ub", "ivl"}
+    for name in modifiers:
+        assert not re.search(r"(?<![\w.-])\." + name + r"(?![\w-])", build.CSS), name
 
 
 def test_a_partial_certificate_is_honored_by_its_binding_hash_not_by_the_claim():
@@ -32,11 +44,11 @@ def test_a_partial_certificate_is_honored_by_its_binding_hash_not_by_the_claim()
             "sides": {"X": {"proved_min": 9}, "Z": {"proved_min": 7}},
             "verification": {"level": "solver", "checks_sha256": build.checks_sha256(DOC)}}
     # the certificate was made against a claim of 25 that has since been corrected to 20: the bound survives
-    assert build.cert_lower_bounds(cert, DOC) == {"d": 7, "X": 9, "Z": 7}
+    assert build.cert_lower_bounds(cert, DOC) == {"d": 7, "X": 9, "Z": 7, "P": None}
     other = dict(cert, verification={"level": "solver", "checks_sha256": "0" * 64})
-    assert build.cert_lower_bounds(other, DOC) == {"d": None, "X": None, "Z": None}
+    assert build.cert_lower_bounds(other, DOC) == {"d": None, "X": None, "Z": None, "P": None}
     above = dict(cert, d_lower=21)
-    assert build.cert_lower_bounds(above, DOC) == {"d": None, "X": None, "Z": None}, \
+    assert build.cert_lower_bounds(above, DOC) == {"d": None, "X": None, "Z": None, "P": None}, \
         "a bound above the verified witness is a contradiction, not a board update"
     trivial = dict(cert, d_lower=1)
     assert build.cert_lower_bounds(trivial, DOC)["d"] is None
@@ -45,7 +57,7 @@ def test_a_partial_certificate_is_honored_by_its_binding_hash_not_by_the_claim()
     assert build.cert_lower_bounds(cert, stab)["d"] is None
     # an honored exact certificate proves d on every side; a stale one proves nothing
     exact = {"d": 20, "d_exact": True, "sides": {"X": {"value": 21, "exact": True}, "Z": {"value": 20, "exact": True}}}
-    assert build.cert_lower_bounds(exact, DOC) == {"d": 20, "X": 20, "Z": 20}
+    assert build.cert_lower_bounds(exact, DOC) == {"d": 20, "X": 20, "Z": 20, "P": None}
     assert build.cert_lower_bounds(dict(exact, d=19), DOC)["d"] is None
 
 

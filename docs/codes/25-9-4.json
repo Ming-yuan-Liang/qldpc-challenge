@@ -1,5 +1,5 @@
 {
- "schema_version": "0.1",
+ "schema_version": "0.5",
  "name": "local-sat 5x5 G=8 w8 t3 model 0",
  "code_type": "CSS",
  "n": 25,
@@ -293,5 +293,93 @@
    ]
   ],
   "layers": 1
+ },
+ "circuit": {
+  "d_circ": {
+   "Z": {
+    "value": 4,
+    "confidence": "upper_bound",
+    "witness": [
+     565,
+     576,
+     653,
+     1719
+    ]
+   },
+   "X": {
+    "value": 4,
+    "confidence": "upper_bound",
+    "witness": [
+     3543,
+     3546,
+     3553,
+     3559
+    ]
+   }
+  },
+  "rounds": 4,
+  "stim_version": "1.16.0",
+  "notes": "SAT-scheduled interleaved X+Z extraction with 2-flag-coil co-scheduled into idle ancilla slots (14 CX layers, 16 TICKs/round, 73 qubits total; replaces 59.2-TICK/round schedule); witnesses from RIS on ker(H_dem) at twice the gate trial budget.",
+  "contributed_by": {
+   "by": [
+    "@FarLab"
+   ],
+   "date": "2026-11-20",
+   "method": "SAT interleaved X+Z + co-scheduled minimal-flag schedule search, verified by verify/circuit_verify.py"
+  },
+  "ler": {
+   "X": [
+    {
+     "p": 0.002,
+     "shots": 10000,
+     "failures": 2643,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.085697648,
+     "ci95": [
+      0.081990095,
+      0.089589302
+     ]
+    },
+    {
+     "p": 0.001,
+     "shots": 10000,
+     "failures": 746,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.019794782,
+     "ci95": [
+      0.018393289,
+      0.0213017
+     ]
+    }
+   ],
+   "Z": [
+    {
+     "p": 0.002,
+     "shots": 10000,
+     "failures": 2594,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.083560987,
+     "ci95": [
+      0.079931936,
+      0.087369638
+     ]
+    },
+    {
+     "p": 0.001,
+     "shots": 10000,
+     "failures": 776,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.020643655,
+     "ci95": [
+      0.019208016,
+      0.022185211
+     ]
+    }
+   ]
+  }
  }
 }

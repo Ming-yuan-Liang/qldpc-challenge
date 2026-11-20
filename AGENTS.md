@@ -19,7 +19,76 @@ submitting it; `./qldpc submit --peer-audit <file>` and `research/kit/promote.py
 `evidence.peer_audit` take that record and refuse a d-only gain without it.
 
 Dominated codes pass the gate but are not board-advancing. Record them as non-frontier
-results; do not submit them as frontier codes.
+results; do not submit them as frontier codes. `passed: true` certifies a valid code and
+`gates.novelty.board_advancing` a frontier one, and the gate labels the second without
+refusing on it, so `./qldpc submit` and `research/kit/promote.py` make the refusal: a
+dominated candidate is refused with its dominators named unless `--allow-non-frontier`
+files it as a non-frontier record, which the PR body then says (issue #5700).
+
+## Two tiers of change — decide which one you are in before acting
+
+Every change to this repository is one of two tiers. The tiers are not a matter of
+degree; they are a difference in kind, and an agent must not apply the standards of
+one to the other.
+
+**Tier 0 — Code submission / non-critical change.** The diff touches no
+verifier-critical path (anything `verify/check_submission_scope.py` flags as
+critical; see `.github/CODEOWNERS`). The common case is a code submission: the
+diff touches only the submission surface (`codes/`, `circuits/`, `notes/`,
+`fieldnotes/`, `repro/`, `certs/`) and adds or edits data, which the base branch's
+trusted verifier judges. It may also touch non-critical files such as `research/`,
+`docs/`, `README.md`, or `AGENTS.md`. Agents may assist freely — run searches,
+stage candidates, prepare PRs. The cost of a mistake is one bad entry, caught by
+the gate and the board. Mechanical checks (verify passes, format ok) are the bar for
+the entry; the submission-workflow rules in "Choose the workflow before acting" still
+govern how it is prepared and submitted.
+
+**Tier 1 — Challenge operation.** The diff touches the trusted closure: anything
+`verify/check_submission_scope.py` flags as critical (its `CRITICAL_PREFIXES` and
+`CRITICAL_FILES`, mirrored in `.github/CODEOWNERS`). It changes the rules that
+judge *every* entry, now and in the future. The cost of a mistake is the whole board.
+Mechanical checks are the *floor*, never the conclusion: they prove internal
+consistency, not that the change should ship.
+
+Run `uv run python verify/check_submission_scope.py --classify --base <base>` to
+classify a diff objectively rather than by inspection. If it prints tier 1, switch
+to the Tier 1 standard and do not proceed autonomously.
+
+### Agent review policy (Tier 1)
+
+- An agent must **not** post an "Approve" review on a Tier 1 PR without an
+  explicit human maintainer instruction that names that PR, must **not**
+  rubber-stamp a re-pin of `validator_manifest.json`, and must **not** merge, push,
+  or commit a Tier 1 change without an explicit human maintainer instruction that
+  names that change.
+- When asked to review a Tier 1 PR without such an instruction, the agent's
+  job is to produce an impact analysis and request human review — not to approve.
+- An agent in unattended mode (`research/AUTORESEARCH.md`) must not touch Tier 1
+  files at all, not even to "fix" a failing test or "update" a workflow. A needed
+  Tier 1 change is reported as an item for a human, the same way staged candidates
+  are reported.
+- If an agent finds itself about to approve a Tier 1 PR without such an
+  instruction, it stops and re-reads this section.
+
+### Prohibited framing (Tier 1)
+
+An agent must not say or imply "X is fine because the hash matches / the tests pass /
+the pin is intact / the manifest only moves one line" for a Tier 1 change. Those
+are preconditions, not conclusions. A Tier 1 conclusion must address behaviour:
+what changes for future submissions, which threshold or invariant moves (old → new),
+what failure mode is weakened or strengthened, and why the change beats the lighter
+alternative. A review that only cites mechanical checks is not a review of a
+Tier 1 change.
+
+### Tier 1 impact-analysis template
+
+When an agent analyses a Tier 1 change it must produce, in this order, and must not
+omit any item:
+
+1. **Behaviour change** — one sentence.
+2. **Invariant / threshold affected** — named, with old → new value.
+3. **Lighter alternative considered and rejected** — named, with why.
+4. **Who must approve** — named human maintainer (code owner).
 
 ## Choose the workflow before acting
 
@@ -57,6 +126,11 @@ manual and the reference for the `research/` kit — load the section you need r
 whole file.
 
 The two rules, here so they are never missed:
+
+**Dedup before submitting.** Before opening PRs for a batch of candidates, run
+`uv run python research/kit/dedup_submissions.py <candidate files...>` and collapse each
+`(n,k,d,w)` / canonical-form group to one representative. Do not open multiple PRs for
+the same `(n,k,d,w)`.
 
 **No code is a "find" until `verify/validate_candidate.py` returns `passed: true` for it.**
 Run it as `uv run --extra research python research/kit/coordination.py gate <path>`, which
@@ -117,6 +191,11 @@ Two more, same reason:
 - What you claim in the body must match the file in the diff. A distance is `upper_bound`
   until a certificate says otherwise — do not call a witnessed bound "certified", and do
   not put a distance in the filename that the JSON does not support.
+- Model attribution must be honest. `provenance.model` is `"human"` only when a person,
+  not a model, produced the code. If you do not know the exact model/version, omit the
+  field (or write `"unspecified"`) instead of claiming `"human"`; claiming `"human"` for
+  a model-produced code corrupts the board's model attribution and is treated as a
+  misattribution in review.
 - Delete the drafting scaffolding before asking for review: HTML comments, unticked
   checklist boxes, session URLs. If a checklist box is not true, make it true or say why
   (`qldpc submit` ticks the equivalence box itself when its board dedup finds nothing). The drafted body also carries parenthetical prompts (e.g. "(Name the
@@ -132,6 +211,11 @@ fail remotely. Before every `git push` of a submission branch, run:
 ```
 verify/prepush_prose_check.sh <pr-body.md>
 ```
+
+Enable the repository's local hooks once per clone so the validator-integrity
+check runs on every commit (it fails in under a second if a critical file
+changed without re-pinning `verify/validator_manifest.json`):
+`git config core.hooksPath .githooks`.
 
 It re-runs the check inside a clean worktree of HEAD (committed content only), which fails
 exactly when CI would, and it runs the submission scope check first: a submission PR
@@ -157,7 +241,46 @@ Locally, reproduce it with
 `PR_AUTHOR=<your-login> verify/prepush_prose_check.sh <body.md>`. Modifying
 someone else's existing note is exempt.
 
+## Worktrees
+
+A full checkout of this repository is about 8 GB, and 7.6 GB of it is
+`circuits/`. Worktrees share the object store but not the checkout, so every
+`git worktree add` copies that tree, and a machine that makes one worktree per
+PR fills up (issue #6515). Make worktrees sparse, and remove them once the
+branch is pushed.
+
+Create one with cone-mode sparse checkout. It holds the top-level files and
+the directories a submission, a kit change, or a site change reads, about
+225 MB, and takes seconds:
+
+```
+git worktree add --no-checkout --detach <path> origin/main
+git -C <path> sparse-checkout set --cone codes notes fieldnotes repro certs research verify schema cli site receipts decode
+git -C <path> checkout -b <branch> origin/main
+git -C <path> sparse-checkout add circuits/<slug>    # only for a circuit-tier PR, about 2 MB per entry
+cp verify/gf2_fast.cpython-*.so <path>/verify/      # the built accelerator is ignored by git
+```
+
+The last line matters: without the accelerator the circuit gate and the RIS
+screen fall back to a handful of trials, which is how #5094 came to be
+refuted in CI. `docs/` is generated output and is never needed in a worktree;
+add `.github` only for a workflow change.
+
+Remove a worktree as soon as its branch is pushed, with `git worktree remove
+<path>`. It refuses a worktree with modified or untracked files, but it
+deletes ignored files without asking, and `research/candidates/` is ignored:
+move staged candidates or audit logs you still need out of the worktree
+first. A detached worktree whose commits are not pushed needs a branch before
+removal (`git branch keep/<name>`), or the commits become unreachable. Run
+`git worktree prune` at the start of a session and `git worktree list` to see
+what is still registered.
+
 ## Working on the repo itself
+
+This is a Tier 1 activity: see "Two tiers of change" above. An agent does not
+start it without an explicit human instruction naming the change, and never
+approves or merges autonomously. Re-pinning (step 3) is the instructed step
+that produces the reviewable manifest diff; it is not an approval.
 
 - `verify/` is the trust anchor and is hash-pinned in CI (`verify/check_validator_integrity.py`).
   Changing it is deliberate. The checklist, in order (issue #4030):

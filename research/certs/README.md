@@ -23,6 +23,7 @@ Per entry:
 | `peers` | the honored solver and proof_log certificates within 25% of its n and within 2 of its d: how many, and the median of their recorded seconds (worse side) |
 | `band` | A: three or more peers, median under 600 s. B: a peer under 3,600 s, or n <= 400 and d <= 16 (what the October 2026 Perlmutter run closed at 2,400 s per solve). C: n <= 700 and d <= 24, beyond any peer but inside what the tier has reached (largest certified d is 19). D: n > 700 or d > 24, which nothing certified on main resembles. P: stabilizer, tropidist backend only |
 | `measured_shape` | when `research/cost/cost_table.json` exists, the nearest measured shape and how its certification run ended there (exact, MILP limit, wall cap) |
+| `certified_lower_bound` | when `certs/<slug>.json` is a partial certificate, its `d_lower`: the entry stays in the queue, and the sweep reopens it at that bound (issue #4718) |
 | `position` | rank under the rule below |
 
 The rule, also in the file's `rule` field: records first, then band A to D with
@@ -101,6 +102,12 @@ uv run python research/certs/certify_sweep.py stage --out-dir research/out/certi
 uv run python research/certs/certify_sweep.py pr-body --out-dir research/out/certify_sweep --out body.md
 ```
 
+Targeted runs (issue #4230): `--records-only` opens only entries on a cell or
+global frontier, `--band A B ...` restricts to those bands, and `--max-gap N` /
+`--min-gap N` filter by `d - (filed lower bound or 1)`. Naming a slug with
+`--slugs` lifts these filters for that slug, so a named entry is never dropped
+by them.
+
 ### The ladder and partial certificates
 
 `--ladder SECONDS` (issue #4230) asks each side at W = 1, 2, ... up to
@@ -125,7 +132,14 @@ bound or closed the entry, keeping the old rungs ahead of the new ones so the
 file shows the whole ascent. A run whose first new rung times out files
 nothing and says so in its attempt row. The tropidist backend's per-side
 `lower_bound` on a side that did not close is filed the same way, at the
-solver level and without a ladder.
+solver level and without a ladder, on CSS entries and on stabilizer entries
+(the single Pauli-weight side `P`, bound to the generator set by
+`checks_sha256`; issue #4718). Under `--backend tropidist` a partial
+certificate on file is reopened when `--retry` or `--slugs` names it or
+`--tlim` is larger than the `tlim_per_solve` it recorded, and the tool starts
+at the filed `d_lower` (`tropidist_certify.py --kmin`) instead of re-proving
+the thresholds below it; the file is replaced only when the bound rose, and
+records the bound it was raised from.
 
 ## The tropidist backend
 
@@ -164,10 +178,12 @@ the proof_log record when that finishes and the tool's record otherwise. An
 entry the tool did not close is not retried with SAT in the same run (the
 paper's benchmark gives SAT little chance where the tool's search did not
 finish), and a tool error falls back to SAT. `--backend tropidist` runs the
-tool alone. The backend is opt-in: the scheduled certify-weekly run stays on
-the SAT path, and a workflow_dispatch run with `backend` set to `tropidist`
-or `tropidist+sat` fetches the tool at the commit pinned in `TROPIDIST_REF`
-and runs it.
+tool alone. The scheduled certify-weekly run fetches the tool at the commit
+pinned in its `TROPIDIST_REF` and runs `tropidist+sat`, the default since
+issue #4939 accepted the tool's verdicts at the solver level; a
+workflow_dispatch run with `backend` set to `sat` stays on the SAT path and
+skips the fetch. The script's own `--backend` default stays `sat`, since the
+tool backend needs a checkout the script cannot assume.
 
 Measured on a laptop (one kernel thread; the tool's OpenMP build is not
 available on macOS) against entries the queue listed: 132-30-12 (band A,
@@ -180,6 +196,8 @@ sides in 600 s. Stabilizer entries 40-9-6 and 90-21-10 closed in under 15 s;
 
 ```
 uv run python research/certs/tropidist_certify.py codes/40-9-6.json --tropidist /tmp/tropidist --tlim 600
+uv run python research/certs/tropidist_certify.py codes/372-130-16.json --tropidist /tmp/tropidist \
+    --tlim 3600 --kmin 15     # resume above a filed partial certificate's d_lower
 uv run --extra research python research/certs/certify_sweep.py run --backend tropidist+sat \
     --tropidist /tmp/tropidist --threads 4 --tlim 600 --job-seconds 14400
 ```
@@ -217,3 +235,39 @@ is out of reach (1.4e16 Paulis), each of the 42 MILP solves (one per logical
 representative) hit the 300 s limit, and the search's lightest logical at
 200,000 trials weighs 10, so that certificate rests on tropidist's verdict
 alone, with the heuristic bound agreeing.
+
+## The QEDist backend
+
+`qedist_certify.py` (this PR) runs QEDist (yeon-lee/QEDist) on a CSS entry and
+files a solver-level certificate in the #3666 shape, mirroring
+`tropidist_certify.py`. QEDist is faster than tropidist on moderate CSS codes
+(median 0.39 s vs 1.41 s on a 31-entry benchmark, see fieldnote
+`2026-11-15-qedist-vs-tropidist-benchmark.md`) and supports an LP
+tensor-block profile up to 8192 qubits, but it is CSS-only and caps the cutoff
+at 64 (d <= 65). Use it for CSS entries with d <= 64, especially LP codes;
+use tropidist for stabilizer entries and d > 64.
+
+    uv run python research/certs/qedist_certify.py codes/<slug>.json \
+        --qedist /path/to/qedist --tlim 60 --threads 4 --json
+
+Stabilizer entries (code_type == "stabilizer") are handled by
+`qedist_stabilizer_certify.py`, which uses QEDist's `certify-stabilizer`
+command on the Pauli-weight encoding:
+
+    uv run python research/certs/qedist_stabilizer_certify.py codes/<slug>.json \
+        --qedist /path/to/qedist --tlim 60 --threads 4 --json
+
+## Sweep backend
+
+`certify_sweep.py` now accepts `--backend qedist` (and `qedist+sat`), routing
+entries through `routed_certify.py` (QEDist for d <= 64, tropidist fallback for
+higher d).  Example:
+
+    uv run --extra research python research/certs/certify_sweep.py run \
+        --backend qedist+sat --qedist /path/to/qedist --tropidist /path/to/tropidist \
+        --threads 4 --tlim 600 --job-seconds 14400
+
+## Circuit fault-distance audit
+
+    uv run python research/audits/qedist_circuit_audit.py codes/<slug>.json \
+        --seconds 60 --json

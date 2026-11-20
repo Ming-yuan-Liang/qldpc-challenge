@@ -209,6 +209,7 @@ def test_the_budget_stops_opening_entries_and_reports_what_is_left(tmp_path):
     assert m["opened"] == 2 and m["selected"] == 2
 
 
+@pytest.mark.board
 def test_a_real_certificate_on_a_tiny_board_entry_passes_the_certificate_checker(tmp_path):
     """The certifier's record, stripped and filed, is one verify/check_certs.py accepts."""
     pytest.importorskip("pycryptosat")
@@ -597,3 +598,189 @@ def test_with_a_ladder_the_tool_backend_hands_open_entries_to_the_sat_ladder(tmp
         filed = json.load(f)
     assert filed["d_lower"] == 4 and filed["sides"]["Z"]["proved_min"] == 4 and filed["sides"]["X"]["proved_min"] == 6
     assert "checks_sha256" in filed["verification"]
+
+
+# --- the tropidist backend's partial certificates and their reopening (issue #4718) ---------------
+
+_STAB_DOC = {"n": 5, "k": 1, "code_type": "stabilizer", "name": "[[5,1,3]]",
+             "checks": {"S": [{"X": [0, 2], "Z": [1, 3]}, {"X": [1, 3], "Z": [2, 4]},
+                              {"X": [0, 2], "Z": [3, 0]}, {"X": [1, 3], "Z": [4, 1]}]},
+             "distance": {"d": 3, "P": {"value": 3}}}
+
+
+def test_the_tool_files_a_stabilizer_partial_certificate_on_the_pauli_side(tmp_path):
+    S = _script()
+    import sys
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(_HERE)), "verify"))
+    import check_certs as C
+    codes, certs, out = str(tmp_path / "codes"), str(tmp_path / "certs"), str(tmp_path / "out")
+    os.makedirs(certs)
+    _write(os.path.join(codes, "stab.json"), _STAB_DOC)
+    queue = {"entries": [_row("stab", code_type="stabilizer", d=3, n=5)]}
+
+    def tool(doc, tlim, slug, kmin=None):
+        return _tool_record(slug, doc, tlim, sides={"P": ("TIMEOUT", 2)})
+
+    m = S.run_sweep(queue=queue, out_dir=out, attempts_path=str(tmp_path / "a.jsonl"), tlim=600, job_seconds=100,
+                    certs_dir=certs, codes_dir=codes, certify_tropidist=tool, tools=lambda: {}, backend="tropidist")
+    row = S.load_jsonl(str(tmp_path / "a.jsonl"))[0]
+    assert row["outcome"] == "partial" and row["d_lower"] == 2 and row["backend"] == "tropidist"
+    assert m["staged"] == ["stab"]
+    with open(os.path.join(out, "certs", "stab.json"), encoding="utf-8") as f:
+        cert = json.load(f)
+    assert cert["d_exact"] is False and cert["d_lower"] == 2 and set(cert["sides"]) == {"P"}
+    assert cert["sides"]["P"]["proved_min"] == 2 and "lower_bound" not in cert["sides"]["P"]
+    assert cert["verification"]["checks_sha256"] == C.checks_sha256(_STAB_DOC)
+    _, body = S.pr_text(m, staged=m["staged"])
+    assert "tropidist backend did not finish 1 within 600 s per side" in body
+    assert "| stab | 5 | 2 | 3 | d >= 2 |" in body
+
+
+def test_the_tool_reopens_a_partial_certificate_at_its_bound_and_files_only_a_rise(tmp_path):
+    S = _script()
+    codes, certs = str(tmp_path / "codes"), str(tmp_path / "certs")
+    _write(os.path.join(codes, "open.json"), _DOC)
+    on_file = S.partial_certificate(_tool_record("open", _DOC, 600, sides={"X": ("TIMEOUT", 4), "Z": ("TIMEOUT", 4)}),
+                                    _DOC)
+    _write(os.path.join(certs, "open.json"), on_file)
+    assert on_file["tlim_per_solve"] == 600 and "ladder" not in on_file
+    queue = {"entries": [_row("open", d=6)]}
+    # without a ladder the SAT path cannot raise it; the tool can, when asked or given more time
+    _, skipped, reasons = S.select(queue, last={}, tlim=600, certs_dir=certs, codes_dir=codes)
+    assert skipped == {"partial": 1} and "as does the tropidist backend" in reasons["open"]
+    _, skipped, reasons = S.select(queue, last={}, tlim=600, certs_dir=certs, codes_dir=codes, tool=True)
+    assert skipped == {"partial": 1} and "a larger --tlim raises it" in reasons["open"]
+    chosen, _, _ = S.select(queue, last={}, tlim=1200, certs_dir=certs, codes_dir=codes, tool=True)
+    assert chosen and chosen[0]["start"] == 4 and chosen[0]["raise_from"]["d_lower"] == 4
+    seen = []
+
+    def tool(doc, tlim, slug, kmin=None):
+        seen.append(kmin)
+        bound = 5 if tlim >= 1200 else 4
+        return _tool_record(slug, doc, tlim, sides={"X": ("TIMEOUT", bound), "Z": ("TIMEOUT", bound)})
+
+    # the same bound again files nothing and says so
+    out1 = str(tmp_path / "out1")
+    S.run_sweep(queue=queue, out_dir=out1, attempts_path=str(tmp_path / "a1.jsonl"), tlim=600, job_seconds=100,
+                retry=True, certs_dir=certs, codes_dir=codes, certify_tropidist=tool, tools=lambda: {},
+                backend="tropidist")
+    row = S.load_jsonl(str(tmp_path / "a1.jsonl"))[0]
+    assert seen == [{"X": 4, "Z": 4, "P": 4}] and row["start"] == 4
+    assert row["raised"] == {"from": 4, "to": 4} and "did not rise" in row["note"]
+    assert not os.path.exists(os.path.join(out1, "certs", "open.json"))
+    # a higher bound replaces the file, with no empty ladder and the bound it rose from
+    out2 = str(tmp_path / "out2")
+    m = S.run_sweep(queue=queue, out_dir=out2, attempts_path=str(tmp_path / "a2.jsonl"), tlim=1200, job_seconds=100,
+                    certs_dir=certs, codes_dir=codes, certify_tropidist=tool, tools=lambda: {}, backend="tropidist")
+    row = S.load_jsonl(str(tmp_path / "a2.jsonl"))[0]
+    assert row["outcome"] == "partial" and row["raised"] == {"from": 4, "to": 5} and m["staged"] == ["open"]
+    with open(os.path.join(out2, "certs", "open.json"), encoding="utf-8") as f:
+        cert = json.load(f)
+    assert cert["d_lower"] == 5 and cert["raised_from"] == 4 and "ladder" not in cert
+    assert all("ladder" not in b and b["proved_min"] == 5 for b in cert["sides"].values())
+    assert cert["verification"]["level"] == "solver" and "started at the filed bound" in cert["verification"]["note"]
+    assert cert["verification"]["checks_sha256"] == on_file["verification"]["checks_sha256"]
+
+
+def test_the_subprocess_runner_hands_the_tool_its_start_threshold(tmp_path):
+    S = _script()
+    echo = tmp_path / "echo.py"
+    echo.write_text("import json, sys\nprint(json.dumps({'argv': sys.argv[1:]}))\n", encoding="utf-8")
+    rec, err, killed = S.tropidist_in_subprocess("codes/x.json", "x", 60, "/nowhere", 1, wall=20, kmin=7,
+                                                 script=str(echo))
+    assert err is None and not killed and rec["argv"][-2:] == ["--kmin", "7"]
+    rec, _, _ = S.tropidist_in_subprocess("codes/x.json", "x", 60, "/nowhere", 1, wall=20, kmin=1, script=str(echo))
+    assert "--kmin" not in rec["argv"]
+
+
+def test_targeted_filters_skip_records_bands_and_gap(tmp_path):
+    S = _script()
+    codes, certs = str(tmp_path / "codes"), str(tmp_path / "certs")
+    for slug in ("rec", "nonrec", "bandA", "bandB", "nocert", "partial"):
+        _write(os.path.join(codes, slug + ".json"), {"n": 12})
+    _write(os.path.join(certs, "partial.json"), {"d_exact": False, "d_lower": 3})
+    rows = [_row(s) for s in ("rec", "nonrec", "bandA", "bandB", "nocert", "partial")]
+    rows[0]["record"] = True
+    rows[1]["record"] = False
+    rows[2]["band"] = "A"
+    rows[3]["band"] = "B"
+    rows[4]["d"] = 5
+    rows[5]["d"] = 5
+    for i in (4, 5):
+        rows[i]["sides"] = {"X": {"value": 5}, "Z": {"value": 5}}
+    queue = {"entries": rows}
+    last = {}
+    today = "2026-10-26"
+
+    chosen, skipped, reasons = S.select(queue, last=last, tlim=600, certs_dir=certs, codes_dir=codes,
+                                       today=today, records_only=True)
+    slugs = [r["slug"] for r in chosen]
+    assert "nonrec" not in slugs
+    assert "rec" in slugs
+
+    chosen, skipped, reasons = S.select(queue, last=last, tlim=600, certs_dir=certs, codes_dir=codes,
+                                       today=today, bands=["A"])
+    slugs = [r["slug"] for r in chosen]
+    assert "bandB" not in slugs
+    assert "bandA" in slugs
+
+    chosen, skipped, reasons = S.select(queue, last=last, tlim=600, certs_dir=certs, codes_dir=codes,
+                                       today=today, max_gap=2)
+    slugs = [r["slug"] for r in chosen]
+    assert "nocert" not in slugs
+    assert skipped.get("gap", 0) >= 1
+
+    chosen, skipped, reasons = S.select(queue, last=last, tlim=600, certs_dir=certs, codes_dir=codes,
+                                       today=today, min_gap=4)
+    slugs = [r["slug"] for r in chosen]
+    assert "nocert" in slugs
+    assert "partial" not in slugs
+
+
+def test_dry_run_returns_zero_and_leaves_out_dir_empty(tmp_path):
+    S = _script()
+    out = tmp_path / "out"
+    rc = S.main(["run", "--out-dir", str(out), "--dry-run"])
+    assert rc == 0
+    if out.exists():
+        assert list(out.iterdir()) == []
+
+
+def test_qedist_backend_and_reopened_partial(tmp_path):
+    S = _script()
+    codes, certs, out = str(tmp_path / "codes"), str(tmp_path / "certs"), str(tmp_path / "out")
+    os.makedirs(certs)
+    _write(os.path.join(codes, "p.json"), _DOC)
+    _write(os.path.join(certs, "p.json"), {"d_exact": False, "d_lower": 2, "tlim_per_solve": 60})
+    queue = {"entries": [_row("p")]}
+    seen = []
+
+    def fake_routed_certify(doc, *, qedist_root=None, tropidist_root=None, tlim=60.0, threads=4):
+        seen.append((qedist_root, tropidist_root, tlim, threads))
+        return _record(level="solver")
+
+    m = S.run_sweep(queue=queue, out_dir=out, attempts_path=str(tmp_path / "a.jsonl"), tlim=120,
+                    job_seconds=1000, certs_dir=certs, codes_dir=codes, backend="qedist",
+                    qedist="/tmp/qedist", certify_qedist=fake_routed_certify, tools=lambda: {})
+    assert seen == [("/tmp/qedist", None, 120, 1)]
+    assert m["outcomes"] == {"exact": 1} and m["staged"] == ["p"]
+
+    # Subprocess path must not pass --kmin (which routed_certify.py rejects).
+    dummy = tmp_path / "dummy_routed.py"
+    dummy.write_text(
+        "import argparse, json\n"
+        "ap = argparse.ArgumentParser()\n"
+        "ap.add_argument('path')\n"
+        "ap.add_argument('--qedist', default=None)\n"
+        "ap.add_argument('--tropidist', default=None)\n"
+        "ap.add_argument('--tlim', type=float, default=60.0)\n"
+        "ap.add_argument('--threads', type=int, default=4)\n"
+        "ap.add_argument('--json', action='store_true')\n"
+        "ap.parse_args()\n"
+        "print(json.dumps({'d_exact': True, 'd': 4, 'sides': {}}))\n",
+        encoding="utf-8",
+    )
+    rec, err, killed = S.qedist_in_subprocess(
+        os.path.join(codes, "p.json"), "p", 120, "/tmp/qedist", 1, 30, script=str(dummy)
+    )
+    assert err is None and not killed and rec["d_exact"] is True

@@ -1,5 +1,5 @@
 {
- "schema_version": "0.1",
+ "schema_version": "0.5",
  "name": "[[16,6,4]] quantum Reed-Muller code, single-layer 2D-local layout",
  "code_type": "CSS",
  "n": 16,
@@ -217,5 +217,93 @@
    ]
   ],
   "layers": 1
+ },
+ "circuit": {
+  "d_circ": {
+   "Z": {
+    "value": 4,
+    "confidence": "upper_bound",
+    "witness": [
+     1851,
+     1855,
+     2068,
+     2737
+    ]
+   },
+   "X": {
+    "value": 4,
+    "confidence": "upper_bound",
+    "witness": [
+     1172,
+     1173,
+     1903,
+     1939
+    ]
+   }
+  },
+  "rounds": 4,
+  "stim_version": "1.16.0",
+  "notes": "SAT-scheduled interleaved X+Z extraction with 3-flag Johnson coil per weight-8 check co-scheduled into idle ancilla slots (14 CX layers, 16 TICKs/round, 56 qubits total); witnesses from RIS on ker(H_dem) at twice the gate trial budget.",
+  "contributed_by": {
+   "by": [
+    "@FarLab"
+   ],
+   "date": "2026-11-19",
+   "method": "SAT interleaved X+Z + co-scheduled minimal-flag schedule search, verified by verify/circuit_verify.py"
+  },
+  "ler": {
+   "X": [
+    {
+     "p": 0.002,
+     "shots": 10000,
+     "failures": 2404,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.075572344,
+     "ci95": [
+      0.072229881,
+      0.079079213
+     ]
+    },
+    {
+     "p": 0.001,
+     "shots": 10000,
+     "failures": 736,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.019512823,
+     "ci95": [
+      0.018122779,
+      0.021008129
+     ]
+    }
+   ],
+   "Z": [
+    {
+     "p": 0.002,
+     "shots": 10000,
+     "failures": 2432,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.076721453,
+     "ci95": [
+      0.073338382,
+      0.080270967
+     ]
+    },
+    {
+     "p": 0.001,
+     "shots": 10000,
+     "failures": 733,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.019428331,
+     "ci95": [
+      0.018041729,
+      0.020920148
+     ]
+    }
+   ]
+  }
  }
 }

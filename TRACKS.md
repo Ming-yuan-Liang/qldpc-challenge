@@ -73,7 +73,9 @@ generic advance: `validate_candidate` returns `advances_by: ["d"]` in
 `d_only_gain` is the stricter of the two: it is true only when nothing but `d`
 was gained anywhere on the board. The label is keyed on `d_only_peers` instead,
 so it still names those entries — and still tells you to re-measure them — when
-the candidate also beat some other entry on `k`, or `w`, or `n`.
+the candidate also beat some other entry on `k`, or `w`, or `n`. A `d = 1` entry
+is a placeholder, not a suspect distance claim: it is not a `d_only_peer`, so
+beating one on `d` alone does not carry the audit duty.
 The matched-depth pair audit (`research/audits/leader_audit.py pair`) then
 re-measures the candidate and that entry on the same trials, seeds and pair
 depth, and its `redirect` verdict — the board's number, not the candidate's, was
@@ -222,14 +224,21 @@ a memory experiment of this code under the canonical noise recipe. The
 schedule is the submitter's degree of freedom, the noise placement is not.
 Like the code tier, `d_circ` is a witness-backed upper bound.
 
-The tier is penalty-only: `d_circ` is clamped to `<= d`, so a circuit can
-lower what the board shows for an entry and never raise it. The memory
+The tier is penalty-only: each memory's claim is clamped to the distance of
+the logical it protects, `d_Z` for the X memory and `d_X` for the Z memory
+(issue #4715), so the effective `d_circ`, the minimum over the bases, is
+`<= d`, and a circuit can lower what the board shows for an entry and never
+raise it. The memory
 experiment runs `rounds >= d` noisy extraction rounds, so a schedule cannot
 earn a higher circuit distance by measuring fewer rounds than the code
 distance. Nothing else changes: the entry stays in the same cells and keeps
 its place on the (n, k, d, w) frontier, the site marks it with a gear chip
 carrying the lower of its two `d_circ` values, and the circuit tab lists the
-entries that have one.
+entries that have one. The schedule's depth is not ranked either, but it is
+what a measured rate pays for: anyone may replace an entry's circuits with a
+schedule that reads a higher `d_circ`, or the same `d_circ` from strictly
+fewer layers per round on both bases (`CONTRIBUTING.md`, "Raising a circuit
+fault distance already on the board", issue #6834).
 
 The tier has caps: n at most 200, a cap on the error mechanisms per memory
 detector error model at `rounds = d`, and a cap on the size of each committed
@@ -242,18 +251,33 @@ plain text so a witness is auditable in a diff. The caps are raise-only, with
 a decision on the issue tracker. The fields are in `schema/SCHEMA.md` under
 `circuit`.
 
+The code page shows schedule diagnostics derived from the committed circuits
+when the site is built, the way girth and trapping sets are derived from the
+checks: the qubits the circuit addresses (data, ancilla, and flag), the
+TICK-delimited parallel gate layers of the whole memory experiment, the
+layers per extraction round, the two-qubit-gate layers and gates per round,
+the mean two-qubit gates per two-qubit layer, and qubits times layers. The
+verifier requires every layer to touch no qubit twice, so the layer count is
+the circuit's gate depth. Nothing is stored, nothing is ranked, and the
+frontier does not read them (issue #5807).
+
 ## Measured-rate tier
 
 On the same committed circuits an entry may also carry a measured logical
 error rate, `circuit.ler`: per basis, a list of points, one per physical
 error rate on a fixed grid (`P_GRID` in `verify/ler_verify.py`), each
-recording the shots, the failures, the seed, the pinned decoder, the
-per-round rate, and its confidence interval. `d_circ` is a floor. This is
-the rate a simulation sees, prefactors included, and it is what separates two
-schedules with the same `d_circ`. The grid is fixed so that entries are
-compared only at equal p. The site never compares rates measured at
-different physical rates, and the measured-rate frontier (over n, k, and the
-rate, with d and w not entering) is computed per p over verified points only.
+recording the shots, the failures, the seed, the decoder, the per-round
+rate, and its confidence interval. `d_circ` is a floor. This is the rate a
+simulation sees, prefactors included, and it is what separates two schedules
+with the same `d_circ`. The grid is fixed so that entries are compared only
+at equal p. The decoder is one of a small registry (`DECODERS` in
+`verify/ler_tools.py`, issue #5804): the reference decoder `bposd-cs-10`
+gives the headline rate and the LER record, and an entry may carry further
+curves under the other registry decoders, each shown and ranked on its own.
+The site never compares rates measured at different physical rates or under
+different decoders, and the measured-rate frontier (over n, k, and the rate,
+with d and w not entering) is computed per p and per decoder over verified
+points only.
 
 A point whose per-shot failure fraction exceeds one half is saturated, since
 the per-round conversion reads it as one half whatever the circuit does, and
@@ -264,8 +288,8 @@ than the circuit earns, and that is what replication tests.
 
 Verification is by re-measurement with an independent seed, sized to
 discriminate rather than to a fixed shot count. At PR time the gate tries the
-points from the highest rate down inside a wall budget per basis and must
-verify at least one. A point the budget cannot check to the admissibility
+points from the highest rate down inside a wall budget per basis and per
+decoder and must verify at least one under each decoder the entry carries. A point the budget cannot check to the admissibility
 bound is deferred, with every lower point, to the weekly post-merge run
 (`verify/ler_replicate.py`), which re-measures every point with a long budget
 and several seeds and writes a receipt per entry under `receipts/ler/`. The

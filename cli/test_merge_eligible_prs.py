@@ -38,6 +38,22 @@ def _successful_checks(head_sha="abc123"):
             "conclusion": "success",
             "started_at": "2026-09-25T10:01:00Z",
         },
+        {
+            "id": 3,
+            "name": "codes-format",
+            "head_sha": head_sha,
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-09-25T10:02:00Z",
+        },
+        {
+            "id": 4,
+            "name": "ruff",
+            "head_sha": head_sha,
+            "status": "completed",
+            "conclusion": "success",
+            "started_at": "2026-09-25T10:03:00Z",
+        },
     ]
 
 
@@ -338,6 +354,8 @@ def test_checks_require_success_on_the_current_head():
     assert failures == [
         "missing verify check on current head",
         "missing prose check on current head",
+        "missing codes-format check on current head",
+        "missing ruff check on current head",
     ]
 
 
@@ -353,6 +371,13 @@ def test_latest_check_run_must_be_successful():
         }
     )
     assert merge_eligible_prs.check_failures(runs, "abc123") == ["verify is in_progress/no conclusion"]
+
+
+def test_ruff_check_must_succeed_for_merge_eligibility():
+    runs = _successful_checks()
+    ruff = next(run for run in runs if run["name"] == "ruff")
+    ruff["conclusion"] = "failure"
+    assert merge_eligible_prs.check_failures(runs, "abc123") == ["ruff is completed/failure"]
 
 
 def test_pr_eligibility_requires_changed_code_metadata_and_required_checks(monkeypatch):
@@ -515,6 +540,68 @@ def test_a_new_entry_or_a_changed_provenance_is_still_held_to_the_rule(monkeypat
     monkeypatch.setattr(merge_eligible_prs, "_read_code_document", _reader(head, base))
     result = merge_eligible_prs.evaluate_pr("example/repo", _pr(), "main")
     assert not result.eligible and result.metadata_errors
+
+
+def test_a_replacement_circuit_that_lowers_a_side_is_blocked(monkeypatch):
+    """#5911 and #5934 (2026-11-17): an author replaced their entry's circuit with a worse one."""
+    def doc(x, z):
+        d = _code_document()
+        d["circuit"] = {"d_circ": {"X": {"value": x}, "Z": {"value": z}}, "rounds": 7}
+        return d
+    files = [{"filename": "codes/64-21-7.json", "status": "modified"},
+             {"filename": "circuits/64-21-7/memory_x.stim", "status": "modified"}]
+    monkeypatch.setattr(merge_eligible_prs, "list_pr_files", lambda _repo, _number: files)
+    monkeypatch.setattr(merge_eligible_prs, "list_check_runs", lambda _repo, _sha: _successful_checks())
+    monkeypatch.setattr(merge_eligible_prs, "_read_code_document", _reader(doc(4, 4), doc(5, 6)))
+    result = merge_eligible_prs.evaluate_pr("example/repo", _pr(), "main")
+    assert not result.eligible
+    assert result.reasons == ["codes/64-21-7.json: the replacement circuit lowers d_circ "
+                              "(X 5 -> 4, Z 6 -> 4); the committed circuit is better"]
+    # a replacement that raises a side and keeps the other is what the tier is for
+    monkeypatch.setattr(merge_eligible_prs, "_read_code_document", _reader(doc(5, 5), doc(5, 4)))
+    assert merge_eligible_prs.evaluate_pr("example/repo", _pr(), "main").eligible
+    # a lowered reading on the unchanged circuit is a refutation, not a replacement
+    monkeypatch.setattr(merge_eligible_prs, "list_pr_files",
+                        lambda _repo, _number: [{"filename": "codes/64-21-7.json", "status": "modified"}])
+    monkeypatch.setattr(merge_eligible_prs, "_read_code_document", _reader(doc(4, 4), doc(5, 6)))
+    assert merge_eligible_prs.evaluate_pr("example/repo", _pr(), "main").eligible
+    # a new entry with a circuit has nothing to regress from
+    monkeypatch.setattr(merge_eligible_prs, "list_pr_files", lambda _repo, _number: [
+        {"filename": "codes/64-21-7.json", "status": "added"},
+        {"filename": "circuits/64-21-7/memory_x.stim", "status": "added"}])
+    monkeypatch.setattr(merge_eligible_prs, "_read_code_document", _reader(doc(4, 4), None))
+    assert merge_eligible_prs.evaluate_pr("example/repo", _pr(), "main").eligible
+
+
+def test_a_distance_revision_that_renames_the_entry_inherits_the_gap(monkeypatch):
+    """A distance revision files the record under its new slug (CONTRIBUTING.md,
+    "Correcting a distance already on the board"), so the base entry is read
+    under the name the PR replaced rather than taken for a new entry."""
+    base = _code_document(model=None)
+    head = _code_document(model=None)
+    head["provenance"]["notes"] = " Distance revision 2026-11-10: Z side 80 -> 75 (witness by @reviser)."
+    monkeypatch.setattr(
+        merge_eligible_prs,
+        "list_pr_files",
+        lambda _repo, _number: [
+            {"filename": "codes/10-2-2.json", "previous_filename": "codes/10-2-3.json", "status": "renamed"},
+            {"filename": "notes/10-2-2.md", "previous_filename": "notes/10-2-3.md", "status": "renamed"},
+        ],
+    )
+
+    def read(_repo, path, ref):
+        if ref == "abc123" and path == "codes/10-2-2.json":
+            return head
+        if ref == "main" and path == "codes/10-2-3.json":
+            return base
+        raise merge_eligible_prs.GitHubCLIError(f"no {path} at {ref}")
+
+    monkeypatch.setattr(merge_eligible_prs, "_read_code_document", read)
+    monkeypatch.setattr(merge_eligible_prs, "list_check_runs", lambda _repo, _sha: _successful_checks())
+    result = merge_eligible_prs.evaluate_pr("example/repo", _pr(), "main")
+    assert result.eligible and result.metadata_errors == []
+    assert result.inherited_gaps == [("codes/10-2-2.json", "missing or empty provenance.model")]
+    assert merge_eligible_prs.metadata_comment_body(result) is None
 
 
 def test_a_refutation_that_appends_its_credit_to_notes_still_inherits_the_gap(monkeypatch):

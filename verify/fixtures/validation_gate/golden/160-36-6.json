@@ -1,5 +1,5 @@
 {
- "doc_sha256": "69d7e2655e631543165cea02a9567ef38a756d21fa65a5bedefa2ca4f3594cb7",
+ "doc_sha256": "a095587c9954c7faeb62fd9fa54c05e87a2fe51a70b480355884d6723f550fe5",
  "report": {
   "checks": [
    {
@@ -229,6 +229,27 @@
    "n": 160,
    "rank_HX": 62,
    "rank_HZ": 62,
+   "sector_distances": {
+    "X": {
+     "exact": false,
+     "lower": null,
+     "refuted_to": null,
+     "upper": 6,
+     "witness_weight": 6
+    },
+    "Z": {
+     "exact": false,
+     "lower": null,
+     "refuted_to": null,
+     "upper": 6,
+     "witness_weight": 6
+    },
+    "d": {
+     "exact": false,
+     "lower": null,
+     "upper": 6
+    }
+   },
    "weight_class": "weight-6"
   },
   "css_equivalent": {

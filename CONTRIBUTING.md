@@ -3,6 +3,23 @@
 You bring `H_X` and `H_Z`; one command turns them into a verified, PR-ready
 submission.
 
+## Clone options
+
+The working tree is large (mostly `circuits/`, ~8 GB). Use a partial clone to
+avoid downloading everything:
+
+```bash
+# Partial clone: blobs fetched on demand (recommended)
+git clone --filter=blob:none --sparse https://github.com/unitaryfoundation/qldpc-challenge.git
+cd qldpc-challenge
+git sparse-checkout set codes circuits notes fieldnotes repro certs
+
+# Codes and notes only (no circuits)
+git sparse-checkout set codes notes fieldnotes repro certs
+```
+
+Or run `./scripts/clone-sparse.sh [--no-circuits]`.
+
 ## One command
 
 ```
@@ -48,7 +65,15 @@ Useful flags:
 
 - `--model "Claude Opus 4.8"` what produced the code, named to a specific
   version, not a bare vendor name (self-reported, shown on the board as a claim,
-  not verified; if you name a model the verifier requires a version);
+  not verified; if you name a model the verifier requires a version). If you do
+  not know the exact model/version that produced the code, omit `--model`
+  entirely; do not write `"human"` as a placeholder -- `"human"` is a claim that
+  a person, not a model, authored the code, and misusing it corrupts the
+  board's model attribution;
+- `--harness "OpenCode agent harness"` (optional) the agent harness or tooling
+  that ran the model, recorded separately in `provenance.harness` so model
+  attribution stays clean. Omit it when no harness was involved or when the
+  harness is already named inside `--model`;
 - `--construction "..."` how it was built (polynomials, group, search);
 - `--family bivariate-bicycle` the construction family, a filterable tag from a
   fixed vocabulary (see TRACKS.md); it is never used for ranking;
@@ -57,15 +82,17 @@ Useful flags:
   `layers` is required alongside the coordinates (the CLI defaults it to 1);
 - `--circuits DIR` your own `memory_x.stim` and `memory_z.stim` (canonical
   noise recipe, see `verify/circuit_tools.py`) in place of the generated ones;
-  the `.dem` files are derived with the pinned stim and the witnesses searched
-  for you. `--no-circuit` submits the code tier only. `d_circ` is penalty-only:
+  the DEM is derived with the pinned stim and the witnesses searched
+  for you; no `.dem` file is committed. `--no-circuit` submits the code tier only. `d_circ` is penalty-only:
   a circuit can discount an entry, never inflate it, and the value the CLI
   reports is what the board will show. A measured logical error rate is a
   separate, optional step after the circuits exist:
   `python verify/ler_measure.py codes/<slug>.json --p 0.005 0.001` samples
   each committed memory circuit at the requested physical rates (the grid is
-  0.01, 0.005, 0.002, 0.001) with the pinned decoder and writes the points
-  into `circuit.ler`. Claim the highest rate at which your code is not
+  0.01, 0.005, 0.002, 0.001) with the reference decoder and writes the points
+  into `circuit.ler`; `--decoder` measures a further curve under one of the
+  other registry decoders (`DECODERS` in `verify/ler_tools.py`), shown beside
+  the reference curve and never compared with it. Claim the highest rate at which your code is not
   saturated as well as any lower rates you can afford: CI replicates the
   highest-rate point at PR time and leaves the rest to a weekly post-merge
   run whose receipts the board shows per point (schema/SCHEMA.md);
@@ -82,6 +109,12 @@ Useful flags:
   not be bound to a GitHub account);
 - `--dry-run` build and verify without writing.
 
+When submitting several codes, deduplicate them first by `(n,k,d,w)` (and by
+canonical form for stabilizer codes) so you open one PR per distinct code, not
+one per candidate file. Run
+`uv run python research/kit/dedup_submissions.py <candidate files...>` before
+opening PRs.
+
 Either way — `--open-pr`, or the commands it prints for you to run — the PR
 body is drafted for you from
 [`.github/pull_request_template.md`](.github/pull_request_template.md) and the
@@ -92,6 +125,10 @@ site's own cell + Pareto logic to list the track cells the code lands in,
 whether it sits on each cell's frontier, and which existing board entries it
 dominates (and on which axis). Review it before requesting review — it is a
 board-relative claim, not a statement against the wider literature.
+
+If `gh pr edit <n> --body-file <file>` fails with "Projects (classic) is
+being deprecated", update the body through the REST API instead:
+`gh api repos/unitaryfoundation/qldpc-challenge/pulls/<n> -X PATCH -f body="$(cat <file>)"`.
 
 ## General stabilizer codes
 
@@ -292,10 +329,21 @@ exactly that replacement when the claimed `d_circ` is no lower on either
 side and higher on at least one, at no fewer rounds, with every field the
 old block carried still present. It refuses the replacement when the old
 block carries measured-rate points (`circuit.ler`), since those measure the
-schedule being replaced, and it refuses a schedule that reads the same or
-lower anywhere; both stay with the listed authors. The gate re-derives the
+schedule being replaced, and it refuses a schedule that reads lower
+anywhere; both stay with the listed authors. The gate re-derives the
 committed detector error models and re-runs the circuit search on the new
 claim, as it does for a first donated tier.
+
+A schedule that reads the same `d_circ` on both sides also binds when it is
+strictly shallower (issue #6834): fewer layers per round on both bases,
+measured on the committed files as the TICK-delimited layers that carry an
+operation, less the preparation and readout layers, divided by `rounds`,
+and no more qubits addressed on either basis. Every layer exposes every idle
+data qubit to a depolarizing fault under the canonical noise recipe, so a
+schedule several times deeper at the same `d_circ` has a measured rate
+worse by about that factor, which `d_circ` cannot see. Equal depth, a basis
+that is not shallower, more qubits, fewer rounds, or a measured schedule
+under it is a replacement reserved to the listed authors.
 
 ## Lowering a circuit fault distance already on the board
 
@@ -306,7 +354,7 @@ schedules that claimed `d_circ = d`). Correcting it is a refutation of the
 circuit tier, and it binds for anyone the way a distance refutation does.
 Lower the side (or sides) that came down to the weight of the fault set you
 found, store that fault set as the side's `witness` (indices into the
-committed `.dem`, exactly as many as the new value), keep `confidence` at
+DEM derived from the committed `.stim`, exactly as many as the new value), keep `confidence` at
 `upper_bound`, and append a sentence to `provenance.notes` that names your
 `@handle`, which is where the credit lives, since the circuit side has no
 `witness_provenance`. Leave everything else alone: `verify/check_authorship.py`
@@ -319,6 +367,23 @@ the committed detector error models and searches for anything lighter than
 the corrected claim, as it does for every changed circuit claim.
 `research/audits/circuit_distance_bounds.py` produces such fault sets with a
 proved lower bound beside them.
+
+## Revisions and overwrites (issue #5732)
+
+A PR that modifies an existing `codes/<slug>.json` is a **revision**, not a new
+submission. It is only legitimate when the new version strictly improves on the
+prior one on at least one of `(n, k, d, w)` with no regression (a genuine
+distance tightening counts). A distinct code that collides with an existing entry
+on `n, k, d` (or on the stabilizer group) must be filed as a new, suffixed
+entry (`-b`, `-c`, …) via `coordination.unique_path` / `submit.make_submission`,
+never by overwriting the existing file. `./qldpc submit` and
+`research/kit/promote.py` refuse an overwrite that is not a strict improvement
+and name the suffixed slug to use instead; pass it back with `--slug <suggested>`
+(to `./qldpc submit`) or `slug=<suggested>` (to `promote()`), so that
+`codes/<slug>.json`, `notes/<slug>.md`, `circuits/<slug>/`, the PR branch and
+the PR body all carry the same suffixed slug. Hand-renaming only some of those
+paths is what produced the nested-directory and note-overwrite incidents
+(issue #5732, PR #6849).
 
 ## One code, one entry
 
@@ -491,6 +556,20 @@ codes. Goal: find a CSS qLDPC code that advances a frontier, and submit it.
    https://github.com/unitaryfoundation/qldpc-challenge.git && git fetch
    upstream) or pass BASE=<remote>/main. It must exit 0 before the push.
 
+   Enable the repository's local git hooks so the codes-format, prose, and
+   validator-integrity checks run before each commit:
+       git config core.hooksPath .githooks
+   The hooks live in .githooks/ and are version-controlled; without this
+   setting they never run.
+
+   If you work in a git worktree, make it sparse. A full checkout is about
+   8 GB, 7.6 GB of it circuits/, and a cone-mode sparse worktree holding
+   codes, notes, fieldnotes, repro, certs, research, verify, schema, cli,
+   site, receipts, and decode is about 225 MB; add circuits/<slug> only for
+   a circuit-tier PR. The recipe, and the cleanup rule (remove the worktree
+   once the branch is pushed), are in AGENTS.md under "Worktrees" (issue
+   #6515).
+
 Report the [[n,k,d]], which track it advances, and that the distance held under
 deep re-verification.
 ```
@@ -511,8 +590,8 @@ operator of the claimed Pauli weight for a stabilizer code, or the verifier
 rejects the claim), put the file in `codes/`, and verify locally before the PR:
 
 ```
-uv run python verify/qldpc_verify.py codes/my-128-6-8.json
-uv run python verify/check_codes_format.py --files codes/my-128-6-8.json
+uv run python verify/qldpc_verify.py codes/<your-entry>.json
+uv run python verify/check_codes_format.py --files codes/<your-entry>.json
 ```
 
 Exit 0 with an `earned_distance` block means it will pass CI. The second
@@ -605,7 +684,11 @@ A code is worth submitting if it is board-advancing: under the track's constrain
 (check weight, locality), no entry dominates it over (n, k, d, w). Such a code
 extends the frontier even when it beats no existing entry, and it need not beat the
 cell's kd^2/n leader. Dominated codes pass the gate and are recorded as non-frontier
-results, but they do not sit on the frontier. See `TRACKS.md`.
+results, but they do not sit on the frontier. See `TRACKS.md`. Both packaging paths
+hold that line: `./qldpc submit` and `research/kit/promote.py` refuse a code that an
+entry in its cell dominates on (n, k, d, w), naming the entry, unless
+`--allow-non-frontier` is passed, which files it as a non-frontier record and says so
+in the PR body (issue #5700). A dry run reports what the real run would refuse.
 
 A board-advancing code whose only strict gain over an entry is d (same n, k and w)
 calls for caution, not rejection: both distances are upper bounds, so re-measure the

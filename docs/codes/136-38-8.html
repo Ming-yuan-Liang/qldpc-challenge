@@ -40,11 +40,12 @@
 </section>
 <section class=blk><h3>Circuit tier</h3>
 <div class=kv style="color:var(--mut)">syndrome-extraction memory circuits committed under <a href="https://github.com/unitaryfoundation/qldpc-challenge/blob/main/circuits/136-38-8">circuits/136-38-8/</a> &middot; canonical noise recipe, 8 rounds, stim 1.16.0</div>
-<div class=kv><b>d_circ</b> &le; 8 <span class=claimed>(min over bases; penalty-only, clamped to &le; d)</span></div>
+<div class=kv title="schedule of the committed memory circuits, computed at build time and never ranked: qubits is every qubit the circuit addresses (data, ancilla, and flag), layers is the number of TICK-delimited parallel gate layers in the whole memory experiment, layers per round divides the layers between the data preparation and the final readout by the rounds, 2q layers and 2q gates per round are the two-qubit-gate layers and gates of one extraction round, 2q gates per layer is their mean over the two-qubit layers (the parallelism), and qubit-layers is qubits times layers, a spacetime volume"><b>schedule</b> <span class=claimed>(computed from the committed circuits; displayed, never ranked)</span></div><table class="lerpts sched"><thead><tr><th>basis</th><th>qubits</th><th>layers</th><th>layers / round</th><th>2q layers / round</th><th>2q gates / round</th><th>2q gates / layer</th><th>qubit-layers</th></tr></thead><tbody><tr><td>X, Z</td><td class=num>1,054</td><td class=num>466</td><td class=num>58</td><td class=num>56</td><td class=num>2,448</td><td class=num>43.7</td><td class=num>491,164</td></tr></tbody></table>
+<div class=kv><b>d_circ</b> &le; 8 <span class=claimed>(min over bases; penalty-only, each basis clamped to the distance of the logical it protects, so the min is &le; d)</span> &middot; 58 layers per round <span class=claimed>(the deeper basis; computed, never ranked)</span></div>
 <div class=kv><b>d_circ^X</b> 8 &middot; fault-set witness of 8 mechanisms (claimed upper_bound)</div>
-<details><summary>witness fault set (mechanism indices in the committed .dem, 8)</summary><div class=wit>[83616, 83619, 83622, 83624, 83637, 83638, 83661, 83667]</div></details>
+<details><summary>witness fault set (mechanism indices in the DEM derived from the committed .stim, 8)</summary><div class=wit>[83616, 83619, 83622, 83624, 83637, 83638, 83661, 83667]</div></details>
 <div class=kv><b>d_circ^Z</b> 8 &middot; fault-set witness of 8 mechanisms (claimed upper_bound)</div>
-<details><summary>witness fault set (mechanism indices in the committed .dem, 8)</summary><div class=wit>[83576, 83583, 83603, 83606, 83616, 83621, 83643, 83644]</div></details>
+<details><summary>witness fault set (mechanism indices in the DEM derived from the committed .stim, 8)</summary><div class=wit>[83576, 83583, 83603, 83606, 83616, 83621, 83643, 83644]</div></details>
 <div class=kv style="color:var(--mut)">no measured logical error rate yet; d_circ is a floor, and the measured tier records the prefactor it cannot see</div>
 </section>
 <section class=blk><h3>Construction &amp; provenance</h3>
@@ -59,7 +60,23 @@
 <div class=kv><b>locality</b> unrestricted <span class=claimed>(computed from the layout)</span></div>
 <div class=kv><b>weight class</b> weight ≤ 8 <span class=claimed>(computed)</span></div>
 </section>
-<section class=blk><h3>How this code was found</h3><div class=kv style="color:var(--mut)">no research note was staged with this submission &mdash; notes are requested for new submissions (<a href="https://github.com/unitaryfoundation/qldpc-challenge/blob/main/notes">notes/README.md</a>)</div></section>
+<section class=blk><h3>How this code was found</h3><div class=kv style="color:var(--mut)">the research note submitted with this code &middot; <a href="https://github.com/unitaryfoundation/qldpc-challenge/blob/main/notes/136-38-8.md">raw markdown</a> &middot; <a href="../research-log.html">all notes</a></div><div class=notebody><h3>[[136,38,8]] — pair-partition CPM baseline (Okada-Kasai catalogue)</h3>
+<h4>Direction &amp; hypothesis</h4>
+<p>Cyclic all-one pair-partition CPM CSS construction (arXiv:2607.14091), instance PPS136_n136_k38_d8 (internal id j3l8_p17_00010): lift size p=17, (J,L)=(3,8), n=8*p=136, 3*p=51 checks per side, column weight 3, row weight 8. CPM exponent arrays (rows = CPM block-rows, columns = the 8 block-columns): E_X = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 2, 8, 10, 4, 1, 9, 6], [0, 16, 13, 12, 7, 10, 2, 5]], E_Z = [[0, 6, 7, 13, 7, 0, 13, 6], [0, 1, 4, 5, 0, 1, 4, 5], [0, 11, 10, 4, 4, 10, 11, 0]]. Lift convention per the authors&#x27; expand_and_verify_cpm_matrices.py (github.com/kasaikenta/pair-partition-cpm-css-codes @ 9c2a6f2): check a of block-row b on side S has support {8*((a - E_S[b][t]) mod 17) + t : t=0..7}. Source file https://kasai.ict.eng.isct.ac.jp/pair_partition_cpm_css_codes_data/contributed_codes/jong_yeon_lee/codes/PPS136_n136_k38_d8.cpm (sha256 2e91f898d06edf32773bc3a37129f17b2309ced5e24d21b384043d5d2740b2e3), expanded with the authors&#x27; own script.</p>
+<p>Origin: baseline. Novelty status: known_parameters.</p>
+<p>References: arXiv:2607.14091.</p>
+<p>Literature baseline, seeded 2026-08-14. Listed as PPS136 [[136,38,8]] in the contributed-codes section (Jong Yeon Lee, 19 CPM-PP codes) of the Okada-Kasai pair-partition CPM catalogue (arXiv:2607.14091; catalogue page updated 2026-08-13), which reports the distance as exact. No public machine-verified distance certificate bundle covers this instance (checked master_manifest.json of certificate_bundles_20260805), so it is recorded here strictly as a witness-backed upper bound from this repo&#x27;s own 200000-trial RIS search per side (seed 11). Reproduction was validated end to end: the published .cpm file expanded with the authors&#x27; own script gives a CSS-orthogonal regular pair with the claimed k.</p>
+<h4>What was searched</h4>
+<p>Baseline contribution: parameters taken from the cited source; no original search performed for this entry.</p>
+<h4>Evidence trail</h4>
+<p>Witness-backed upper bound: d_X &lt;= 8 (upper_bound), d_Z &lt;= 8 (upper_bound), so d &lt;= 8. Verified by verify/validate_candidate.py (passed: true).</p>
+<h4>Dead ends</h4>
+<p>Not recorded for this entry.</p>
+<h4>Tools</h4>
+<p>Model: human. Authors: Lee, Jong Yeon. Verified with verify/validate_candidate.py via research/kit/coordination.py gate.</p>
+<h4>Reproduction</h4>
+<p>Cyclic all-one pair-partition CPM CSS construction (arXiv:2607.14091), instance PPS136_n136_k38_d8 (internal id j3l8_p17_00010): lift size p=17, (J,L)=(3,8), n=8*p=136, 3*p=51 checks per side, column weight 3, row weight 8. CPM exponent arrays (rows = CPM block-rows, columns = the 8 block-columns): E_X = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 2, 8, 10, 4, 1, 9, 6], [0, 16, 13, 12, 7, 10, 2, 5]], E_Z = [[0, 6, 7, 13, 7, 0, 13, 6], [0, 1, 4, 5, 0, 1, 4, 5], [0, 11, 10, 4, 4, 10, 11, 0]]. Lift convention per the authors&#x27; expand_and_verify_cpm_matrices.py (github.com/kasaikenta/pair-partition-cpm-css-codes @ 9c2a6f2): check a of block-row b on side S has support {8*((a - E_S[b][t]) mod 17) + t : t=0..7}. Source file https://kasai.ict.eng.isct.ac.jp/pair_partition_cpm_css_codes_data/contributed_codes/jong_yeon_lee/codes/PPS136_n136_k38_d8.cpm (sha256 2e91f898d06edf32773bc3a37129f17b2309ced5e24d21b384043d5d2740b2e3), expanded with the authors&#x27; own script.</p>
+<p>Max check weight: 8. Matrices in codes/136-38-8.json.</p></div></section>
 <section class=blk><h3>Parity checks</h3>
 <div class=kv><b>X-checks</b> 51 (max weight 8) &middot; <b style="min-width:auto">Z-checks</b> 51 (max weight 8)</div>
 <details><summary>H_X (51 checks, sparse supports)</summary><div class=wit>[0, 1, 2, 3, 4, 5, 6, 7]

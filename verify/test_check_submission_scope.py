@@ -145,6 +145,26 @@ def test_scratch_riding_on_a_submission_is_refused(tmp_path, capsys):
     assert "notes/x-1-1.md" not in listed and "codes/x-1-1.json" not in listed
 
 
+def test_a_committed_dem_is_refused(tmp_path, capsys):
+    root, base = _repo(
+        tmp_path, {"codes/y-2-2.json": '{"n": 2}'},
+        {"codes/x-1-1.json": '{"n": 1}', "notes/x-1-1.md": "# [[x,1,1]]\n",
+         "circuits/x-1-1/memory_x.stim": "# x\n",
+         "circuits/x-1-1/memory_x.dem": "# x\n"})
+    assert S.main(["--root", root, "--base", base]) == 1
+    out = capsys.readouterr().out
+    assert "adds committed .dem files" in out
+    assert "circuits/x-1-1/memory_x.dem" in out
+
+
+def test_deleting_a_dem_is_not_refused(tmp_path):
+    root, base = _repo(
+        tmp_path, {"codes/x-1-1.json": '{"n": 1}',
+                   "circuits/x-1-1/memory_x.dem": "# x\n"},
+        {"circuits/x-1-1/memory_x.dem": None})
+    assert S.main(["--root", root, "--base", base]) == 0
+
+
 def test_an_entry_with_its_own_artifacts_passes(tmp_path):
     root, base = _repo(
         tmp_path, {"codes/y-2-2.json": '{"n": 2}'},
@@ -252,3 +272,35 @@ def test_evidence_under_repro_without_code_data_is_not_a_submission(tmp_path):
     # research/ change; the surface rules apply to submissions only
     root, base = _repo(tmp_path, {"codes/x-1-1.json": '{"n": 1}'}, BUNDLE)
     assert S.main(["--root", root, "--base", base]) == 0
+
+
+# -- classify mode (issue #5337) --------------------------------------------
+def test_classify_codes_only_is_tier_0():
+    assert S.classify(["codes/x-1-1.json"]) == (0, [])
+
+
+def test_classify_verify_change_is_tier_1():
+    assert S.classify(["verify/qldpc_verify.py"]) == (1, ["verify/qldpc_verify.py"])
+
+
+def test_classify_mode_exit_0(tmp_path):
+    root, base = _repo(tmp_path, {"codes/y-2-2.json": '{"n": 2}'},
+                       {"codes/x-1-1.json": '{"n": 1}'})
+    assert S.main(["--root", root, "--base", base, "--classify"]) == 0
+
+
+def test_classify_mode_tier_1_exit_0(tmp_path):
+    root, base = _repo(tmp_path, {"verify/qldpc_verify.py": "x = 1\n"},
+                       {"verify/qldpc_verify.py": "x = 2\n"})
+    assert S.main(["--root", root, "--base", base, "--classify"]) == 0
+
+
+# -- nested code paths (PR #6849 packaging mistake) -------------------------
+def test_a_nested_code_path_is_refused(tmp_path, capsys):
+    root, base = _repo(
+        tmp_path, {"codes/y-2-2.json": '{"n": 2}'},
+        {"codes/x-1-1.json/x-1-1.json": '{"n": 1}'})
+    assert S.main(["--root", root, "--base", base]) == 1
+    out = capsys.readouterr().out
+    assert "single file, codes/<slug>.json" in out
+    assert "codes/x-1-1.json/x-1-1.json" in out

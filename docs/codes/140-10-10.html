@@ -41,6 +41,16 @@
 (3,8): 29610
 (3,10): 2765</div></details>
 </section>
+<section class=blk><h3>Circuit tier</h3>
+<div class=kv style="color:var(--mut)">syndrome-extraction memory circuits committed under <a href="https://github.com/unitaryfoundation/qldpc-challenge/blob/main/circuits/140-10-10">circuits/140-10-10/</a> &middot; canonical noise recipe, 10 rounds, stim 1.16.0</div>
+<div class=kv title="schedule of the committed memory circuits, computed at build time and never ranked: qubits is every qubit the circuit addresses (data, ancilla, and flag), layers is the number of TICK-delimited parallel gate layers in the whole memory experiment, layers per round divides the layers between the data preparation and the final readout by the rounds, 2q layers and 2q gates per round are the two-qubit-gate layers and gates of one extraction round, 2q gates per layer is their mean over the two-qubit layers (the parallelism), and qubit-layers is qubits times layers, a spacetime volume"><b>schedule</b> <span class=claimed>(computed from the committed circuits; displayed, never ranked)</span></div><table class="lerpts sched"><thead><tr><th>basis</th><th>qubits</th><th>layers</th><th>layers / round</th><th>2q layers / round</th><th>2q gates / round</th><th>2q gates / layer</th><th>qubit-layers</th></tr></thead><tbody><tr><td>X, Z</td><td class=num>840</td><td class=num>212</td><td class=num>21</td><td class=num>19</td><td class=num>2,240</td><td class=num>117.9</td><td class=num>178,080</td></tr></tbody></table>
+<div class=kv><b>d_circ</b> &le; 10 <span class=claimed>(min over bases; penalty-only, each basis clamped to the distance of the logical it protects, so the min is &le; d)</span> &middot; 21 layers per round <span class=claimed>(the deeper basis; computed, never ranked)</span></div>
+<div class=kv><b>d_circ^X</b> 10 &middot; fault-set witness of 10 mechanisms (claimed upper_bound)</div>
+<details><summary>witness fault set (mechanism indices in the DEM derived from the committed .stim, 10)</summary><div class=wit>[113645, 113651, 113653, 113659, 113665, 113672, 113729, 113733, 113739, 113744]</div></details>
+<div class=kv><b>d_circ^Z</b> 10 &middot; fault-set witness of 10 mechanisms (claimed upper_bound)</div>
+<details><summary>witness fault set (mechanism indices in the DEM derived from the committed .stim, 10)</summary><div class=wit>[113647, 113648, 113706, 113708, 113722, 113727, 113754, 113759, 113775, 113784]</div></details>
+<div class=kv style="color:var(--mut)">no measured logical error rate yet; d_circ is a floor, and the measured tier records the prefactor it cannot see</div>
+</section>
 <section class=blk><h3>Construction &amp; provenance</h3>
 <div class=kv><b>authors</b> <a href="https://github.com/mathysrennela">@mathysrennela</a></div>
 <div class=kv><b>provenance</b> submitted through the challenge</div>
@@ -53,7 +63,21 @@
 <div class=kv><b>locality</b> unrestricted <span class=claimed>(computed from the layout)</span></div>
 <div class=kv><b>weight class</b> weight ≤ 8 <span class=claimed>(computed)</span></div>
 </section>
-<section class=blk><h3>How this code was found</h3><div class=kv style="color:var(--mut)">no research note was staged with this submission &mdash; notes are requested for new submissions (<a href="https://github.com/unitaryfoundation/qldpc-challenge/blob/main/notes">notes/README.md</a>)</div></section>
+<section class=blk><h3>How this code was found</h3><div class=kv style="color:var(--mut)">the research note submitted with this code &middot; <a href="https://github.com/unitaryfoundation/qldpc-challenge/blob/main/notes/140-10-10.md">raw markdown</a> &middot; <a href="../research-log.html">all notes</a></div><div class=notebody><h3>[[140,10,10]] — 2BGA on metacyclic Z_35 |x Z_2 (weight-8)</h3>
+<h4>Direction &amp; hypothesis</h4>
+<p>Two-block group-algebra code on metacyclic group Z_35 |x Z_2 (r=6), supports a=[7,33,54,66], b=[22,26,38,60].</p>
+<p>References: arXiv:2306.16400.</p>
+<h4>What was searched</h4>
+<p>Construction parameters as given in the provenance above; no additional sweep recorded.</p>
+<h4>Evidence trail</h4>
+<p>Witness-backed upper bound: d_X &lt;= 10 (upper_bound), d_Z &lt;= 10 (upper_bound), so d &lt;= 10. Verified by verify/validate_candidate.py (passed: true).</p>
+<h4>Dead ends</h4>
+<p>Not recorded for this entry.</p>
+<h4>Tools</h4>
+<p>Model: Tencent Hy3. Authors: @mathysrennela. Verified with verify/validate_candidate.py via research/kit/coordination.py gate.</p>
+<h4>Reproduction</h4>
+<p>Two-block group-algebra code on metacyclic group Z_35 |x Z_2 (r=6), supports a=[7,33,54,66], b=[22,26,38,60].</p>
+<p>Max check weight: 8. Matrices in codes/140-10-10.json.</p></div></section>
 <section class=blk><h3>Parity checks</h3>
 <div class=kv><b>X-checks</b> 70 (max weight 8) &middot; <b style="min-width:auto">Z-checks</b> 70 (max weight 8)</div>
 <details><summary>H_X (70 checks, sparse supports)</summary><div class=wit>[4, 16, 19, 35, 80, 102, 114, 118]

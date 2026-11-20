@@ -92,7 +92,7 @@
     },
     "circuit": {
       "type": "object",
-      "description": "optional circuit tier (RFC 0001, issue #505): the entry ships syndrome-extraction memory circuits under circuits/<slug>/ (memory_x.stim, memory_z.stim, plus their derived .dem files), and claims a witness-backed circuit-level distance per basis. Penalty-only: the recorded d_circ is clamped to <= d and can only discount a score, never inflate it. Forbidden on stabilizer entries: the memory experiments are per basis, and a general stabilizer code needs a schedule the tier does not yet build.",
+      "description": "optional circuit tier (RFC 0001, issue #505): the entry ships syndrome-extraction memory circuits under circuits/<slug>/ (memory_x.stim, memory_z.stim; the .dem files are derived from the .stim and no longer committed), and claims a witness-backed circuit-level distance per basis. Penalty-only: the recorded d_circ is clamped to <= d and can only discount a score, never inflate it. Forbidden on stabilizer entries: the memory experiments are per basis, and a general stabilizer code needs a schedule the tier does not yet build.",
       "required": [
         "d_circ",
         "rounds",
@@ -125,7 +125,7 @@
         "stim_version": {
           "type": "string",
           "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-          "description": "stim version that derived the committed .dem files; the verifier requires it to equal the version pinned in uv.lock and re-derives the .dem mechanism-for-mechanism (probabilities only to float tolerance: their last ulps are architecture-sensitive and the distance tier never reads them)"
+          "description": "stim version that derived the memory circuits; the verifier requires it to equal the version pinned in uv.lock and re-derives the DEM from the committed .stim mechanism-for-mechanism (probabilities only to float tolerance: their last ulps are architecture-sensitive and the distance tier never reads them)"
         },
         "ancilla_coordinates": {
           "type": "array",
@@ -150,7 +150,7 @@
         },
         "ler": {
           "type": "object",
-          "description": "optional measured logical-error-rate tier: the same committed memory circuits, sampled under the canonical noise recipe at one or more physical rates and decoded with the pinned decoder. Distance is a floor; this is the measured rate a device-like simulation actually sees, prefactors included. Since 0.5 each basis is a list of points (a curve), compared across entries only at equal p.",
+          "description": "optional measured logical-error-rate tier: the same committed memory circuits, sampled under the canonical noise recipe at one or more physical rates and decoded with a decoder from the registry (verify/ler_tools.py DECODERS). Distance is a floor; this is the measured rate a device-like simulation actually sees, prefactors included. Since 0.5 each basis is a list of points (a curve), compared across entries only at equal p and equal decoder; the reference decoder bposd-cs-10 gives the board's headline rate and frontier, every other decoder is a separately labeled curve (issue #5804).",
           "required": [
             "X",
             "Z"
@@ -162,10 +162,10 @@
                 {
                   "type": "array",
                   "minItems": 1,
-                  "maxItems": 4,
+                  "maxItems": 16,
                   "items": {
                     "type": "object",
-                    "description": "one measured point: the committed memory circuit, its canonical noise recipe re-applied at physical rate p, sampled and decoded with the pinned decoder. Self-reported measurement; CI re-measures with an independent seed (verify/ler_verify.py): the highest-rate point at PR time, the rest weekly post-merge with receipts under receipts/ler/.",
+                    "description": "one measured point: the committed memory circuit, its canonical noise recipe re-applied at physical rate p, sampled and decoded with the named registry decoder. Self-reported measurement; CI re-measures with an independent seed (verify/ler_verify.py): per decoder, the highest-rate point at PR time, the rest weekly post-merge with receipts under receipts/ler/. (p, decoder) pairs are distinct within a basis, at most one point per rate and decoder.",
                     "required": [
                       "p",
                       "shots",
@@ -203,9 +203,12 @@
                       },
                       "decoder": {
                         "enum": [
-                          "bposd-cs-10"
+                          "bposd-cs-10",
+                          "bplsd-cs-10",
+                          "bp-ms-30",
+                          "mwpm"
                         ],
-                        "description": "the pinned decoder (BP+OSD, minimum-sum, scaling 0.625, osd_cs order 10, 30 iterations, DEM-prob channel prior)"
+                        "description": "the registry decoder the point was measured with, one of verify/ler_tools.py DECODERS: bposd-cs-10 (the reference: BP+OSD, minimum-sum, scaling 0.625, osd_cs order 10, 30 iterations, DEM-prob channel prior), bplsd-cs-10 (BP+LSD, same BP, lsd_cs order 10), bp-ms-30 (minimum-sum BP alone, 30 iterations), mwpm (pymatching on stim's decomposed model, admitted only when every mechanism decomposes). Rates under different decoders are never compared with each other"
                       },
                       "ler_per_round": {
                         "type": "number",
@@ -293,10 +296,10 @@
                 {
                   "type": "array",
                   "minItems": 1,
-                  "maxItems": 4,
+                  "maxItems": 16,
                   "items": {
                     "type": "object",
-                    "description": "one measured point: the committed memory circuit, its canonical noise recipe re-applied at physical rate p, sampled and decoded with the pinned decoder. Self-reported measurement; CI re-measures with an independent seed (verify/ler_verify.py): the highest-rate point at PR time, the rest weekly post-merge with receipts under receipts/ler/.",
+                    "description": "one measured point: the committed memory circuit, its canonical noise recipe re-applied at physical rate p, sampled and decoded with the named registry decoder. Self-reported measurement; CI re-measures with an independent seed (verify/ler_verify.py): per decoder, the highest-rate point at PR time, the rest weekly post-merge with receipts under receipts/ler/. (p, decoder) pairs are distinct within a basis, at most one point per rate and decoder.",
                     "required": [
                       "p",
                       "shots",
@@ -334,9 +337,12 @@
                       },
                       "decoder": {
                         "enum": [
-                          "bposd-cs-10"
+                          "bposd-cs-10",
+                          "bplsd-cs-10",
+                          "bp-ms-30",
+                          "mwpm"
                         ],
-                        "description": "the pinned decoder (BP+OSD, minimum-sum, scaling 0.625, osd_cs order 10, 30 iterations, DEM-prob channel prior)"
+                        "description": "the registry decoder the point was measured with, one of verify/ler_tools.py DECODERS: bposd-cs-10 (the reference: BP+OSD, minimum-sum, scaling 0.625, osd_cs order 10, 30 iterations, DEM-prob channel prior), bplsd-cs-10 (BP+LSD, same BP, lsd_cs order 10), bp-ms-30 (minimum-sum BP alone, 30 iterations), mwpm (pymatching on stim's decomposed model, admitted only when every mechanism decomposes). Rates under different decoders are never compared with each other"
                       },
                       "ler_per_round": {
                         "type": "number",
@@ -815,6 +821,11 @@
           ],
           "description": "optional, self-reported: the AI model that produced the code, named to a specific version (e.g. 'Claude Opus 4.8', not a bare 'Claude'), or 'human'. Claimed, not verified -- there is no way to certify which model generated a result, but if one is named the verifier requires a version so the claim is reproducible. May also be a list when a code was produced by an ensemble of models rather than a single one; the site joins them for display."
         },
+        "harness": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "optional, self-reported: the agent harness or tooling that ran the model (e.g. 'OpenCode agent harness'). Independent of provenance.model so a code's model attribution stays clean while still crediting the harness; claimed, not verified. Omit when no harness was involved or when the harness is already named inside provenance.model."
+        },
         "references": {
           "type": "array",
           "items": {
@@ -1284,7 +1295,7 @@
             "minimum": 0
           },
           "minItems": 1,
-          "description": "sorted 0-based indices of error(...) instructions in this basis's committed flattened .dem, counted in file order. The XOR of their detector sets must vanish (undetected) and the XOR of their observable sets must not (flips a logical): the circuit-tier analogue of the low-weight logical the code tier stores."
+          "description": "sorted 0-based indices of error(...) instructions in this basis's DEM derived from the committed .stim, counted in file order. The XOR of their detector sets must vanish (undetected) and the XOR of their observable sets must not (flips a logical): the circuit-tier analogue of the low-weight logical the code tier stores."
         }
       }
     },

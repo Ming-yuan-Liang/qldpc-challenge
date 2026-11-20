@@ -56,7 +56,8 @@ def test_d_only_peers_follow_the_gates_rule():
              _row("72-6-5-c", locality_class="local-2d-single"),  # stricter cell: counts
              _row("72-6-6-d", code_type="stabilizer"),         # the other board
              _row("71-6-6"),                                   # n differs: not d-only
-             _row("72-6-6-e", w=None)]                         # no weight recorded
+             _row("72-6-6-e", w=None),                         # no weight recorded
+             _row("72-6-1")]                                    # d = 1 placeholder: not a d-only peer
     assert PA.d_only_peers(CAND, board) == [PEER, "[[72,6,5]] w=6 72-6-5-c.json"]
     local = dict(CAND, locality_class="local-2d-single")
     assert PA.d_only_peers(local, [_row("72-6-6")]) == []     # an unrestricted peer is in a looser cell
@@ -139,3 +140,23 @@ def test_the_loader_refuses_what_is_not_a_record(tmp_path):
         PA.load_audit(str(bad))
     with pytest.raises(PA.PeerAuditError, match="not readable"):
         PA.load_audit(str(tmp_path / "missing.json"))
+
+
+def test_qedist_record_round_trip_and_blockers(tmp_path):
+    rec = PA.record(
+        "cand.json", ["codes/72-6-6.json"],
+        [{"stem": "cand", "d_exact": True, "lower_bound": 6}],
+        "credible: both claims held",
+        backend="qedist", tool="qedist", seconds=12.5, threads=4, exit_code=0, today="2026-11-18",
+    )
+    assert rec["backend"] == "qedist"
+    assert rec["tool"] == "qedist"
+    assert rec["seconds"] == 12.5
+    assert "trials" not in rec and "seeds" not in rec and "pair_depth" not in rec
+    assert PA.blockers([PEER], rec, required_trials=2_000_000, required_pair_depth=64) == []
+    assert "qedist 12.5s, threads 4" in PA.summary(rec)
+
+    bad_secs = dict(rec, seconds=0)
+    assert any("seconds" in p for p in PA.blockers([PEER], bad_secs))
+    bad_bound = dict(rec, results=[{"stem": "cand", "d_exact": False, "lower_bound": None}])
+    assert any("proved bound" in p for p in PA.blockers([PEER], bad_bound))

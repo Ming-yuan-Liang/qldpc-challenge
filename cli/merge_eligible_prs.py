@@ -16,6 +16,8 @@ import argparse
 import json
 import subprocess
 import sys
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from typing import Any
 from urllib.parse import quote, urlencode
@@ -23,7 +25,7 @@ from urllib.parse import quote, urlencode
 DEFAULT_REPO = "unitaryfoundation/qldpc-challenge"
 DEFAULT_BASE = "main"
 PAGE_SIZE = 100
-REQUIRED_CHECKS = ("verify", "prose")
+REQUIRED_CHECKS = ("verify", "prose", "codes-format", "ruff")
 # One entry per PR. Everything the board files for an entry hangs off its slug
 # (`notes/<slug>.md`, `circuits/<slug>/`, `certs/<slug>.json`), so a PR touching
 # two records is a batch whose provenance has to be read one entry at a time.
@@ -167,7 +169,7 @@ def metadata_error(document: Any) -> str | None:
 
 
 def check_failures(runs: list[dict[str, Any]], head_sha: str) -> list[str]:
-    """Require latest verify/prose runs on this exact SHA to have succeeded."""
+    """Require the latest validation, prose, format, and Ruff runs on this SHA."""
     failures: list[str] = []
     for check_name in REQUIRED_CHECKS:
         matching = [run for run in runs if run.get("name") == check_name and run.get("head_sha") == head_sha]
@@ -194,11 +196,41 @@ def _read_code_document(repo: str, path: str, head_sha: str) -> Any:
         raise GitHubCLIError(f"{path} at {head_sha} is not valid JSON: {exc}") from exc
 
 
-def _inherited_metadata_gap(repo: str, path: str, document: Any, error: str, base: str) -> bool:
+_CACHE_MISS = object()
+_THREAD_LOCAL = threading.local()
+
+
+def _code_doc_cache() -> dict[tuple[int, str, str, str], Any]:
+    cache = getattr(_THREAD_LOCAL, "cache", None)
+    if cache is None:
+        cache = {}
+        _THREAD_LOCAL.cache = cache
+    return cache
+
+
+def _cached_read_code_document(repo: str, path: str, ref: str) -> Any:
+    reader = _read_code_document
+    key = (id(reader), repo, path, ref)
+    cache = _code_doc_cache()
+    cached = cache.get(key, _CACHE_MISS)
+    if cached is not _CACHE_MISS:
+        return cached
+    result = reader(repo, path, ref)
+    cache[key] = result
+    return result
+
+
+def _inherited_metadata_gap(
+    repo: str, path: str, document: Any, error: str, base: str, base_path: str | None = None
+) -> bool:
     """Report whether the PR inherited this provenance gap from the base entry rather than introducing it.
 
     True when the entry exists on ``base`` with the same missing field and the
-    PR left ``provenance`` as it was, apart from appending to ``notes``. A contribution to another author's
+    PR left ``provenance`` as it was, apart from appending to ``notes``. The base entry is
+    read under ``base_path`` when the PR renamed the record: a distance revision
+    files the entry under its new slug (CONTRIBUTING.md, "Correcting a distance
+    already on the board"), so under ``path`` the base has nothing and the
+    revision would pass for a new entry. A contribution to another author's
     entry (a circuit tier, a layout, a lowered circuit distance) passes
     verify/check_authorship.py only if it touches nothing in provenance but an
     appended note, so its author cannot add the field; requiring it would block
@@ -206,7 +238,7 @@ def _inherited_metadata_gap(repo: str, path: str, document: Any, error: str, bas
     the entry, or that changed provenance, is still held to the rule.
     """
     try:
-        base_doc = _read_code_document(repo, path, base)
+        base_doc = _cached_read_code_document(repo, base_path or path, base)
     except GitHubCLIError:
         return False                      # no base entry: the PR adds it
     if not isinstance(base_doc, dict) or not isinstance(document, dict):
@@ -222,6 +254,47 @@ def _inherited_metadata_gap(repo: str, path: str, document: Any, error: str, bas
         return False
     old_notes, new_notes = str(base_prov.get("notes") or ""), str(head_prov.get("notes") or "")
     return new_notes.startswith(old_notes)
+
+
+def _circuit_sides(document: Any) -> dict[str, int]:
+    """Return {side: d_circ value} of a document's circuit block, empty when it has none."""
+    circuit = document.get("circuit") if isinstance(document, dict) else None
+    d_circ = circuit.get("d_circ") if isinstance(circuit, dict) else None
+    out: dict[str, int] = {}
+    for side in ("X", "Z"):
+        value = ((d_circ or {}).get(side) or {}).get("value")
+        if isinstance(value, int) and not isinstance(value, bool):
+            out[side] = value
+    return out
+
+
+def circuit_regression(repo: str, path: str, document: Any, files: list[dict[str, Any]], base: str) -> str | None:
+    """Name the side whose circuit fault distance this PR lowers while replacing the circuit.
+
+    verify/check_authorship.py lets an entry's listed author replace its
+    circuit with any other, and the gate only checks the new circuit's own
+    claim, so on 2026-11-17 two circuit-tier PRs (#5911, #5934) merged with
+    d_circ below the committed schedule's. A PR that changes a file under
+    circuits/<slug>/ has filed a new circuit; its reading may not fall on any
+    side. A lowered reading on the unchanged circuit is a refutation and is
+    left to the refutation binding.
+    """
+    slug = path[len("codes/"):-len(".json")] if path.startswith("codes/") and path.endswith(".json") else None
+    if slug is None:
+        return None
+    prefix = f"circuits/{slug}/"
+    if not any(isinstance(item.get("filename"), str) and item["filename"].startswith(prefix) for item in files):
+        return None
+    try:
+        base_doc = _cached_read_code_document(repo, path, base)
+    except GitHubCLIError:
+        return None                       # a new entry: nothing to regress from
+    before, after = _circuit_sides(base_doc), _circuit_sides(document)
+    fallen = [f"{side} {before[side]} -> {after[side]}" for side in ("X", "Z")
+              if side in before and side in after and after[side] < before[side]]
+    if not fallen:
+        return None
+    return f"{path}: the replacement circuit lowers d_circ ({', '.join(fallen)}); the committed circuit is better"
 
 
 @dataclass
@@ -241,6 +314,7 @@ class Evaluation:
 
 
 def evaluate_pr(repo: str, pr: dict[str, Any], base: str) -> Evaluation:
+    _code_doc_cache().clear()
     number = int(pr["number"])
     head_sha = (pr.get("head") or {}).get("sha") or ""
     result = Evaluation(
@@ -273,13 +347,22 @@ def evaluate_pr(repo: str, pr: dict[str, Any], base: str) -> Evaluation:
             if too_many:
                 result.reasons.append(too_many)
             added = {item.get("filename") for item in files if item.get("status") == "added"}
+            # a distance revision renames the record, so its base entry lives
+            # under the name the PR replaced
+            renamed_from = {
+                item.get("filename"): item.get("previous_filename")
+                for item in files
+                if item.get("status") == "renamed" and isinstance(item.get("previous_filename"), str)
+            }
             for path in code_paths:
-                document = _read_code_document(repo, path, head_sha)
+                document = _cached_read_code_document(repo, path, head_sha)
                 error = metadata_error(document)
                 if error:
                     # a record this PR adds declares its own provenance; only a
                     # record that existed on base can have inherited a gap
-                    inherited = path not in added and _inherited_metadata_gap(repo, path, document, error, base)
+                    inherited = path not in added and _inherited_metadata_gap(
+                        repo, path, document, error, base, base_path=renamed_from.get(path)
+                    )
                     if inherited:
                         # The field was already missing on the base entry and
                         # this PR left provenance alone: a contribution to an
@@ -299,6 +382,11 @@ def evaluate_pr(repo: str, pr: dict[str, Any], base: str) -> Evaluation:
                 model = provenance["model"]
                 result.models.extend([model] if isinstance(model, str) else model)
                 result.authors.extend(provenance["authors"])
+            for path in code_paths:
+                head_doc = _cached_read_code_document(repo, path, head_sha)
+                regression = circuit_regression(repo, path, head_doc, files, base)
+                if regression:
+                    result.reasons.append(regression)
 
         runs = list_check_runs(repo, head_sha)
         result.reasons.extend(check_failures(runs, head_sha))
@@ -331,7 +419,8 @@ def metadata_comment_body(result: Evaluation) -> str | None:
     for path, error in relevant:
         lines.append(f"- `{path}`: `{error}`.")
     if any("provenance.model" in error for _, error in relevant):
-        lines.append("Add a non-empty `provenance.model` value (an exact model version or `human`) to the code JSON.")
+        lines.append("Add a non-empty `provenance.model` value (an exact model version, or omit it; "
+             "`human` claims a person, not a model, produced the code) to the code JSON.")
     if any("provenance.authors" in error for _, error in relevant):
         lines.append(
             "Add one or more non-empty names to `provenance.authors`; the `verify` check validates the author binding."
@@ -433,7 +522,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=(
             "Maintainer tool: report eligible code PRs. Report-only unless --merge is "
-            "given; only current-head verify and prose successes are accepted."
+            "given; only current-head verify, prose, and codes-format successes are accepted."
         )
     )
     parser.add_argument("--repo", default=DEFAULT_REPO, help="GitHub owner/repo")
@@ -451,16 +540,34 @@ def main(argv: list[str] | None = None) -> int:
 
     overall_error = False
     evaluations: list[Evaluation] = []
+
+    # Drafts are reported (and skipped) up front so the parallel evaluation
+    # below only handles PRs that actually need API work.
     for pr in prs:
         if pr.get("draft"):
             number = pr.get("number", "?")
             print(f"SKIP       BLOCKED  #{number} draft PR")
-            continue
+
+    non_draft_prs = [pr for pr in prs if not pr.get("draft")]
+
+    def _safe_evaluate(pr: dict[str, Any]) -> tuple[str, Any]:
         try:
-            evaluations.append(evaluate_pr(args.repo, pr, args.base))
+            return ("ok", evaluate_pr(args.repo, pr, args.base))
         except (GitHubCLIError, KeyError, ValueError) as exc:
-            overall_error = True
-            print(f"ERROR      BLOCKED  #{pr.get('number', '?')} could not verify PR: {exc}")
+            return ("error", exc)
+
+    if non_draft_prs:
+        max_workers = min(8, len(non_draft_prs))
+        if max_workers < 1:
+            max_workers = 1
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            outcomes = list(executor.map(_safe_evaluate, non_draft_prs))
+        for pr, outcome in zip(non_draft_prs, outcomes):
+            if outcome[0] == "ok":
+                evaluations.append(outcome[1])
+            else:
+                overall_error = True
+                print(f"ERROR      BLOCKED  #{pr.get('number', '?')} could not verify PR: {outcome[1]}")
 
     block_overlapping_prs(evaluations)
     for result in evaluations:

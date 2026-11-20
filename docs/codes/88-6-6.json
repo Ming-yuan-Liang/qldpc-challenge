@@ -1,5 +1,5 @@
 {
- "schema_version": "0.1",
+ "schema_version": "0.5",
  "name": "[[88,6,6]] planar BB (paper Table I k=6 baseline)",
  "code_type": "CSS",
  "n": 88,
@@ -618,7 +618,8 @@
    "arXiv:2504.08887"
   ],
   "date": "2025-04-11",
-  "notes": "Reference baseline (Liang, Eberhardt, Chen). Bilayer grid layout added 2026-07-23, recovered from the check structure by template matching: the 18+24 weight-6 bulk checks are translated copies of (f, g), which pins 84 of 88 qubits on the two-layer grid; the 4 notch-boundary qubits were placed by exhaustive local search. Measured interaction radius sqrt(10). Layout shear-optimized 2026-07-23: linear map [[1.000000,-0.318933],[0.000000,0.968940]] applied to the template-solved grid with the 4 notch-boundary qubits re-placed in the sheared lattice, reducing the interaction radius sqrt(10) -> 3.0; same code, same check matrices."
+  "notes": "Reference baseline (Liang, Eberhardt, Chen). Bilayer grid layout added 2026-07-23, recovered from the check structure by template matching: the 18+24 weight-6 bulk checks are translated copies of (f, g), which pins 84 of 88 qubits on the two-layer grid; the 4 notch-boundary qubits were placed by exhaustive local search. Measured interaction radius sqrt(10). Layout shear-optimized 2026-07-23: linear map [[1.000000,-0.318933],[0.000000,0.968940]] applied to the template-solved grid with the 4 notch-boundary qubits re-placed in the sheared lattice, reducing the interaction radius sqrt(10) -> 3.0; same code, same check matrices.",
+  "model": "human"
  },
  "family": "bivariate-bicycle",
  "locality": {
@@ -978,5 +979,97 @@
   ],
   "interaction_radius": 3.0000000000000004,
   "layers": 2
+ },
+ "circuit": {
+  "d_circ": {
+   "Z": {
+    "value": 6,
+    "confidence": "upper_bound",
+    "witness": [
+     13559,
+     13566,
+     14677,
+     15479,
+     15612,
+     15660
+    ]
+   },
+   "X": {
+    "value": 6,
+    "confidence": "upper_bound",
+    "witness": [
+     2147,
+     2157,
+     3443,
+     6679,
+     6838,
+     6984
+    ]
+   }
+  },
+  "rounds": 6,
+  "stim_version": "1.16.0",
+  "notes": "SAT-scheduled interleaved X+Z extraction with 1-flag co-scheduled into idle ancilla slots (8 CX layers, 10 TICKs/round, 231 qubits total; replaces 51.2-TICK/round schedule); witnesses from RIS on ker(H_dem) at twice the gate trial budget.",
+  "contributed_by": {
+   "by": [
+    "@FarLab"
+   ],
+   "date": "2026-11-19",
+   "method": "SAT interleaved X+Z + co-scheduled minimal-flag schedule search, verified by verify/circuit_verify.py"
+  },
+  "ler": {
+   "X": [
+    {
+     "p": 0.002,
+     "shots": 10000,
+     "failures": 309,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.005287851,
+     "ci95": [
+      0.004724255,
+      0.005918383
+     ]
+    },
+    {
+     "p": 0.001,
+     "shots": 40000,
+     "failures": 109,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.000455201,
+     "ci95": [
+      0.000377325,
+      0.000549143
+     ]
+    }
+   ],
+   "Z": [
+    {
+     "p": 0.002,
+     "shots": 10000,
+     "failures": 574,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.01005924,
+     "ci95": [
+      0.0092524,
+      0.010936034
+     ]
+    },
+    {
+     "p": 0.001,
+     "shots": 40000,
+     "failures": 229,
+     "seed": 20261006,
+     "decoder": "bposd-cs-10",
+     "ler_per_round": 0.000958751,
+     "ci95": [
+      0.00084214,
+      0.001091492
+     ]
+    }
+   ]
+  }
  }
 }

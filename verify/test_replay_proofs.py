@@ -32,6 +32,7 @@ def _one_small():
     return slug, certs[slug]
 
 
+@pytest.mark.board
 def test_every_proof_log_certificate_is_replayable():
     """A proof_log entry without recipe and hash cannot be audited."""
     for p in os.listdir(os.path.join(_ROOT, "certs")):
@@ -74,3 +75,50 @@ def test_the_smallest_entry_replays_end_to_end(tmp_path):
     for blk in rep["sides"].values():
         assert blk["cnf_sha256_matches"] and blk["kissat"] == "UNSAT"
         assert blk["drat_trim"] == "VERIFIED"
+
+
+def test_shards_partition_and_balance_by_recorded_runtime():
+    items = ["a", "b", "c", "d", "e", "f"]
+    secs = {"a": 12, "b": 11, "c": 10, "d": 9, "e": 2, "f": 1}
+    shards = [R.select_shard(items, f"{i}/3", secs) for i in range(3)]
+    assert sorted(sum(shards, [])) == items
+    assert shards == [["a", "f"], ["b", "e"], ["c", "d"]]
+    loads = [sum(secs[s] for s in shard) for shard in shards]
+    assert loads == [13, 13, 19]
+    for bad in ("3/3", "-1/3", "0/0", "x"):
+        with pytest.raises(ValueError):
+            R.select_shard(items, bad, secs)
+
+
+def test_a_budget_stops_opening_entries_and_is_reported_not_failed(monkeypatch, capsys):
+    """--max-minutes ends the run cleanly; what was not opened is counted, not failed."""
+    certs = {f"e{i}": {"verification": {"level": "proof_log"}} for i in range(5)}
+    monkeypatch.setattr(R, "replayable", lambda: certs)
+    monkeypatch.setattr(R.shutil, "which", lambda tool: "/usr/bin/" + tool)
+    opened = []
+    monkeypatch.setattr(R, "replay", lambda slug, cert, work, tlim: (opened.append(slug),
+                                                                      {"ok": True, "sides": {}})[1])
+    rc = R.main(["--all", "--max-minutes", "0"])
+    out = capsys.readouterr().out
+    assert rc == 0 and opened == []
+    assert "0 replayed, 0 failed, 5 left unopened at the 0 min budget" in out
+    rc = R.main(["--all", "--shard", "1/2"])
+    assert rc == 0 and opened == ["e1", "e3"]
+    assert "2 replayed, 0 failed" in capsys.readouterr().out
+
+
+def test_budget_skips_an_entry_that_wont_fit_and_runs_smaller_entries(monkeypatch, capsys):
+    certs = {slug: {"verification": {"level": "proof_log"}} for slug in ("a-long", "b-short")}
+    secs = {"a-long": 8, "b-short": 2}
+    monkeypatch.setattr(R, "replayable", lambda: certs)
+    monkeypatch.setattr(R, "recorded_secs", lambda: secs)
+    monkeypatch.setattr(R.shutil, "which", lambda tool: "/usr/bin/" + tool)
+    opened = []
+    monkeypatch.setattr(
+        R, "replay", lambda slug, cert, work, tlim: (opened.append(slug), {"ok": True, "sides": {}})[1]
+    )
+
+    rc = R.main(["--all", "--max-minutes", "0.1"])
+
+    assert rc == 0 and opened == ["b-short"]
+    assert "1 replayed, 0 failed, 1 left unopened at the 0.1 min budget" in capsys.readouterr().out

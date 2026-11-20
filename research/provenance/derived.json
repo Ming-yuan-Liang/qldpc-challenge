@@ -1,30 +1,13 @@
 {
  "caveat": "no_match means the index holds no match, not that the code is unpublished: two sparse generating sets of one stabilizer group can have non-isomorphic Tanner graphs",
  "counts": {
-  "literature": 493,
-  "no_match": 2015,
-  "not_derived": 193,
-  "parameters_only": 425
+  "literature": 489,
+  "no_match": 2380,
+  "not_derived": 361,
+  "parameters_only": 459
  },
  "derivation_version": 1,
  "entries": {
-  "10-2-3": {
-   "bucket": "literature",
-   "matches": [
-    {
-     "id": "wangpryadko2022:GB_10_w6",
-     "ref": "arXiv:2203.17216",
-     "source": "wang_pryadko_gb",
-     "xz_swapped": false
-    },
-    {
-     "id": "2bga:SmallGroup(5,1):a[2]:b[2,3,4]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_abelian",
-     "xz_swapped": false
-    }
-   ]
-  },
   "10-2-3-b": {
    "bucket": "parameters_only",
    "matches": [
@@ -56,11 +39,23 @@
    "bucket": "no_match",
    "matches": []
   },
+  "10-5-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "10-6-1": {
    "bucket": "no_match",
    "matches": []
   },
   "10-6-1-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "10-6-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "10-6-2-b": {
    "bucket": "no_match",
    "matches": []
   },
@@ -76,6 +71,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "10-7-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "10-8-1": {
    "bucket": "no_match",
    "matches": []
@@ -83,6 +82,28 @@
   "100-2-10": {
    "bucket": "no_match",
    "matches": []
+  },
+  "100-2-10-b": {
+   "bucket": "literature",
+   "matches": [
+    {
+     "id": "2bga:SmallGroup(50,5):a[5]:b[6]",
+     "ref": "arXiv:2306.16400",
+     "source": "lin_pryadko_2bga_abelian",
+     "xz_swapped": false
+    }
+   ]
+  },
+  "100-2-10-c": {
+   "bucket": "literature",
+   "matches": [
+    {
+     "id": "2bga:SmallGroup(50,5):a[5]:b[6]",
+     "ref": "arXiv:2306.16400",
+     "source": "lin_pryadko_2bga_abelian",
+     "xz_swapped": false
+    }
+   ]
   },
   "100-2-14": {
    "bucket": "literature",
@@ -173,6 +194,22 @@
    "bucket": "no_match",
    "matches": []
   },
+  "100-54-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "100-55-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "100-56-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "100-57-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "100-8-14": {
    "bucket": "no_match",
    "matches": []
@@ -197,6 +234,10 @@
    "matches": []
   },
   "1000-407-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "1000-502-6": {
    "bucket": "no_match",
    "matches": []
   },
@@ -239,6 +280,10 @@
     }
    ]
   },
+  "102-19-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "102-20-10": {
    "bucket": "no_match",
    "matches": []
@@ -272,7 +317,23 @@
    "bucket": "no_match",
    "matches": []
   },
+  "103-18-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "103-30-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "103-70-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "103-71-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "104-17-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -350,6 +411,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "104-70-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "104-8-12": {
    "bucket": "literature",
    "matches": [
@@ -361,12 +426,24 @@
     }
    ]
   },
+  "105-16-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "105-21-6": {
    "bucket": "not_derived",
    "matches": []
   },
   "105-25-5": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "105-69-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "105-70-2": {
+   "bucket": "no_match",
    "matches": []
   },
   "106-15-2": {
@@ -383,6 +460,14 @@
      "xz_swapped": false
     }
    ]
+  },
+  "106-66-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "106-68-2": {
+   "bucket": "no_match",
+   "matches": []
   },
   "107-15-3": {
    "bucket": "parameters_only",
@@ -566,7 +651,19 @@
    "bucket": "no_match",
    "matches": []
   },
+  "108-57-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "108-58-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "108-58-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "108-59-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -584,6 +681,14 @@
      "xz_swapped": false
     }
    ]
+  },
+  "108-60-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "108-63-2": {
+   "bucket": "not_derived",
+   "matches": []
   },
   "108-8-10": {
    "bucket": "literature",
@@ -661,6 +766,10 @@
     }
    ]
   },
+  "109-35-6": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "11-3-3": {
    "bucket": "no_match",
    "matches": []
@@ -705,6 +814,14 @@
    "bucket": "no_match",
    "matches": []
   },
+  "11-5-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "11-5-2-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "11-5-3": {
    "bucket": "not_derived",
    "matches": []
@@ -714,6 +831,10 @@
    "matches": []
   },
   "11-7-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "11-7-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -852,6 +973,10 @@
     }
    ]
   },
+  "112-29-1": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "112-4-13": {
    "bucket": "literature",
    "matches": [
@@ -937,6 +1062,10 @@
     }
    ]
   },
+  "112-61-2": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "112-8-13": {
    "bucket": "literature",
    "matches": [
@@ -949,6 +1078,10 @@
    ]
   },
   "113-1-17": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "113-24-2": {
    "bucket": "not_derived",
    "matches": []
   },
@@ -993,6 +1126,10 @@
     }
    ]
   },
+  "115-23-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "116-18-6": {
    "bucket": "no_match",
    "matches": []
@@ -1023,6 +1160,14 @@
     }
    ]
   },
+  "116-21-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "116-36-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "116-4-15": {
    "bucket": "literature",
    "matches": [
@@ -1042,6 +1187,14 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "117-20-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "117-36-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "117-38-3": {
    "bucket": "no_match",
    "matches": []
@@ -1057,6 +1210,10 @@
    ]
   },
   "118-14-8": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "118-19-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -1082,12 +1239,20 @@
     }
    ]
   },
+  "118-36-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "118-8-7": {
    "bucket": "no_match",
    "matches": []
   },
   "119-17-6": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "119-18-2": {
+   "bucket": "no_match",
    "matches": []
   },
   "119-23-6": {
@@ -1116,6 +1281,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "119-36-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "119-36-3": {
    "bucket": "no_match",
    "matches": []
@@ -1139,21 +1308,6 @@
   "12-2-3": {
    "bucket": "parameters_only",
    "matches": [
-    {
-     "id": "codetables:[[12,2]]",
-     "ref": "https://codetables.de -- bounds only, no construction to compare",
-     "source": "codetables"
-    }
-   ]
-  },
-  "12-2-4": {
-   "bucket": "parameters_only",
-   "matches": [
-    {
-     "id": "codetables:[[12,2]]",
-     "ref": "https://codetables.de -- bounds only, no construction to compare",
-     "source": "codetables"
-    },
     {
      "id": "codetables:[[12,2]]",
      "ref": "https://codetables.de -- bounds only, no construction to compare",
@@ -1231,6 +1385,16 @@
     }
    ]
   },
+  "12-4-2-e": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[12,4]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
   "12-4-3": {
    "bucket": "literature",
    "matches": [
@@ -1277,6 +1441,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "12-5-2-d": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "12-6-1": {
    "bucket": "no_match",
    "matches": []
@@ -1301,22 +1469,31 @@
    "bucket": "no_match",
    "matches": []
   },
+  "12-7-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "12-7-2-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "12-8-1": {
    "bucket": "no_match",
    "matches": []
   },
   "12-8-2": {
-   "bucket": "literature",
-   "matches": [
-    {
-     "id": "2bga:SmallGroup(6,2):a[2,3,4]:b[2,3,4]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_abelian",
-     "xz_swapped": false
-    }
-   ]
+   "bucket": "no_match",
+   "matches": []
   },
   "12-8-2-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "12-8-2-c": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "12-8-2-d": {
    "bucket": "no_match",
    "matches": []
   },
@@ -1506,6 +1683,14 @@
     }
    ]
   },
+  "120-41-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "120-42-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "120-42-3": {
    "bucket": "literature",
    "matches": [
@@ -1521,46 +1706,13 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "120-43-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "120-44-2": {
-   "bucket": "literature",
-   "matches": [
-    {
-     "id": "2bga:SmallGroup(60,1):a[5,13]:b[4,6,15]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_nonabelian",
-     "xz_swapped": false
-    },
-    {
-     "id": "2bga:SmallGroup(60,8):a[4,11]:b[2,10,15]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_nonabelian",
-     "xz_swapped": false
-    },
-    {
-     "id": "2bga:SmallGroup(60,9):a[2,6]:b[4,12,24]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_nonabelian",
-     "xz_swapped": false
-    },
-    {
-     "id": "2bga:SmallGroup(60,10):a[4,11]:b[2,10,15]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_nonabelian",
-     "xz_swapped": false
-    },
-    {
-     "id": "2bga:SmallGroup(60,11):a[5,13]:b[2,9,14]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_nonabelian",
-     "xz_swapped": false
-    },
-    {
-     "id": "2bga:SmallGroup(60,12):a[4,11]:b[2,10,15]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_nonabelian",
-     "xz_swapped": false
-    }
-   ]
+   "bucket": "no_match",
+   "matches": []
   },
   "120-44-3": {
    "bucket": "literature",
@@ -1572,6 +1724,22 @@
      "xz_swapped": false
     }
    ]
+  },
+  "120-45-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "120-46-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "120-47-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "120-48-2": {
+   "bucket": "no_match",
+   "matches": []
   },
   "120-6-15": {
    "bucket": "literature",
@@ -1622,6 +1790,10 @@
     }
    ]
   },
+  "120-65-2": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "120-8-12": {
    "bucket": "parameters_only",
    "matches": [
@@ -1644,6 +1816,16 @@
    ]
   },
   "121-1-11": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[121,1]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
+  "121-1-11-b": {
    "bucket": "parameters_only",
    "matches": [
     {
@@ -1678,6 +1860,10 @@
     }
    ]
   },
+  "122-40-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "123-10-9": {
    "bucket": "no_match",
    "matches": []
@@ -1701,6 +1887,10 @@
      "source": "codetables"
     }
    ]
+  },
+  "123-40-2": {
+   "bucket": "no_match",
+   "matches": []
   },
   "123-8-7": {
    "bucket": "no_match",
@@ -1746,6 +1936,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "124-36-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "124-4-16": {
    "bucket": "literature",
    "matches": [
@@ -1756,6 +1950,10 @@
      "xz_swapped": false
     }
    ]
+  },
+  "124-40-2": {
+   "bucket": "no_match",
+   "matches": []
   },
   "125-12-9": {
    "bucket": "no_match",
@@ -1780,6 +1978,18 @@
      "source": "codetables"
     }
    ]
+  },
+  "125-36-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "125-40-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "125-41-2": {
+   "bucket": "no_match",
+   "matches": []
   },
   "125-6-13": {
    "bucket": "no_match",
@@ -1957,6 +2167,10 @@
     }
    ]
   },
+  "126-41-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "126-42-3": {
    "bucket": "literature",
    "matches": [
@@ -2041,6 +2255,10 @@
   },
   "127-1-19": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "127-41-2": {
+   "bucket": "no_match",
    "matches": []
   },
   "128-12-16": {
@@ -2151,6 +2369,10 @@
     }
    ]
   },
+  "128-41-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "128-42-6": {
    "bucket": "no_match",
    "matches": []
@@ -2171,6 +2393,22 @@
      "xz_swapped": false
     }
    ]
+  },
+  "128-49-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "128-50-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "128-51-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "128-52-2": {
+   "bucket": "no_match",
+   "matches": []
   },
   "128-6-16": {
    "bucket": "literature",
@@ -2280,15 +2518,35 @@
     }
    ]
   },
+  "129-25-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "13-1-5": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "13-6-2": {
+   "bucket": "no_match",
    "matches": []
   },
   "13-7-1": {
    "bucket": "no_match",
    "matches": []
   },
+  "13-7-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "13-9-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "130-14-6": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "130-23-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -2297,6 +2555,18 @@
    "matches": []
   },
   "130-8-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "131-22-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "131-39-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "131-53-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -2310,6 +2580,10 @@
      "xz_swapped": false
     }
    ]
+  },
+  "132-21-2": {
+   "bucket": "no_match",
+   "matches": []
   },
   "132-30-12": {
    "bucket": "parameters_only",
@@ -2368,6 +2642,10 @@
     }
    ]
   },
+  "132-45-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "132-47-10": {
    "bucket": "not_derived",
    "matches": []
@@ -2411,6 +2689,10 @@
   },
   "133-19-6": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "133-20-2": {
+   "bucket": "no_match",
    "matches": []
   },
   "133-25-6": {
@@ -2509,6 +2791,10 @@
      "source": "codetables"
     }
    ]
+  },
+  "136-38-8-b": {
+   "bucket": "not_derived",
+   "matches": []
   },
   "136-4-18": {
    "bucket": "literature",
@@ -2610,6 +2896,14 @@
     }
    ]
   },
+  "139-94-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "14-10-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "14-2-3": {
    "bucket": "parameters_only",
    "matches": [
@@ -2668,6 +2962,10 @@
      "xz_swapped": false
     }
    ]
+  },
+  "14-8-2-b": {
+   "bucket": "no_match",
+   "matches": []
   },
   "14-9-1": {
    "bucket": "no_match",
@@ -2775,6 +3073,10 @@
     }
    ]
   },
+  "140-92-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "141-44-4": {
    "bucket": "parameters_only",
    "matches": [
@@ -2784,6 +3086,10 @@
      "source": "codetables"
     }
    ]
+  },
+  "141-89-2": {
+   "bucket": "no_match",
+   "matches": []
   },
   "142-2-17": {
    "bucket": "literature",
@@ -2798,6 +3104,10 @@
   },
   "142-2-18": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "142-84-2": {
+   "bucket": "no_match",
    "matches": []
   },
   "143-13-8": {
@@ -2995,6 +3305,41 @@
     }
    ]
   },
+  "144-2-12-b": {
+   "bucket": "literature",
+   "matches": [
+    {
+     "id": "2bga:SmallGroup(72,21):a[1,9]:b[1,13]",
+     "ref": "arXiv:2306.16400",
+     "source": "lin_pryadko_2bga_nonabelian",
+     "xz_swapped": false
+    },
+    {
+     "id": "2bga:SmallGroup(72,24):a[1,9]:b[1,13]",
+     "ref": "arXiv:2306.16400",
+     "source": "lin_pryadko_2bga_nonabelian",
+     "xz_swapped": false
+    },
+    {
+     "id": "2bga:SmallGroup(72,26):a[1,8]:b[1,13]",
+     "ref": "arXiv:2306.16400",
+     "source": "lin_pryadko_2bga_nonabelian",
+     "xz_swapped": false
+    },
+    {
+     "id": "2bga:SmallGroup(72,27):a[1,13]:b[1,19]",
+     "ref": "arXiv:2306.16400",
+     "source": "lin_pryadko_2bga_nonabelian",
+     "xz_swapped": false
+    },
+    {
+     "id": "2bga:SmallGroup(72,38):a[1,8]:b[1,12]",
+     "ref": "arXiv:2306.16400",
+     "source": "lin_pryadko_2bga_nonabelian",
+     "xz_swapped": false
+    }
+   ]
+  },
   "144-2-13": {
    "bucket": "literature",
    "matches": [
@@ -3080,6 +3425,16 @@
    ]
   },
   "144-6-15": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[144,6]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
+  "144-6-15-b": {
    "bucket": "parameters_only",
    "matches": [
     {
@@ -3190,6 +3545,10 @@
      "source": "codetables"
     }
    ]
+  },
+  "145-18-8": {
+   "bucket": "no_match",
+   "matches": []
   },
   "145-32-6": {
    "bucket": "not_derived",
@@ -3415,6 +3774,10 @@
     }
    ]
   },
+  "152-42-8-b": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "152-58-2": {
    "bucket": "literature",
    "matches": [
@@ -3528,6 +3891,14 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "155-62-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "155-80-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "156-2-17": {
    "bucket": "literature",
    "matches": [
@@ -3636,25 +4007,20 @@
    "bucket": "no_match",
    "matches": []
   },
+  "16-10-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "16-10-2": {
-   "bucket": "literature",
-   "matches": [
-    {
-     "id": "2bga:SmallGroup(8,1):a[2,4,6]:b[2,4,6]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_abelian",
-     "xz_swapped": false
-    },
-    {
-     "id": "2bga:SmallGroup(8,2):a[2,3,5]:b[2,3,5]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_abelian",
-     "xz_swapped": false
-    }
-   ]
+   "bucket": "no_match",
+   "matches": []
   },
   "16-10-3": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "16-11-2": {
+   "bucket": "no_match",
    "matches": []
   },
   "16-2-4": {
@@ -3699,6 +4065,20 @@
    "matches": [
     {
      "id": "codetables:[[16,4]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
+  "16-5-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "16-6-2-b": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[16,6]]",
      "ref": "https://codetables.de -- bounds only, no construction to compare",
      "source": "codetables"
     }
@@ -4104,6 +4484,10 @@
     }
    ]
   },
+  "165-43-3": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "166-2-18": {
    "bucket": "literature",
    "matches": [
@@ -4419,6 +4803,10 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "169-49-3": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "169-8-9": {
    "bucket": "parameters_only",
    "matches": [
@@ -4464,6 +4852,14 @@
      "source": "codetables"
     }
    ]
+  },
+  "17-10-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "17-9-2": {
+   "bucket": "no_match",
+   "matches": []
   },
   "170-16-10": {
    "bucket": "parameters_only",
@@ -4987,6 +5383,16 @@
    "bucket": "no_match",
    "matches": []
   },
+  "180-36-10": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[180,36]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
   "180-36-8": {
    "bucket": "parameters_only",
    "matches": [
@@ -5165,6 +5571,10 @@
     }
    ]
   },
+  "184-70-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "184-94-2": {
    "bucket": "literature",
    "matches": [
@@ -5300,8 +5710,16 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "189-122-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "189-27-6": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "189-29-1": {
+   "bucket": "no_match",
    "matches": []
   },
   "19-1-5": {
@@ -5416,6 +5834,10 @@
      "source": "codetables"
     }
    ]
+  },
+  "192-130-3": {
+   "bucket": "no_match",
+   "matches": []
   },
   "192-14-18": {
    "bucket": "no_match",
@@ -5964,6 +6386,14 @@
    "bucket": "no_match",
    "matches": []
   },
+  "196-2-14-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "196-2-14-c": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "196-2-22": {
    "bucket": "literature",
    "matches": [
@@ -6058,6 +6488,10 @@
     }
    ]
   },
+  "199-102-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "20-10-2": {
    "bucket": "literature",
    "matches": [
@@ -6080,6 +6514,14 @@
     }
    ]
   },
+  "20-13-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "20-14-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "20-2-5": {
    "bucket": "literature",
    "matches": [
@@ -6092,15 +6534,8 @@
    ]
   },
   "20-2-6": {
-   "bucket": "literature",
-   "matches": [
-    {
-     "id": "qecdb:672e6e9c34d5954e0cb7d1b7",
-     "ref": "https://qecdb.org",
-     "source": "qecdb",
-     "xz_swapped": false
-    }
-   ]
+   "bucket": "no_match",
+   "matches": []
   },
   "20-2-6-s": {
    "bucket": "not_derived",
@@ -6108,6 +6543,10 @@
   },
   "20-3-5": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "20-4-4": {
+   "bucket": "no_match",
    "matches": []
   },
   "20-4-5": {
@@ -6398,6 +6837,42 @@
    "bucket": "no_match",
    "matches": []
   },
+  "209-10-15": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "209-10-21": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "209-24-19": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "209-28-15": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "209-39-23": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "209-42-20": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "209-43-15": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "209-57-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "209-60-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "21-1-7": {
    "bucket": "not_derived",
    "matches": []
@@ -6445,6 +6920,56 @@
   "21-3-6": {
    "bucket": "not_derived",
    "matches": []
+  },
+  "21-4-3": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:670522fb19cca60cf657a925",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670522fb19cca60cf657a925",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670522fe19cca60cf657a927",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670522fe19cca60cf657a927",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "21-6-2": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:6705229419cca60cf657a8ff",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:6705229719cca60cf657a902",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:6705229819cca60cf657a903",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670522a919cca60cf657a90a",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
   },
   "210-10-16": {
    "bucket": "no_match",
@@ -6561,6 +7086,10 @@
      "source": "codetables"
     }
    ]
+  },
+  "213-2-24": {
+   "bucket": "no_match",
+   "matches": []
   },
   "214-2-25": {
    "bucket": "literature",
@@ -6681,6 +7210,10 @@
     }
    ]
   },
+  "217-35-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "219-31-3": {
    "bucket": "parameters_only",
    "matches": [
@@ -6690,6 +7223,14 @@
      "source": "codetables"
     }
    ]
+  },
+  "22-11-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "22-16-1": {
+   "bucket": "no_match",
+   "matches": []
   },
   "22-2-5": {
    "bucket": "literature",
@@ -6735,11 +7276,19 @@
     }
    ]
   },
+  "220-44-12": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "220-47-18": {
    "bucket": "not_derived",
    "matches": []
   },
   "220-52-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "221-79-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -6755,11 +7304,19 @@
    "bucket": "no_match",
    "matches": []
   },
+  "223-112-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "224-112-2": {
    "bucket": "no_match",
    "matches": []
   },
   "224-12-16": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "224-12-16-b": {
    "bucket": "no_match",
    "matches": []
   },
@@ -6843,6 +7400,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "227-94-6": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "228-34-6": {
    "bucket": "no_match",
    "matches": []
@@ -6892,18 +7453,15 @@
    "matches": []
   },
   "23-1-7": {
-   "bucket": "literature",
-   "matches": [
-    {
-     "id": "qecdb:67052a628271751a9ef4e1d7",
-     "ref": "https://qecdb.org",
-     "source": "qecdb",
-     "xz_swapped": false
-    }
-   ]
+   "bucket": "no_match",
+   "matches": []
   },
   "23-1-7-cyclic": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "23-10-2": {
+   "bucket": "no_match",
    "matches": []
   },
   "23-11-3": {
@@ -6918,6 +7476,26 @@
    ]
   },
   "23-11-3-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "23-12-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "23-14-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "23-15-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "23-16-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "23-2-5": {
    "bucket": "no_match",
    "matches": []
   },
@@ -6957,6 +7535,10 @@
   },
   "230-94-8": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "231-62-11": {
+   "bucket": "no_match",
    "matches": []
   },
   "232-104-3": {
@@ -7088,13 +7670,17 @@
    ]
   },
   "24-10-4": {
-   "bucket": "literature",
+   "bucket": "parameters_only",
    "matches": [
     {
-     "id": "2bga:SmallGroup(12,5):a[2,4,7]:b[2,8,12]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_abelian",
-     "xz_swapped": false
+     "id": "qecdb:67a38d7c9d65c7b4098268e1",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67a38d7c9d65c7b4098268e1",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
     }
    ]
   },
@@ -7165,7 +7751,15 @@
    "bucket": "no_match",
    "matches": []
   },
+  "24-16-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "24-16-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "24-17-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -7522,6 +8116,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "243-12-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "244-12-5": {
    "bucket": "parameters_only",
    "matches": [
@@ -7643,6 +8241,37 @@
     }
    ]
   },
+  "25-1-9": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[25,1]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    },
+    {
+     "id": "codetables:[[25,1]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
+  "25-15-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "25-15-2-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "25-16-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "25-17-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "25-5-3-cyclic": {
    "bucket": "parameters_only",
    "matches": [
@@ -7673,6 +8302,10 @@
     }
    ]
   },
+  "25-7-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "25-7-4": {
    "bucket": "no_match",
    "matches": []
@@ -7683,6 +8316,10 @@
   },
   "25-9-4": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "250-100-3": {
+   "bucket": "not_derived",
    "matches": []
   },
   "250-40-8": {
@@ -7698,6 +8335,14 @@
      "source": "codetables"
     }
    ]
+  },
+  "251-128-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "251-168-1": {
+   "bucket": "no_match",
+   "matches": []
   },
   "252-10-12": {
    "bucket": "no_match",
@@ -7923,6 +8568,30 @@
    "bucket": "no_match",
    "matches": []
   },
+  "255-125-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "255-132-6": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "255-133-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "255-161-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "255-197-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "255-8-22": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "256-10-24": {
    "bucket": "no_match",
    "matches": []
@@ -7971,6 +8640,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "257-89-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "258-32-22": {
    "bucket": "no_match",
    "matches": []
@@ -8016,6 +8689,10 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "26-7-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "26-8-4": {
    "bucket": "no_match",
    "matches": []
@@ -8053,6 +8730,18 @@
      "xz_swapped": false
     }
    ]
+  },
+  "263-4-27": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "263-73-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "263-8-11": {
+   "bucket": "no_match",
+   "matches": []
   },
   "264-4-19": {
    "bucket": "no_match",
@@ -8110,6 +8799,22 @@
    "bucket": "no_match",
    "matches": []
   },
+  "269-24-11": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "269-34-13": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "269-40-32": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "27-10-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "27-11-3": {
    "bucket": "parameters_only",
    "matches": [
@@ -8133,6 +8838,24 @@
    "bucket": "no_match",
    "matches": []
   },
+  "27-15-2": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:672e56ccd98d3ff5743f95b5",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "27-17-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "27-19-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "27-2-6": {
    "bucket": "not_derived",
    "matches": []
@@ -8143,6 +8866,14 @@
   },
   "27-3-7": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "27-6-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "27-7-2": {
+   "bucket": "no_match",
    "matches": []
   },
   "270-10-24": {
@@ -8209,6 +8940,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "273-43-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "275-39-3": {
    "bucket": "no_match",
    "matches": []
@@ -8268,6 +9003,14 @@
     }
    ]
   },
+  "277-14-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "277-44-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "278-14-5": {
    "bucket": "no_match",
    "matches": []
@@ -8298,6 +9041,22 @@
    "bucket": "no_match",
    "matches": []
   },
+  "279-12-29": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "279-4-32": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "279-74-11": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "279-77-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "28-10-3": {
    "bucket": "literature",
    "matches": [
@@ -8306,6 +9065,16 @@
      "ref": "arXiv:2306.16400",
      "source": "lin_pryadko_2bga_abelian",
      "xz_swapped": false
+    }
+   ]
+  },
+  "28-12-2": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:67a3912b9d65c7b4098268f2",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
     }
    ]
   },
@@ -8335,6 +9104,18 @@
     }
    ]
   },
+  "28-15-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "28-15-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "28-16-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "28-16-2": {
    "bucket": "literature",
    "matches": [
@@ -8350,6 +9131,14 @@
    "bucket": "no_match",
    "matches": []
   },
+  "28-18-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "28-19-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "28-2-6": {
    "bucket": "literature",
    "matches": [
@@ -8360,6 +9149,18 @@
      "xz_swapped": false
     }
    ]
+  },
+  "28-20-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "28-21-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "28-23-1": {
+   "bucket": "no_match",
+   "matches": []
   },
   "28-3-6": {
    "bucket": "not_derived",
@@ -8462,6 +9263,10 @@
     }
    ]
   },
+  "28-9-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "280-10-20": {
    "bucket": "no_match",
    "matches": []
@@ -8530,12 +9335,44 @@
    "bucket": "no_match",
    "matches": []
   },
+  "285-2-32": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "286-2-29": {
    "bucket": "no_match",
    "matches": []
   },
   "286-88-4": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "287-12-17": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "287-148-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "287-16-15": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "287-33-37": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "287-34-26": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "287-36-14": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "287-6-28": {
+   "bucket": "not_derived",
    "matches": []
   },
   "288-100-3": {
@@ -8738,6 +9575,22 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "29-11-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "29-12-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "29-13-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "29-17-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "29-18-2": {
    "bucket": "no_match",
    "matches": []
@@ -8746,7 +9599,31 @@
    "bucket": "no_match",
    "matches": []
   },
+  "29-21-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "29-23-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "29-23-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "29-25-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "29-5-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "29-6-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "29-8-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -8778,11 +9655,19 @@
    "bucket": "no_match",
    "matches": []
   },
+  "293-103-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "294-10-14": {
    "bucket": "no_match",
    "matches": []
   },
   "294-10-20": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "294-100-6": {
    "bucket": "no_match",
    "matches": []
   },
@@ -8834,6 +9719,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "294-42-11": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "294-6-22": {
    "bucket": "no_match",
    "matches": []
@@ -8843,6 +9732,10 @@
    "matches": []
   },
   "294-8-19": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "295-81-7": {
    "bucket": "no_match",
    "matches": []
   },
@@ -8860,6 +9753,10 @@
      "xz_swapped": false
     }
    ]
+  },
+  "299-10-28": {
+   "bucket": "not_derived",
+   "matches": []
   },
   "3-2-1": {
    "bucket": "no_match",
@@ -8996,9 +9893,38 @@
    "bucket": "no_match",
    "matches": []
   },
+  "30-18-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "30-18-3": {
    "bucket": "no_match",
    "matches": []
+  },
+  "30-2-5": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:67081b8a3ce7883b56a9a679",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67081b8a3ce7883b56a9a679",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67081b9b3ce7883b56a9a67c",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67081b9b3ce7883b56a9a67c",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
   },
   "30-2-7": {
    "bucket": "literature",
@@ -9012,6 +9938,18 @@
    ]
   },
   "30-20-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "30-22-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "30-23-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "30-24-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -9282,6 +10220,30 @@
    "bucket": "no_match",
    "matches": []
   },
+  "301-133-21": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "301-138-18": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "301-141-20": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "301-144-19": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "301-145-18": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "301-32-33": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "302-120-20": {
    "bucket": "no_match",
    "matches": []
@@ -9303,6 +10265,10 @@
    "matches": []
   },
   "303-43-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "305-204-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -9366,6 +10332,31 @@
   "31-1-9": {
    "bucket": "not_derived",
    "matches": []
+  },
+  "31-10-1": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:67052abe8271751a9ef4e1e7",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67052ac58271751a9ef4e1e9",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67052ac88271751a9ef4e1ea",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67052ae58271751a9ef4e1f1",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
   },
   "31-15-3": {
    "bucket": "parameters_only",
@@ -9441,8 +10432,8 @@
    "bucket": "no_match",
    "matches": []
   },
-  "310-2-39": {
-   "bucket": "no_match",
+  "310-2-38": {
+   "bucket": "not_derived",
    "matches": []
   },
   "310-20-12": {
@@ -9450,6 +10441,10 @@
    "matches": []
   },
   "310-6-26": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "311-208-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -9474,6 +10469,10 @@
    "matches": []
   },
   "312-96-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "314-254-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -9538,6 +10537,22 @@
    "matches": []
   },
   "318-6-38": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "319-12-29": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "319-65-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "319-67-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "319-87-9": {
    "bucket": "no_match",
    "matches": []
   },
@@ -9705,8 +10720,38 @@
     }
    ]
   },
+  "32-20-2": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:67d2cf9a65e067195651cfbf",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "32-21-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "32-22-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "32-24-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "32-25-3": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "32-26-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "32-28-1": {
+   "bucket": "no_match",
    "matches": []
   },
   "32-4-7": {
@@ -9714,13 +10759,47 @@
    "matches": []
   },
   "32-6-6": {
-   "bucket": "literature",
+   "bucket": "parameters_only",
    "matches": [
     {
-     "id": "2bga:SmallGroup(16,1):a[2,3,12]:b[2,6,9]",
-     "ref": "arXiv:2306.16400",
-     "source": "lin_pryadko_2bga_abelian",
-     "xz_swapped": false
+     "id": "qecdb:67a3a8179d65c7b40982691c",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67a3a8179d65c7b40982691c",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "32-6-6-b": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:67a3a8179d65c7b40982691c",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67a3a8179d65c7b40982691c",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "32-6-6-c": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:67a3a8179d65c7b40982691c",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67a3a8179d65c7b40982691c",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
     }
    ]
   },
@@ -9734,6 +10813,18 @@
      "xz_swapped": false
     }
    ]
+  },
+  "32-9-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "32-9-6": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "320-10-28": {
+   "bucket": "no_match",
+   "matches": []
   },
   "320-12-27": {
    "bucket": "no_match",
@@ -9783,6 +10874,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "322-46-12": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "323-43-3": {
    "bucket": "no_match",
    "matches": []
@@ -9804,6 +10899,10 @@
    "matches": []
   },
   "324-2-18": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "324-2-18-b": {
    "bucket": "no_match",
    "matches": []
   },
@@ -9850,12 +10949,102 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "33-10-1": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:670536cf8271751a9ef4e535",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670536d88271751a9ef4e536",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670536df8271751a9ef4e537",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670536e38271751a9ef4e538",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "33-10-2": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:670536cf8271751a9ef4e535",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670536d88271751a9ef4e536",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670536df8271751a9ef4e537",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670536e38271751a9ef4e538",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "33-2-7": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "33-2-8": {
    "bucket": "not_derived",
    "matches": []
   },
+  "33-22-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "33-23-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "33-26-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "33-28-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "33-3-8": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "33-6-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "33-7-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "33-8-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "33-8-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "33-8-2-b": {
+   "bucket": "no_match",
    "matches": []
   },
   "330-10-27": {
@@ -9874,8 +11063,8 @@
    "bucket": "no_match",
    "matches": []
   },
-  "330-2-42": {
-   "bucket": "no_match",
+  "330-2-40": {
+   "bucket": "not_derived",
    "matches": []
   },
   "330-22-9": {
@@ -10022,6 +11211,14 @@
    "bucket": "no_match",
    "matches": []
   },
+  "339-16-17": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "34-11-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "34-16-4": {
    "bucket": "no_match",
    "matches": []
@@ -10065,6 +11262,14 @@
     }
    ]
   },
+  "34-21-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "34-22-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "34-4-3": {
    "bucket": "parameters_only",
    "matches": [
@@ -10087,7 +11292,27 @@
    "bucket": "no_match",
    "matches": []
   },
+  "34-7-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "34-8-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "34-8-5-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "34-9-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "34-9-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "34-9-2-b": {
    "bucket": "no_match",
    "matches": []
   },
@@ -10109,6 +11334,18 @@
   },
   "340-188-4": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "341-40-33": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "341-56-43": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "341-61-40": {
+   "bucket": "not_derived",
    "matches": []
   },
   "342-118-3": {
@@ -10136,6 +11373,14 @@
    "matches": []
   },
   "342-76-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "343-6-39": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "343-8-6": {
    "bucket": "no_match",
    "matches": []
   },
@@ -10181,6 +11426,10 @@
     }
    ]
   },
+  "347-2-54": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "348-2-41": {
    "bucket": "no_match",
    "matches": []
@@ -10197,7 +11446,51 @@
    "bucket": "no_match",
    "matches": []
   },
+  "35-10-1": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:670539278271751a9ef4e588",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670539558271751a9ef4e592",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "35-16-2": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:670539ea8271751a9ef4e5a7",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670539ee8271751a9ef4e5a8",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67053a4b8271751a9ef4e5b9",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67053a4e8271751a9ef4e5ba",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
   "35-17-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "35-18-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -10222,6 +11515,22 @@
    "matches": []
   },
   "35-2-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "35-20-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "35-21-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "35-29-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "35-31-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -10279,7 +11588,61 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "35-6-2": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:670538c38271751a9ef4e579",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670538d68271751a9ef4e57c",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670539228271751a9ef4e587",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:670539508271751a9ef4e591",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "35-8-1": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:67053a018271751a9ef4e5ab",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67053a108271751a9ef4e5ae",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67053a618271751a9ef4e5bd",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67053a708271751a9ef4e5c0",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
   "35-8-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "35-8-5-b": {
    "bucket": "no_match",
    "matches": []
   },
@@ -10355,11 +11718,19 @@
    "bucket": "no_match",
    "matches": []
   },
+  "351-95-9": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "352-6-32": {
    "bucket": "no_match",
    "matches": []
   },
   "352-88-16": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "353-18-4": {
    "bucket": "no_match",
    "matches": []
   },
@@ -10402,7 +11773,15 @@
     }
    ]
   },
-  "358-2-46": {
+  "358-2-41": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "359-153-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "359-155-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -10513,6 +11892,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "36-17-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "36-18-2": {
    "bucket": "literature",
    "matches": [
@@ -10529,6 +11912,17 @@
    "matches": []
   },
   "36-2-6": {
+   "bucket": "literature",
+   "matches": [
+    {
+     "id": "2bga:SmallGroup(18,5):a[5]:b[6]",
+     "ref": "arXiv:2306.16400",
+     "source": "lin_pryadko_2bga_abelian",
+     "xz_swapped": false
+    }
+   ]
+  },
+  "36-2-6-b": {
    "bucket": "literature",
    "matches": [
     {
@@ -10565,11 +11959,39 @@
    "bucket": "no_match",
    "matches": []
   },
+  "36-21-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "36-21-2": {
    "bucket": "no_match",
    "matches": []
   },
+  "36-22-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "36-23-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "36-24-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "36-28-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "36-28-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "36-29-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "36-30-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -10670,6 +12092,26 @@
     }
    ]
   },
+  "36-6-6-b": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:6a207b802be1616b0252acfa",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:6a207b802be1616b0252acfa",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "codetables:[[36,6]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
   "36-6-6-m": {
    "bucket": "parameters_only",
    "matches": [
@@ -10693,6 +12135,31 @@
   "36-7-6": {
    "bucket": "not_derived",
    "matches": []
+  },
+  "36-8-1": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:674f1a1f14b554330a5bae41",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:674f1a2014b554330a5bae42",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67a4431b9d65c7b4098269c7",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67a443839d65c7b4098269cb",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
   },
   "36-8-4": {
    "bucket": "parameters_only",
@@ -10835,6 +12302,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "360-25-4": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "360-38-8": {
    "bucket": "no_match",
    "matches": []
@@ -10929,6 +12400,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "366-19-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "367-19-5": {
    "bucket": "no_match",
    "matches": []
@@ -10941,6 +12416,14 @@
    "bucket": "no_match",
    "matches": []
   },
+  "369-50-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "369-53-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "37-1-7": {
    "bucket": "parameters_only",
    "matches": [
@@ -10950,6 +12433,34 @@
      "source": "codetables"
     }
    ]
+  },
+  "37-13-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-13-2-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-14-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-15-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-18-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-19-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-20-1": {
+   "bucket": "no_match",
+   "matches": []
   },
   "37-21-3": {
    "bucket": "no_match",
@@ -10964,6 +12475,30 @@
    "matches": []
   },
   "37-22-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-27-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-27-2-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-28-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-28-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-29-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "37-30-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -10992,6 +12527,22 @@
    ]
   },
   "370-50-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "371-10-29": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "371-130-18": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "371-136-11": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "371-137-9": {
    "bucket": "no_match",
    "matches": []
   },
@@ -11035,6 +12586,18 @@
    "bucket": "no_match",
    "matches": []
   },
+  "375-102-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "375-192-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "375-193-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "376-190-4": {
    "bucket": "no_match",
    "matches": []
@@ -11045,6 +12608,38 @@
   },
   "376-98-8": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "377-12-32": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "377-129-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "377-131-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "377-18-34": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "377-23-58": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "377-24-15": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "377-39-54": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "377-4-47": {
+   "bucket": "not_derived",
    "matches": []
   },
   "378-10-48": {
@@ -11147,6 +12742,22 @@
    "bucket": "no_match",
    "matches": []
   },
+  "38-16-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "38-16-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "38-17-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "38-17-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "38-2-10": {
    "bucket": "not_derived",
    "matches": []
@@ -11163,7 +12774,39 @@
    "bucket": "no_match",
    "matches": []
   },
+  "38-26-2-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "38-27-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "38-27-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "38-29-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "38-32-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "38-34-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "38-4-7": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "382-36-10": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "383-199-3": {
    "bucket": "no_match",
    "matches": []
   },
@@ -11199,12 +12842,52 @@
    "bucket": "no_match",
    "matches": []
   },
+  "384-96-15": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "384-96-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "387-20-4": {
    "bucket": "no_match",
    "matches": []
   },
   "388-20-5": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "389-106-32": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "389-110-31": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "389-27-60": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "389-67-50": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "389-69-48": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "389-70-48": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "389-72-48": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "389-73-46": {
+   "bucket": "not_derived",
    "matches": []
   },
   "39-13-1": {
@@ -11257,6 +12940,21 @@
     }
    ]
   },
+  "39-14-1": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:67053afa8271751a9ef4e5ce",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67053b1f8271751a9ef4e5d3",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
   "39-17-3": {
    "bucket": "no_match",
    "matches": []
@@ -11269,7 +12967,15 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "39-21-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "39-23-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "39-23-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -11278,6 +12984,10 @@
    "matches": []
   },
   "39-25-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "39-25-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -11293,8 +13003,16 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "39-4-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "390-10-32": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "390-11-6": {
+   "bucket": "not_derived",
    "matches": []
   },
   "390-14-35": {
@@ -11313,11 +13031,11 @@
    "bucket": "no_match",
    "matches": []
   },
-  "390-50-42": {
-   "bucket": "no_match",
+  "390-50-40": {
+   "bucket": "not_derived",
    "matches": []
   },
-  "390-54-41": {
+  "390-54-37": {
    "bucket": "no_match",
    "matches": []
   },
@@ -11365,12 +13083,12 @@
    "bucket": "no_match",
    "matches": []
   },
-  "390-82-31": {
-   "bucket": "no_match",
+  "390-82-30-b": {
+   "bucket": "not_derived",
    "matches": []
   },
-  "390-82-38": {
-   "bucket": "no_match",
+  "390-82-35": {
+   "bucket": "not_derived",
    "matches": []
   },
   "391-13-13": {
@@ -11428,6 +13146,18 @@
     }
    ]
   },
+  "395-10-59": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "395-202-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "395-207-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "396-10-33": {
    "bucket": "no_match",
    "matches": []
@@ -11445,6 +13175,14 @@
    "matches": []
   },
   "396-88-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "397-54-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "397-57-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -11667,6 +13405,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "40-3-9": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "40-30-2": {
    "bucket": "no_match",
    "matches": []
@@ -11812,8 +13554,32 @@
    "bucket": "no_match",
    "matches": []
   },
+  "407-216-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "407-216-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "407-221-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "407-225-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "407-251-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "408-18-32": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "408-206-4": {
+   "bucket": "not_derived",
    "matches": []
   },
   "408-216-5": {
@@ -11822,6 +13588,10 @@
   },
   "408-216-8": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "409-2-50": {
+   "bucket": "not_derived",
    "matches": []
   },
   "41-10-5": {
@@ -11858,6 +13628,14 @@
    "bucket": "no_match",
    "matches": []
   },
+  "41-26-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "41-27-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "41-27-2": {
    "bucket": "no_match",
    "matches": []
@@ -11867,6 +13645,10 @@
    "matches": []
   },
   "41-29-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "41-30-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -11886,6 +13668,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "413-137-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "414-136-8": {
    "bucket": "no_match",
    "matches": []
@@ -11895,6 +13681,14 @@
    "matches": []
   },
   "414-92-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "415-104-17": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "415-111-9": {
    "bucket": "no_match",
    "matches": []
   },
@@ -11911,6 +13705,10 @@
    "matches": []
   },
   "416-4-50": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "417-10-6": {
    "bucket": "no_match",
    "matches": []
   },
@@ -12107,6 +13905,16 @@
     }
    ]
   },
+  "42-6-6-c": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[42,6]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
   "42-6-6b": {
    "bucket": "literature",
    "matches": [
@@ -12229,6 +14037,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "421-2-47": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "422-2-20": {
    "bucket": "literature",
    "matches": [
@@ -12267,12 +14079,32 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "424-110-12": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "426-6-42": {
    "bucket": "no_match",
    "matches": []
   },
+  "427-23-67": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "428-4-54": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "429-22-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "429-56-44": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "429-77-56": {
+   "bucket": "not_derived",
    "matches": []
   },
   "43-6-2": {
@@ -12287,16 +14119,28 @@
    "bucket": "no_match",
    "matches": []
   },
-  "430-56-42": {
+  "430-56-38": {
    "bucket": "no_match",
    "matches": []
   },
-  "430-56-46": {
+  "430-56-42-b": {
    "bucket": "no_match",
    "matches": []
   },
-  "430-58-48": {
+  "430-58-46": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "431-117-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "431-223-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "431-4-23": {
+   "bucket": "not_derived",
    "matches": []
   },
   "432-112-14": {
@@ -12320,6 +14164,22 @@
    "matches": []
   },
   "432-96-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "433-2-59": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "433-30-52": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "433-58-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "433-61-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -12355,12 +14215,20 @@
    "bucket": "no_match",
    "matches": []
   },
+  "434-62-13": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "435-59-3": {
    "bucket": "no_match",
    "matches": []
   },
   "436-4-54": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "437-22-22": {
+   "bucket": "not_derived",
    "matches": []
   },
   "438-18-12": {
@@ -12373,6 +14241,14 @@
   },
   "438-22-21": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "44-10-6": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "44-10-6-b": {
+   "bucket": "not_derived",
    "matches": []
   },
   "44-2-10": {
@@ -12453,6 +14329,14 @@
     }
    ]
   },
+  "440-258-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "440-261-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "441-1-21": {
    "bucket": "no_match",
    "matches": []
@@ -12493,6 +14377,34 @@
    "bucket": "no_match",
    "matches": []
   },
+  "445-68-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "445-85-59": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "445-89-58": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "445-92-54": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "445-93-53": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "445-95-57": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "445-96-57": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "446-13-13": {
    "bucket": "no_match",
    "matches": []
@@ -12501,11 +14413,11 @@
    "bucket": "no_match",
    "matches": []
   },
-  "446-74-50": {
+  "446-74-48": {
    "bucket": "no_match",
    "matches": []
   },
-  "446-76-48": {
+  "446-76-47": {
    "bucket": "no_match",
    "matches": []
   },
@@ -12583,6 +14495,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "451-228-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "452-115-18": {
    "bucket": "not_derived",
    "matches": []
@@ -12593,6 +14509,10 @@
   },
   "452-228-2": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "453-2-35": {
+   "bucket": "not_derived",
    "matches": []
   },
   "454-2-21": {
@@ -12619,6 +14539,10 @@
   },
   "454-8-17": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "456-230-4": {
+   "bucket": "not_derived",
    "matches": []
   },
   "457-8-17": {
@@ -12668,6 +14592,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "461-10-63": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "462-10-11": {
    "bucket": "no_match",
    "matches": []
@@ -12688,6 +14616,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "463-34-12": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "464-2-60": {
    "bucket": "no_match",
    "matches": []
@@ -12700,7 +14632,23 @@
    "bucket": "no_match",
    "matches": []
   },
-  "466-118-46": {
+  "465-134-39": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "465-144-35": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "465-146-39": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "465-76-64": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "466-118-42": {
    "bucket": "no_match",
    "matches": []
   },
@@ -12708,27 +14656,27 @@
    "bucket": "no_match",
    "matches": []
   },
-  "466-58-50": {
+  "466-58-46": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "466-58-50-b": {
    "bucket": "no_match",
    "matches": []
   },
-  "466-58-52": {
+  "466-58-52-b": {
    "bucket": "no_match",
    "matches": []
   },
-  "466-58-56": {
+  "466-60-50": {
    "bucket": "no_match",
    "matches": []
   },
-  "466-60-53": {
+  "466-60-52": {
    "bucket": "no_match",
    "matches": []
   },
-  "466-60-56": {
-   "bucket": "no_match",
-   "matches": []
-  },
-  "466-60-57": {
+  "466-60-53-b": {
    "bucket": "no_match",
    "matches": []
   },
@@ -12748,7 +14696,40 @@
    "bucket": "no_match",
    "matches": []
   },
+  "469-192-11": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "469-197-6": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "47-1-11": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:6705b8fe8271751a9ef4eaf1",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:6705b8fe8271751a9ef4eaf1",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:672e0d5af64e9dba7c503a1e",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:672e0d5af64e9dba7c503a1e",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "47-1-11-b": {
    "bucket": "parameters_only",
    "matches": [
     {
@@ -12798,6 +14779,14 @@
    "matches": []
   },
   "470-2-62": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "471-122-15": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "471-127-7": {
    "bucket": "no_match",
    "matches": []
   },
@@ -13208,6 +15197,16 @@
     }
    ]
   },
+  "48-4-8-b": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[48,4]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
   "48-6-3": {
    "bucket": "parameters_only",
    "matches": [
@@ -13229,6 +15228,16 @@
    ]
   },
   "48-6-8": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[48,6]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
+  "48-6-8-s": {
    "bucket": "parameters_only",
    "matches": [
     {
@@ -13303,6 +15312,10 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "480-16-26": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "480-24-18": {
    "bucket": "no_match",
    "matches": []
@@ -13331,11 +15344,11 @@
    "bucket": "no_match",
    "matches": []
   },
-  "482-48-56": {
+  "482-48-50": {
    "bucket": "no_match",
    "matches": []
   },
-  "482-50-60": {
+  "482-50-59": {
    "bucket": "no_match",
    "matches": []
   },
@@ -13343,7 +15356,7 @@
    "bucket": "no_match",
    "matches": []
   },
-  "482-98-51": {
+  "482-98-49": {
    "bucket": "no_match",
    "matches": []
   },
@@ -13365,6 +15378,10 @@
   },
   "485-97-25": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "486-164-6": {
+   "bucket": "no_match",
    "matches": []
   },
   "488-123-22": {
@@ -13408,6 +15425,10 @@
   },
   "49-19-3": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "49-27-2": {
+   "bucket": "not_derived",
    "matches": []
   },
   "49-7-2": {
@@ -13503,6 +15524,18 @@
   },
   "5-1-3": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "5-1-3-b": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "5-1-3-c": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "5-3-1": {
+   "bucket": "no_match",
    "matches": []
   },
   "5-4-1": {
@@ -13668,6 +15701,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "504-12-28": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "504-16-26": {
    "bucket": "no_match",
    "matches": []
@@ -13676,7 +15713,7 @@
    "bucket": "no_match",
    "matches": []
   },
-  "504-18-40": {
+  "504-18-38": {
    "bucket": "no_match",
    "matches": []
   },
@@ -13696,8 +15733,8 @@
    "bucket": "no_match",
    "matches": []
   },
-  "506-2-73": {
-   "bucket": "no_match",
+  "506-2-71": {
+   "bucket": "not_derived",
    "matches": []
   },
   "506-26-5": {
@@ -13823,6 +15860,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "512-128-19": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "512-128-20": {
    "bucket": "no_match",
    "matches": []
@@ -13851,7 +15892,7 @@
    "bucket": "no_match",
    "matches": []
   },
-  "514-128-52": {
+  "514-128-50": {
    "bucket": "no_match",
    "matches": []
   },
@@ -13863,7 +15904,7 @@
    "bucket": "no_match",
    "matches": []
   },
-  "514-130-51": {
+  "514-130-49": {
    "bucket": "no_match",
    "matches": []
   },
@@ -13871,19 +15912,19 @@
    "bucket": "no_match",
    "matches": []
   },
-  "514-32-46": {
+  "514-32-38": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "514-32-60": {
    "bucket": "no_match",
    "matches": []
   },
-  "514-32-62": {
+  "514-32-62-b": {
    "bucket": "no_match",
    "matches": []
   },
-  "514-32-68": {
-   "bucket": "no_match",
-   "matches": []
-  },
-  "514-32-70": {
+  "514-32-66": {
    "bucket": "no_match",
    "matches": []
   },
@@ -13891,23 +15932,23 @@
    "bucket": "no_match",
    "matches": []
   },
-  "514-64-64": {
+  "514-64-60-b": {
    "bucket": "no_match",
    "matches": []
   },
-  "514-64-64-b": {
+  "514-64-62": {
    "bucket": "no_match",
    "matches": []
   },
-  "514-66-59": {
+  "514-66-57": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "514-66-59-b": {
    "bucket": "no_match",
    "matches": []
   },
-  "514-66-63": {
-   "bucket": "no_match",
-   "matches": []
-  },
-  "514-96-58": {
+  "514-96-56": {
    "bucket": "no_match",
    "matches": []
   },
@@ -13939,7 +15980,15 @@
    "bucket": "no_match",
    "matches": []
   },
+  "518-74-14": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "519-27-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "52-13-5": {
    "bucket": "no_match",
    "matches": []
   },
@@ -14009,6 +16058,14 @@
    "bucket": "no_match",
    "matches": []
   },
+  "52-3-4": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "52-36-2": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "52-4-9": {
    "bucket": "literature",
    "matches": [
@@ -14044,8 +16101,8 @@
    "bucket": "no_match",
    "matches": []
   },
-  "526-2-77": {
-   "bucket": "no_match",
+  "526-2-74": {
+   "bucket": "not_derived",
    "matches": []
   },
   "528-4-34": {
@@ -14076,6 +16133,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "53-13-6-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "53-14-5": {
    "bucket": "no_match",
    "matches": []
@@ -14085,6 +16146,14 @@
    "matches": []
   },
   "53-21-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "53-30-6": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "53-31-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -14172,6 +16241,10 @@
    ]
   },
   "54-12-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "54-12-7-b": {
    "bucket": "no_match",
    "matches": []
   },
@@ -14352,8 +16425,8 @@
    "bucket": "no_match",
    "matches": []
   },
-  "540-12-41": {
-   "bucket": "no_match",
+  "540-12-38": {
+   "bucket": "not_derived",
    "matches": []
   },
   "540-274-8": {
@@ -14378,6 +16451,26 @@
   },
   "542-2-47": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "544-10-48": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "544-136-17": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "544-18-48": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "544-20-76": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "544-8-74": {
+   "bucket": "not_derived",
    "matches": []
   },
   "545-73-3": {
@@ -14526,12 +16619,20 @@
    "bucket": "no_match",
    "matches": []
   },
+  "55-5-9": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "550-110-18": {
    "bucket": "no_match",
    "matches": []
   },
   "550-38-16": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "552-278-4": {
+   "bucket": "not_derived",
    "matches": []
   },
   "552-8-9": {
@@ -14786,6 +16887,16 @@
     }
    ]
   },
+  "56-6-8-s": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[56,6]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
   "56-8-12": {
    "bucket": "parameters_only",
    "matches": [
@@ -14838,6 +16949,10 @@
    "matches": []
   },
   "560-20-56": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "560-224-10": {
    "bucket": "no_match",
    "matches": []
   },
@@ -15112,6 +17227,10 @@
     }
    ]
   },
+  "58-31-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "58-32-1": {
    "bucket": "no_match",
    "matches": []
@@ -15208,6 +17327,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "6-3-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "6-4-2": {
    "bucket": "no_match",
    "matches": []
@@ -15273,6 +17396,10 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "60-13-11-b": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "60-13-12": {
    "bucket": "not_derived",
    "matches": []
@@ -15296,6 +17423,31 @@
   "60-18-10": {
    "bucket": "not_derived",
    "matches": []
+  },
+  "60-18-6": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:679cedd45a99a6b92bb92197",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:679cedd45a99a6b92bb92197",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67a32bf05a99a6b92bb9232d",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:67a32bf05a99a6b92bb9232d",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
   },
   "60-19-10": {
    "bucket": "not_derived",
@@ -15532,7 +17684,19 @@
    "bucket": "no_match",
    "matches": []
   },
+  "60-9-8": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "600-120-21": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "600-16-30": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "600-24-26": {
    "bucket": "no_match",
    "matches": []
   },
@@ -15576,12 +17740,20 @@
    "bucket": "no_match",
    "matches": []
   },
-  "606-6-78": {
+  "606-48-22": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "606-6-56": {
+   "bucket": "not_derived",
    "matches": []
   },
   "607-83-3": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "608-152-19": {
+   "bucket": "not_derived",
    "matches": []
   },
   "608-2-36": {
@@ -15604,6 +17776,18 @@
    "bucket": "no_match",
    "matches": []
   },
+  "61-30-3": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "61-35-2": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "61-49-2": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "610-122-69": {
    "bucket": "no_match",
    "matches": []
@@ -15613,6 +17797,10 @@
    "matches": []
   },
   "610-40-20": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "610-40-22": {
    "bucket": "no_match",
    "matches": []
   },
@@ -15648,6 +17836,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "616-56-22": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "616-6-34": {
    "bucket": "no_match",
    "matches": []
@@ -15665,6 +17857,10 @@
    "matches": []
   },
   "618-44-20": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "618-48-24": {
    "bucket": "no_match",
    "matches": []
   },
@@ -15742,6 +17938,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "62-18-7-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "62-2-11": {
    "bucket": "literature",
    "matches": [
@@ -15800,6 +18000,10 @@
   },
   "62-31-3": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "62-33-7": {
+   "bucket": "not_derived",
    "matches": []
   },
   "62-35-2": {
@@ -16260,6 +18464,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "639-91-3": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "64-10-4": {
    "bucket": "parameters_only",
    "matches": [
@@ -16530,6 +18738,18 @@
    "bucket": "no_match",
    "matches": []
   },
+  "64-35-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "64-36-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "64-37-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "64-4-9": {
    "bucket": "literature",
    "matches": [
@@ -16570,6 +18790,10 @@
     }
    ]
   },
+  "640-128-3": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "640-132-7": {
    "bucket": "no_match",
    "matches": []
@@ -16587,6 +18811,10 @@
    "matches": []
   },
   "640-24-24": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "640-322-6": {
    "bucket": "no_match",
    "matches": []
   },
@@ -16610,8 +18838,8 @@
    "bucket": "no_match",
    "matches": []
   },
-  "646-2-100": {
-   "bucket": "no_match",
+  "646-2-97": {
+   "bucket": "not_derived",
    "matches": []
   },
   "646-350-8": {
@@ -16622,7 +18850,15 @@
    "bucket": "no_match",
    "matches": []
   },
+  "648-326-6": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "648-328-8": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "648-434-3": {
    "bucket": "no_match",
    "matches": []
   },
@@ -16663,6 +18899,10 @@
    "matches": []
   },
   "65-5-8": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "65-6-9": {
    "bucket": "not_derived",
    "matches": []
   },
@@ -16709,6 +18949,10 @@
    "matches": []
   },
   "656-2-72": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "656-64-24": {
    "bucket": "no_match",
    "matches": []
   },
@@ -16837,11 +19081,11 @@
    "bucket": "no_match",
    "matches": []
   },
-  "662-122-77": {
+  "662-122-75": {
    "bucket": "no_match",
    "matches": []
   },
-  "662-122-84": {
+  "662-122-77": {
    "bucket": "no_match",
    "matches": []
   },
@@ -16853,23 +19097,23 @@
    "bucket": "no_match",
    "matches": []
   },
-  "662-2-103": {
+  "662-2-100": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "662-60-92": {
    "bucket": "no_match",
    "matches": []
   },
-  "662-60-94": {
+  "662-60-92-b": {
    "bucket": "no_match",
    "matches": []
   },
-  "662-60-96": {
-   "bucket": "no_match",
+  "662-62-88": {
+   "bucket": "not_derived",
    "matches": []
   },
   "662-62-89": {
-   "bucket": "no_match",
-   "matches": []
-  },
-  "662-62-93": {
    "bucket": "no_match",
    "matches": []
   },
@@ -16933,8 +19177,8 @@
    "bucket": "no_match",
    "matches": []
   },
-  "672-14-56": {
-   "bucket": "no_match",
+  "672-14-44": {
+   "bucket": "not_derived",
    "matches": []
   },
   "672-16-48": {
@@ -16958,6 +19202,10 @@
    "matches": []
   },
   "672-24-26": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "672-28-24": {
    "bucket": "no_match",
    "matches": []
   },
@@ -17025,15 +19273,19 @@
    "bucket": "no_match",
    "matches": []
   },
+  "674-170-73-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "674-170-76": {
    "bucket": "no_match",
    "matches": []
   },
-  "674-170-76-b": {
-   "bucket": "no_match",
+  "674-42-92": {
+   "bucket": "not_derived",
    "matches": []
   },
-  "674-42-94": {
+  "674-44-86": {
    "bucket": "no_match",
    "matches": []
   },
@@ -17041,15 +19293,11 @@
    "bucket": "no_match",
    "matches": []
   },
-  "674-44-91": {
-   "bucket": "no_match",
-   "matches": []
-  },
   "674-84-44": {
    "bucket": "no_match",
    "matches": []
   },
-  "674-84-92": {
+  "674-84-82": {
    "bucket": "no_match",
    "matches": []
   },
@@ -17057,23 +19305,23 @@
    "bucket": "no_match",
    "matches": []
   },
+  "674-86-87": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "674-86-88": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "674-86-89": {
    "bucket": "no_match",
    "matches": []
   },
+  "674-86-89-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "674-86-90": {
-   "bucket": "no_match",
-   "matches": []
-  },
-  "674-86-91": {
-   "bucket": "no_match",
-   "matches": []
-  },
-  "674-86-92": {
-   "bucket": "no_match",
-   "matches": []
-  },
-  "674-86-93": {
    "bucket": "no_match",
    "matches": []
   },
@@ -17154,6 +19402,18 @@
     }
    ]
   },
+  "68-37-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "68-38-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "68-39-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "68-4-11": {
    "bucket": "literature",
    "matches": [
@@ -17185,7 +19445,7 @@
    "bucket": "no_match",
    "matches": []
   },
-  "682-102-90": {
+  "682-102-88": {
    "bucket": "no_match",
    "matches": []
   },
@@ -17225,7 +19485,7 @@
    "bucket": "no_match",
    "matches": []
   },
-  "682-142-81": {
+  "682-142-79": {
    "bucket": "no_match",
    "matches": []
   },
@@ -17265,11 +19525,11 @@
    "bucket": "no_match",
    "matches": []
   },
-  "682-40-66": {
+  "682-40-56": {
    "bucket": "no_match",
    "matches": []
   },
-  "682-62-100": {
+  "682-62-92": {
    "bucket": "no_match",
    "matches": []
   },
@@ -17289,6 +19549,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "684-12-102": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "684-12-45": {
    "bucket": "no_match",
    "matches": []
@@ -17298,6 +19562,10 @@
    "matches": []
   },
   "684-12-54": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "684-14-107": {
    "bucket": "no_match",
    "matches": []
   },
@@ -17317,16 +19585,24 @@
    "bucket": "no_match",
    "matches": []
   },
-  "684-4-104": {
+  "684-4-100": {
    "bucket": "no_match",
    "matches": []
   },
-  "684-4-81": {
+  "684-4-63": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "684-6-69": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "684-8-106": {
    "bucket": "no_match",
    "matches": []
   },
-  "684-6-77": {
-   "bucket": "no_match",
+  "684-8-36": {
+   "bucket": "not_derived",
    "matches": []
   },
   "684-8-54": {
@@ -17338,6 +19614,14 @@
    "matches": []
   },
   "69-3-10": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "69-50-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "69-53-2": {
    "bucket": "not_derived",
    "matches": []
   },
@@ -17381,7 +19665,15 @@
    "bucket": "no_match",
    "matches": []
   },
+  "696-350-4": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "696-352-10": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "696-48-24": {
    "bucket": "no_match",
    "matches": []
   },
@@ -17420,6 +19712,10 @@
   },
   "7-4-1": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "7-4-1-1c4baa76c41fa671": {
+   "bucket": "not_derived",
    "matches": []
   },
   "7-5-1": {
@@ -17474,6 +19770,18 @@
   },
   "70-24-5": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "70-48-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "70-48-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "70-56-2": {
+   "bucket": "not_derived",
    "matches": []
   },
   "70-6-11": {
@@ -17685,6 +19993,10 @@
    "matches": []
   },
   "71-42-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "71-44-1": {
    "bucket": "no_match",
    "matches": []
   },
@@ -18090,6 +20402,16 @@
     }
    ]
   },
+  "72-6-8-b": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[72,6]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
+    }
+   ]
+  },
   "72-6-9": {
    "bucket": "literature",
    "matches": [
@@ -18098,6 +20420,16 @@
      "ref": "arXiv:2306.16400",
      "source": "lin_pryadko_2bga_abelian",
      "xz_swapped": false
+    }
+   ]
+  },
+  "72-6-9-s": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "codetables:[[72,6]]",
+     "ref": "https://codetables.de -- bounds only, no construction to compare",
+     "source": "codetables"
     }
    ]
   },
@@ -18176,6 +20508,14 @@
    "matches": []
   },
   "720-302-4": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "720-362-6": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "720-74-8": {
    "bucket": "no_match",
    "matches": []
   },
@@ -18275,6 +20615,18 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "74-29-10": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "742-106-15": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "744-374-4": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "749-155-3": {
    "bucket": "no_match",
    "matches": []
@@ -18285,6 +20637,14 @@
   },
   "75-10-5": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "75-3-15": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "75-38-1": {
+   "bucket": "no_match",
    "matches": []
   },
   "75-7-10": {
@@ -18337,6 +20697,18 @@
    ]
   },
   "76-40-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "76-41-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "76-42-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "76-43-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -18408,6 +20780,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "77-32-10": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "773-25-10": {
    "bucket": "no_match",
    "matches": []
@@ -18430,6 +20806,10 @@
     }
    ]
   },
+  "78-19-13": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "78-26-3": {
    "bucket": "literature",
    "matches": [
@@ -18451,6 +20831,10 @@
   },
   "78-27-5": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "78-33-10": {
+   "bucket": "not_derived",
    "matches": []
   },
   "78-4-10": {
@@ -18559,6 +20943,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "789-21-7": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "79-11-3": {
    "bucket": "parameters_only",
    "matches": [
@@ -18568,6 +20956,10 @@
      "source": "codetables"
     }
    ]
+  },
+  "79-20-13": {
+   "bucket": "not_derived",
+   "matches": []
   },
   "79-24-7": {
    "bucket": "no_match",
@@ -18674,16 +21066,52 @@
     }
    ]
   },
+  "8-4-2-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "8-4-2-c": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "8-5-1": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "8-5-1-64b4b354f2379296": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "8-5-1-714718feeaa44e62": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "8-5-1-8bf0bb06bb2532c6": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "8-5-1-99826a95cc6cebda": {
+   "bucket": "not_derived",
    "matches": []
   },
   "8-5-1-b": {
    "bucket": "no_match",
    "matches": []
   },
+  "8-5-1-bc16cdc3f19fc228": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "8-5-1-c": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "8-6-1": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "8-6-1-ca6696bffd91d382": {
+   "bucket": "not_derived",
    "matches": []
   },
   "8-6-2": {
@@ -18811,6 +21239,10 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "80-34-10": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "80-34-5": {
    "bucket": "no_match",
    "matches": []
@@ -18907,6 +21339,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "80-5-4": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "80-6-10": {
    "bucket": "literature",
    "matches": [
@@ -18991,6 +21427,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "804-12-9": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "808-206-20": {
    "bucket": "no_match",
    "matches": []
@@ -19009,6 +21449,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "81-35-10": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "81-9-8": {
    "bucket": "not_derived",
    "matches": []
@@ -19018,6 +21462,14 @@
    "matches": []
   },
   "810-42-5": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "812-20-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "813-13-9": {
    "bucket": "no_match",
    "matches": []
   },
@@ -19049,6 +21501,10 @@
      "source": "codetables"
     }
    ]
+  },
+  "82-56-2": {
+   "bucket": "not_derived",
+   "matches": []
   },
   "820-44-5": {
    "bucket": "no_match",
@@ -19107,6 +21563,10 @@
    "matches": []
   },
   "834-32-20": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "836-20-7": {
    "bucket": "no_match",
    "matches": []
   },
@@ -19462,6 +21922,18 @@
    "bucket": "no_match",
    "matches": []
   },
+  "848-8-11": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "848-8-11-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "849-21-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "849-8-22": {
    "bucket": "no_match",
    "matches": []
@@ -19533,6 +22005,14 @@
    "bucket": "no_match",
    "matches": []
   },
+  "860-130-10": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "861-13-9": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "861-157-3": {
    "bucket": "no_match",
    "matches": []
@@ -19545,15 +22025,27 @@
    "bucket": "no_match",
    "matches": []
   },
+  "863-23-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "864-146-8": {
    "bucket": "no_match",
    "matches": []
   },
-  "864-20-36": {
+  "864-20-34": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "864-434-6": {
    "bucket": "no_match",
    "matches": []
   },
   "865-157-3": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "866-128-12": {
    "bucket": "no_match",
    "matches": []
   },
@@ -19579,6 +22071,10 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "870-6-13": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "872-222-18": {
    "bucket": "no_match",
    "matches": []
@@ -19597,6 +22093,10 @@
   },
   "875-8-22": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "88-15-9": {
+   "bucket": "not_derived",
    "matches": []
   },
   "88-2-14": {
@@ -19678,6 +22178,10 @@
     }
    ]
   },
+  "88-47-2": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "88-6-6": {
    "bucket": "parameters_only",
    "matches": [
@@ -19687,6 +22191,14 @@
      "source": "codetables"
     }
    ]
+  },
+  "88-67-2": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "880-40-22": {
+   "bucket": "no_match",
+   "matches": []
   },
   "882-18-29": {
    "bucket": "no_match",
@@ -19710,6 +22222,10 @@
   },
   "888-226-18": {
    "bucket": "no_match",
+   "matches": []
+  },
+  "888-446-4": {
+   "bucket": "not_derived",
    "matches": []
   },
   "89-1-15": {
@@ -19749,6 +22265,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "89-50-3": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "89-8-10": {
    "bucket": "no_match",
    "matches": []
@@ -19769,6 +22289,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "898-18-31": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "898-196-2": {
    "bucket": "no_match",
    "matches": []
@@ -19777,11 +22301,15 @@
    "bucket": "no_match",
    "matches": []
   },
+  "898-22-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "899-173-3": {
    "bucket": "no_match",
    "matches": []
   },
-  "899-18-31": {
+  "899-18-30": {
    "bucket": "no_match",
    "matches": []
   },
@@ -19789,7 +22317,56 @@
    "bucket": "no_match",
    "matches": []
   },
+  "9-1-3": {
+   "bucket": "parameters_only",
+   "matches": [
+    {
+     "id": "qecdb:6705224a4315521360862354",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:6705224a4315521360862354",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:6706708a18cd4e494951ec1d",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    },
+    {
+     "id": "qecdb:6706708a18cd4e494951ec1d",
+     "ref": "https://qecdb.org",
+     "source": "qecdb"
+    }
+   ]
+  },
+  "9-1-3-s": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "9-2-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "9-3-2": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "9-3-2-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "9-3-2-c": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "9-4-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "9-4-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -19802,6 +22379,22 @@
    "matches": []
   },
   "9-6-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "9-6-1-47c2912b9067610a": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "9-6-1-b": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "9-6-1-c": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "9-6-2": {
    "bucket": "no_match",
    "matches": []
   },
@@ -20068,6 +22661,14 @@
    "bucket": "no_match",
    "matches": []
   },
+  "909-13-9": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "909-21-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "91-13-6": {
    "bucket": "not_derived",
    "matches": []
@@ -20076,8 +22677,16 @@
    "bucket": "not_derived",
    "matches": []
   },
+  "91-15-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
   "91-19-6": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "91-46-1": {
+   "bucket": "no_match",
    "matches": []
   },
   "91-7-8": {
@@ -20100,7 +22709,11 @@
    "bucket": "no_match",
    "matches": []
   },
-  "914-18-31": {
+  "914-18-30": {
+   "bucket": "not_derived",
+   "matches": []
+  },
+  "918-14-9": {
    "bucket": "no_match",
    "matches": []
   },
@@ -20164,12 +22777,12 @@
    "bucket": "no_match",
    "matches": []
   },
-  "920-18-31": {
+  "920-18-30": {
    "bucket": "no_match",
    "matches": []
   },
-  "921-18-31": {
-   "bucket": "no_match",
+  "921-18-30": {
+   "bucket": "not_derived",
    "matches": []
   },
   "922-18-30": {
@@ -20239,6 +22852,14 @@
    "matches": []
   },
   "935-15-9": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "935-23-7": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "936-470-6": {
    "bucket": "no_match",
    "matches": []
   },
@@ -20738,6 +23359,10 @@
     }
    ]
   },
+  "96-51-2": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "96-6-13": {
    "bucket": "no_match",
    "matches": []
@@ -20773,6 +23398,10 @@
    "matches": []
   },
   "960-198-8": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "960-20-38": {
    "bucket": "no_match",
    "matches": []
   },
@@ -20866,6 +23495,10 @@
    "bucket": "no_match",
    "matches": []
   },
+  "98-54-2": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "98-6-12": {
    "bucket": "literature",
    "matches": [
@@ -20931,12 +23564,24 @@
    "bucket": "no_match",
    "matches": []
   },
+  "984-494-4": {
+   "bucket": "not_derived",
+   "matches": []
+  },
   "989-53-5": {
    "bucket": "no_match",
    "matches": []
   },
   "99-17-7": {
    "bucket": "not_derived",
+   "matches": []
+  },
+  "99-50-1": {
+   "bucket": "no_match",
+   "matches": []
+  },
+  "99-53-1": {
+   "bucket": "no_match",
    "matches": []
   },
   "990-198-17": {

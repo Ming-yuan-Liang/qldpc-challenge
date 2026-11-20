@@ -90,24 +90,32 @@ def strip_noise(circuit):
 
 def skeleton_errors(skeleton):
     """Gate-set conformance of a noiseless skeleton: [] iff every instruction
-    is an allowed one (see module docstring)."""
+    is an allowed one (see module docstring).
+
+    Whether a gate NAME is allowed is settled the first time it is met.
+    Whether a unitary gate's TARGETS are all qubits is a property of each
+    instruction, so every one is read until that name has been reported: a
+    classically controlled gate after a plain one of the same name is as far
+    outside the set as one that comes first. Each failure is named once per
+    gate name."""
     errs = []
-    seen = set()
+    unitary = {}                  # gate name -> is it a unitary gate
+    reported = set()              # unitary names already reported
     for inst in skeleton.flattened():
         name = inst.name
-        if name in seen:
-            continue
-        seen.add(name)
         if name in ANNOTATIONS or name in MEASURES or name in RESET_FLIP:
             continue
-        gd = stim.gate_data(name)
-        if gd.is_unitary:
-            if any(not t.is_qubit_target for t in inst.targets_copy()):
-                errs.append(f"{name} with a non-qubit target (classical "
-                            f"control) is outside the circuit-tier gate set")
-            continue
-        errs.append(f"instruction {name} is outside the circuit-tier gate set "
-                    f"(unitary gates, R, RX, M, MX, and annotations)")
+        if name not in unitary:
+            unitary[name] = stim.gate_data(name).is_unitary
+            if not unitary[name]:
+                errs.append(f"instruction {name} is outside the circuit-tier "
+                            f"gate set (unitary gates, R, RX, M, MX, and "
+                            f"annotations)")
+        if unitary[name] and name not in reported and any(
+                not t.is_qubit_target for t in inst.targets_copy()):
+            reported.add(name)
+            errs.append(f"{name} with a non-qubit target (classical "
+                        f"control) is outside the circuit-tier gate set")
     return errs
 
 
@@ -121,6 +129,35 @@ def _segments(flat_circuit):
             cur.append(inst)
     segs.append(cur)
     return segs
+
+
+def schedule_depth(circuit):
+    """Depth and width of a memory circuit: {"layers", "qubits"} (issue #6834).
+
+    ``layers`` counts the TICK-delimited segments that carry at least one
+    operation; noise channels and annotations are not operations, so the
+    count is the same for a committed circuit and its noiseless skeleton.
+    ``layer_conflict_errors`` already requires every segment to touch no
+    qubit twice, so this is the gate depth of the experiment, not a
+    formatting choice. ``qubits`` is every qubit the circuit addresses (data,
+    ancilla, and flag). The per-round depth a caller compares two schedules by
+    is (layers - 2) / rounds: the data preparation layer and the final
+    readout layer are the two that do not repeat.
+    """
+    noise = {}
+    layers = 0
+    for seg in _segments(circuit.flattened()):
+        for inst in seg:
+            name = inst.name
+            if name in ANNOTATIONS:
+                continue
+            is_noise = noise.get(name)
+            if is_noise is None:
+                is_noise = noise[name] = _is_pure_noise(name)
+            if not is_noise:
+                layers += 1
+                break
+    return {"layers": layers, "qubits": circuit.num_qubits}
 
 
 def layer_conflict_errors(skeleton):
@@ -215,10 +252,11 @@ def noise_recipe_errors(circuit, n_data, p=P_REF):
 def derive_dem(circuit):
     """The pinned DEM derivation (RFC 0001 step 5): no decomposition (hook
     mechanisms fire >2 detectors and must survive), loops flattened so error
-    instructions are plain, absolutely-indexed lines. str() of the result is
-    the committed .dem artifact; witness indices count its error instructions
-    in file order. Verification compares a committed .dem against this with
-    dem_matches, not byte equality -- see there for why."""
+    instructions are plain, absolutely-indexed lines. Witness indices count
+    its error instructions in file order. The .dem is derived from the
+    committed .stim, not committed; a legacy committed .dem, when present,
+    is compared against this with dem_matches, not byte equality -- see
+    there for why."""
     return circuit.detector_error_model(decompose_errors=False,
                                         flatten_loops=True)
 
@@ -231,16 +269,25 @@ def dem_matches(derived, committed, rtol=1e-9, atol=1e-12):
     metadata the distance tier never reads, and their last ulps are
     architecture-sensitive (e.g. FMA contraction on arm64 vs x86), so exact
     byte equality would reject an honest artifact generated on another
-    machine while a real tamper still exceeds any plausible tolerance."""
+    machine while a real tamper still exceeds any plausible tolerance.
+
+    An instruction pair stim itself calls equal needs no second look: equal
+    means the same type, the same targets in the same order and the same
+    arguments, and each rule below then holds trivially. Only the pairs that
+    differ somewhere are taken apart, which is the minority (those whose
+    probability lost its last digits in the committed file's text), and they
+    are compared target by target with stim's own equality rather than through
+    one string per target (issue #5409)."""
     da = list(derived.flattened())
     ca = list(committed.flattened())
     if len(da) != len(ca):
         return False
     for x, y in zip(da, ca):
+        if x == y:
+            continue
         if x.type != y.type:
             return False
-        if [str(t) for t in x.targets_copy()] != \
-           [str(t) for t in y.targets_copy()]:
+        if x.targets_copy() != y.targets_copy():
             return False
         ax, ay = x.args_copy(), y.args_copy()
         if len(ax) != len(ay) or any(
@@ -250,12 +297,11 @@ def dem_matches(derived, committed, rtol=1e-9, atol=1e-12):
     return True
 
 
-def dem_columns(dem):
-    """One (detector_ids, observable_ids) pair per error instruction, in file
-    order -- the sparse columns of H_dem / L, and the objects witness indices
-    point at."""
+def _columns_from_instructions(flat):
+    """dem_columns of a flattened DEM, one stim object per target. This is the
+    definition; _columns_from_text is a faster way to the same answer."""
     cols = []
-    for inst in dem.flattened():
+    for inst in flat:
         if inst.type != "error":
             continue
         ds, ls = [], []
@@ -268,8 +314,63 @@ def dem_columns(dem):
     return cols
 
 
-def dem_lint(dem):
+def _columns_from_text(flat):
+    """dem_columns of a flattened DEM read off stim's own text for it, or
+    None when a line is not in the one form this reads.
+
+    Flattened, a DEM prints one instruction per line with absolute indices,
+    and an untagged error is `error(p) T T ...`, each T being `D<int>`,
+    `L<int>` or the separator `^`. Anything else on an error line returns
+    None rather than a guess: a tag (which may contain any text; stim escapes
+    line breaks inside one, so a tag cannot start a line of its own), a token
+    of another shape, a line with no closing parenthesis."""
+    cols = []
+    try:
+        for line in str(flat).split("\n"):
+            if not line.startswith("error"):
+                continue
+            if not line.startswith("error("):
+                return None
+            ds, ls = [], []
+            for tok in line[line.index(")") + 1:].split():
+                kind = tok[0]
+                if kind == "D":
+                    ds.append(int(tok[1:]))
+                elif kind == "L":
+                    ls.append(int(tok[1:]))
+                elif tok != "^":
+                    return None
+            cols.append((ds, ls))
+    except ValueError:
+        return None
+    return cols
+
+
+def dem_columns(dem):
+    """One (detector_ids, observable_ids) pair per error instruction, in file
+    order -- the sparse columns of H_dem / L, and the objects witness indices
+    point at.
+
+    A circuit-tier DEM has on the order of 1e5 mechanisms and 1e6 targets,
+    and one stim object per target made this walk a fifth of the circuit
+    tier (issue #5409). The columns are therefore read from the text stim
+    prints for the flattened model, which is one call into stim instead of
+    several per target. The object walk is kept as the definition and as the
+    fallback: it runs whenever the text is not in the plain form
+    _columns_from_text reads, or the text yields a different number of
+    columns than stim counts errors."""
+    flat = dem.flattened()
+    cols = _columns_from_text(flat)
+    if cols is None or len(cols) != flat.num_errors:
+        cols = _columns_from_instructions(flat)
+    return cols
+
+
+def dem_lint(dem, cols=None):
     """Structural-integrity errors of a derived DEM, [] iff well formed.
+    `cols` is dem_columns(dem) when the caller already has it (the walk over
+    every mechanism is the expensive part, and circuit_verify needs the same
+    columns for the witness check); nothing else may be passed there.
 
     The three error-severity properties from emlint's check taxonomy
     (github.com/MathysRennela/emlint; implemented here on dem_columns rather
@@ -292,7 +393,8 @@ def dem_lint(dem):
     enters only through DEM length, which MAX_DEM_MECHANISMS bounds.
     """
     errs = []
-    cols = dem_columns(dem)
+    if cols is None:
+        cols = dem_columns(dem)
     probs = [inst.args_copy()[0] for inst in dem.flattened()
              if inst.type == "error"]
     bad_det = [j for j, (ds, ls) in enumerate(cols) if not ds and ls]
@@ -330,12 +432,16 @@ def dem_matrices(dem):
     return H, L
 
 
-def witness_errors(dem, witness, value):
+def witness_errors(dem, witness, value, cols=None):
     """GF(2) check of a d_circ claim against a DEM: [] iff `witness` is a
     strictly increasing list of error-instruction indices whose detector sets
     XOR to nothing (undetected) and whose observable sets do not (flips a
-    logical), with |witness| = value. Sparse and O(|witness| * degree)."""
-    cols = dem_columns(dem)
+    logical), with |witness| = value. The check itself is sparse and
+    O(|witness| * degree); reading the columns is O(mechanisms), so a caller
+    that already holds dem_columns(dem) passes it as `cols`, and nothing else
+    may be passed there."""
+    if cols is None:
+        cols = dem_columns(dem)
     idx = [int(i) for i in witness]
     if idx != sorted(set(idx)):
         return ["witness indices must be strictly increasing and distinct"]
