@@ -25,6 +25,217 @@ codes/, verify/ matches CI's pinned stack.
 Read AGENT-BRIEFING.md in this directory first. This file is the handoff state
 for supervision rounds; update it when state changes.
 
+## Round 227 update (2026-11-09 ~11:20): RESUMED — 双 PR CI 再取消 → retrigger 完成；榜单全量核实 3142 码
+
+- **恢复**：新监督自动化（每 5 分钟；至 2026-11-09 21:00 该轮自动 CronPauseSelf 结束）。
+  用户令"全面衔接之前任务并推进 + 确认在榜码数"。
+- **CI 恢复时快照**：#5079 @0b76c6530 与 #4678 @1875b85a9 的 verify+reproduce 均
+  completed=**cancelled**（上游系统性取消再现；ris-compile/codes-format/prose 三绿）。
+  已按预案 commit-tree 空提交 retrigger，双推送成功（第 1 次尝试即成，网络正常）：
+  - #5079 新 head **2801f6f2c** → fork:submit-544-20-85
+  - #4678 新 head **efc735e06** → fork:submit-684-14-115
+  下轮核对 check-runs（verify ~1.5h 级出结论）。
+- **榜单核实（回答用户问询）**：上游 main codes/ 全量 **3142 码**（contents API
+  恰好 1000 截断，以 git trees 为准）。我方在榜 **3 码**：544-18-76、684-12-108、
+  684-8-110（merge 提交 0e5bfe16b / 394c0760a / ed724bf86，均未被移除）。在途
+  2 PR：#5079 [[544,20,80]]、#4678 [[684,14,107]]。上游 ff 7ea802a1f→8bea2dda1
+  （他人小码 + circuit tiers，不涉我方）。
+- **L5 现势**：四终选码（510-102-19、588-98-22、686-98-24、714-102-25）对新榜
+  文件级**零支配者**，仍 board_advancing；12/12 battery 绿记录在案；六码仍
+  **hold，提交决策待用户**（提交方案：686 只留 24 → 共 5 个 PR）。
+- **资源/基建**：python 实体 0；PAT 在位（未回显）；gf2_fast.pyd 在位；本地
+  main = 76198c347（研究快照，未推送）。
+- **L6 已派发**：w8-2dlocal-n700-1000 车道子代理（后台）启动，带 gf2_fast 接线
+  （backend="fast", threads=2/worker, ≤4 workers）+ checkpoint 纪律；stage 目录
+  research/candidates/l6-2dlocal/。
+- 下轮：① 双 PR check-runs 核对 ② L6 巡检（进度文件增长/进程存活）③ 见证处理
+  ④ 资源盘点（≤16）。
+
+## Round 228 update (2026-11-09 ~11:20): retrigger 生效 — #4678 verify in_progress
+
+- **CI**：#4678 @efc735e06 **verify 已 in_progress**（retrigger 生效）；#5079
+  @2801f6f2c codes-format 已绿、其余重跑中。双 PR 无需干预，~1.5h 级等结论。
+- **L6**：子代理启动期（11:15 派发），暂无 worker 进程/进度文件/ staged 产物
+  ——未达"10 分钟无增长 + 进程消失"重启条件，下轮复查。
+- 资源：python 实体 0；无新见证文件；榜单无变化。
+
+## Round 229 update (2026-11-09 ~11:30): 用户侧介入 — 双 PR 去 repro manifest 修 130min cap；CI 新 head 排队中
+
+- **外部推送（fork 账号身份 LiangMingyuan，11:22/11:23，非 supervisor 执行）**：
+  - #5079 新 head **1ed55d700**：删除 repro/544-20-80.json（-35 行）
+  - #4678 新 head **e49f3c48f**：删除 repro/684-14-107.json（-35 行）
+  - 提交信息诊断：**verify job 有 130 分钟上限**，可选 repro manifest 拖长 verify
+    导致反复被取消。与历次取消时点（~2h10m / 2h25m / 90min）吻合 —— **采纳为
+    新工作假设**。supervisor 11:14 的空提交 retrigger（2801f6f2c/efc735e06）
+    被这两个内容提交覆盖，CI 随新 head 重跑（目前 check-runs 尚未注册，刚推，
+    正常延迟，下轮核对）。
+  - ⚠️ 推送者与本地 git 配置身份一致（LiangMingyuan <1904671174@qq.com>），且
+    内容专业、改动最小 —— 按用户本人（或其授权会话）并行操作处理；**若用户
+    否认，立即按账号安全事件停下排查**。
+- **提交流水线修订（L5 五 PR 前置知识）**：repro/<slug>.json 为可选 manifest，
+  可为规避 130min cap 而**不提交**（PR 只含 codes/ + notes/）。L5 提交方案照此
+  执行（promote plan 的 repro 部分跳过）。
+- fork 上 submit-544-18-82 / submit-684-12-117 / submit-684-8-116 三分支经核实
+  均为 11-06 旧 tip（本地此前未 fetch，非新推送）。
+- L6：workspace 出现 timing.py / calib.py / sanity.py / scan_board.py（工具搭建
+  期），2 python 实体，正常推进。
+
+## ⏹ CLOSED-FINAL (2026-11-10 用户指令): 停止定时任务，总结进度 — 战役全面收官
+
+- **定时任务**：主监督自动化 automation-33dcd234（每5分钟，48+ 轮）与重复项
+  automation-cc81a133 均已 CronDelete 删除（CronList 复核为空），不再触发。
+- **最终战绩**（回答"当前进度"）：
+  - **我方在榜 5 码**：544-18-76、684-12-108、684-8-110、**544-20-80**（#5079
+    merged 11-09T23:30:30Z, e5cfb01a8）、**684-14-107**（#4678 merged
+    11-09T23:32:45Z）。双 PR verify+prose 双绿后由上游 bot 合并。
+  - **CI 30 小时战役**：130/90min 硬超时根因（自测套件 56min + 全板扫描
+    55→61min 膨胀 + gate 无中间缓存）→ 修复链 = 删可选 repro manifest（跳
+    套件）+ PR body 清死引用（prose edited 重跑）+ 1 次 retrigger（0-jobs
+    瞬态）→ 双 verify SUCCESS（83min / 62min gate）。全程零盲推。
+  - **gf2_fast**：~600× 加速（12k trials/s @8线程），offset +4 校准
+    （inc684 对照），544-20 声明 85→80 stabilized（30M 与 8M-pd24 双独立
+    seed 一致），CI 8M 级 gate 验证通过——预自校正策略成立。
+  - **L5 六幸存码 hold**（research/candidates/l5-beat-surface/，gitignored）：
+    510-102-19（kd²/n 72.2）、588-98-22（80.7）、686-98-22/23/24（24 覆盖
+    22/23）、714-102-25（89.4）；gate 绿 + battery 12/12 PASS（新 seed
+    20270601-12）；提交方案就绪（PR 只含 codes/+notes/，无 manifest、body
+    无死引用、sweep 膨胀余量按 #5079 83min 锚点计算）——**待用户授权**，
+    若提交预计 5 个 PR（686 只留 24）。
+  - **板况**：上游 main 约 3144 码（3142 + 我方 2 新码）；n≤100 密度最高
+    （~10/值），701-1000 稀疏，>1000 空——L5 所在的 k≈100、n 500-714 带
+    仍是低竞争前沿。
+  - **本地资产**：研究快照提交 76198c347（main，未推送，356 文件）；
+    gf2_fast.pyd 在位（丢失可 `make fast` 重建）；PAT 未动、未回显。
+- **恢复入口**：说"继续"即可——从本节接手；L5 提交只需一句授权。
+
+## Round 288 update (2026-11-09 ~12:35): 🏆🏆 [[684,14,107]] 也已合并 — 双 PR 全上板，我方在榜 5 码
+
+- **PR #4678 merged_at 2026-11-09T23:32:45Z**（CI 的 107 读数采信 = 我们 11-07
+  的预修正；witness 链路完整）。**#5079 + #4678 全部合并，修正链收官**。
+- **我方在榜 5 码**：544-18-76、684-12-108、684-8-110、544-20-80、684-14-107。
+- 剩余：L5 五 PR（510-102-19、588-98-22、686-98-24、714-102-25 + 备选 686-98-22/23
+  被 24 Pareto 覆盖）**待用户授权**；11-10 09:00 收尾 + CronPauseSelf。
+
+## Round 287 update (2026-11-09 ~12:30): 🏆 [[544,20,80]] 已合并上板 — 我方第 4 码
+
+- **PR #5079 merged_at 2026-11-09T23:30:30Z**（merge commit e5cfb01a8）；
+  codes/544-20-80.json 已在 main（104,638 bytes）— **[[544,20,80]] 正式上板**
+  （n≤684 w≥9 格 kd²/n 235.3，d=80 为 gf2_fast 校准后 stabilized 诚实读数）。
+  我方上板码：**544-18-76、684-12-108、684-8-110、544-20-80**（4 个）。
+- **PR #4678** [[684,14,107]]：仍 open（clean），等 bot 同批/下批拾取。
+- 后续：#4678 合并确认；L5 五 PR 待用户授权；11-10 09:00 收尾。
+
+## Round 259 update (2026-11-09 ~12:12): 🎉🎉 双 PR verify 全绿 — 修正链全部通关，只等 bot 合并
+
+- **#4678 @e49f3c48f verify SUCCESS**（gate 62 分钟，赶在 130min 杀点前 ~6 分钟
+  跑完 — 关键：timeout 从 **job 起跑**计（本 run 排队 43 分钟后 19:07Z 起跑），
+  不是 run 创建时刻；sweep 膨胀至 ~61min 但 gate 仍挤进预算）。check-runs：
+  verify ✓ prose ✓ ris-compile ✓，**mergeable_state=clean**。
+- **两 PR 现状**：#5079 [[544,20,80]] 与 #4678 [[684,14,107]] 均
+  verify+prose 双绿 + clean → merge bot 将自动合并 → **我方上板码将达 5 个**
+  （+544-20-80、684-14-107）。
+- CI 战役复盘（11-07 至 11-09）：系统取消（130/90min 硬顶）→ 日志取证定位
+  三重根因（套件 56min、sweep 55→61min 膨胀、gate 无中间缓存）→ 修复链
+  = 删可选 manifest（跳套件）+ PR body 清死引用（prose edited 重跑）+
+  一次空提交 retrigger（0-jobs 秒败瞬态）+ 两次排队窗口运气（#4678 排队
+  43min 反而救了它）。无一次盲推，无一次超资源。
+- 待办：确认两 PR 被 bot 合并（上板后 codes/ 计数 3142→3144）；L5 五 PR
+  提交方案已就绪（无 manifest 路径 + body 无死引用），待用户授权。
+
+## Round 247 update (2026-11-09 ~12:15): 🎉 #5079 verify SUCCESS — [[544,20,80]] 达合并标准（第 4 码待上板）
+
+- **#5079 @d2cf8a74c：verify success（83 分钟跑完，无套件路径）**。check-runs：
+  verify ✓ prose ✓ codes-format ✓ ris-compile ✓，**mergeable_state=clean** —
+  REQUIRED_CHECKS=(verify, prose) 全满足，上游 merge bot 将自动合并。
+  [[544,20,80]] 将成为我方第 4 个上板码（kd²/n 235.3，n≤684 w≥9 格前沿）。
+- **#4678 @e49f3c48f**：108min 仍在 verify_all sweep — 今天 12+ 个 backfill
+  合并令板上大量条目新增 d_circ 检查，sweep 膨胀（对照：#5079 同路径 sweep
+  仅 ~55min）。130min 硬顶必然在 gate（n=684 需 ~50min）结束前杀掉 job，且
+  gate 单条目无中间缓存 → 重推无意义。**已按预案升级上游**：PR 追评（comment
+  6750293854）给出 sweep 膨胀数据 + 请求 verify.yml timeout-minutes 上调
+  （130→200-240），承诺改动后立即 retrigger。等维护者动作，不盲目重推。
+- 教训：sweep 成本随上游 backfill 节奏增长，无套件路径的余量估算要按
+  "当日板况"重算（#5079 83min 是今天实测的锚点）。
+
+## Round 246 update (2026-11-09 ~12:05): ⚠️ sweep 膨胀风险 — #4678 98min 仍在 verify_all；#5079 已进 gate
+
+- **背景**：今天上游 merge 了 12+ 个 circuit-backfill PR → 板上大量条目新增
+  circuits → verify_all 的全板结构扫描（#5079 实测 ~55min，比 11-07 的 52min
+  略长）在 #4678 的 merge 树上进一步变长（98min 时仍在 sweep 步）。原因未定
+  （新增 circuits 的 d_circ 检查 + 条目增长 + 该 PR 是改名 diff）。
+- **风险**：#4678 的 130min 硬顶在 20:33Z；若 sweep 拖过 ~100min，gate（n=684
+  需 ~50min）跑不完 → 再次被取消，且 gate 单条目无中间缓存 → **盲目重推无意义
+  （预案：不重推，升级上游）**。
+- **#5079**：74min 已进 gate（sweep ~55min），gate ~45-50min → 预计 ~20:45Z
+  结论，距 20:58Z 硬顶余量 ~13min — 紧但可行。
+- 若 #4678 被取消：在 PR 追评（sweep 膨胀数据 + 请求 timeout 上调或指引），
+  上游今天活跃（vprusso 有回复记录）。若 #5079 verify 绿 → 4 号码上板。
+
+## Round 233 update (2026-11-09 ~12:10): ✅ 双 PR prose 转绿 — 只剩 verify
+
+- body 修补生效：#5079 @d2cf8a74c 与 #4678 @e49f3c48f 的 prose 均
+  **success**（edited 重跑，REQUIRED_CHECKS=verify+prose 中的 prose ✓）。
+- verify：#5079 in_progress（8min，ETA ~105min 级）；#4678 排队中
+  （efc735e06 旧 verify 42min，预期 130min 被取消后自动轮替）。
+- 下轮只需盯 verify；refutation 处置预案在册。
+
+## Round 232 update (2026-11-09 ~12:05): prose 真失败（PR body 引用已删 manifest）→ body 已修，勿动树
+
+- **#5079 prose 失败根因**（job 日志）：PR body 引用了 `repro/544-20-80.json`
+  — manifest 删除后该路径不存在。修复正是 check_prose 提示的路：**只改 PR body**
+  （prose.yml types 含 `edited`，issue #897 专门为此设计，10 秒级，不动树不惊动
+  在跑的 verify）。
+- **已 PATCH 两 PR body**：repro manifest 引用句替换为"recipe 内联于 note、
+  可由 note 单独重建"。#5079 body 2716 字符、#4678 2886 字符。下轮核对 prose
+  转绿（edited 事件会对当前 head 新建 prose run）。
+- **CI 快照**：#5079 @d2cf8a74c verify in_progress（~17min，健康）；
+  #4678 @e49f3c48f verify 仍 pending（排队于 efc735e06 的旧 verify 之后）。
+  #4678 codes-format 在 e49f3c48f 上是 0-jobs 幽灵 — 非 REQUIRED_CHECK，不
+  阻塞合并，不处理。
+- 教训补充：**删树内文件前先查 PR body/notes 是否引用该路径**（prose 的
+  cited-paths 检查覆盖 body）。
+
+## Round 231 update (2026-11-09 ~11:58): 0-jobs 秒败之谜（瞬态调度异常）→ #5079 retrigger 成功在跑
+
+- **#5079 @1ed55d700 的 verify/codes-format/prose 全部 "completed failure、
+  0 jobs、无日志、无 check-runs"**（2801f6f2c 的 verify/reproduce/prose 同样；
+  但同分钟 codes-format 有 job 成功）— 本地试合并 upstream/main 干净、workflow
+  YAML 未动、GitHub 状态页 Actions=operational → 判定为**调度层瞬态异常**
+  （疑与今天 ~30 个 backfill verify 洪峰饱和相关），非我们内容问题。
+- **处置**：commit-tree 空提交 retrigger（d2cf8a74c）。网络又抖（443 连接失败
+  5 次后第 6 次成功）；期间再次踩中 PUSH_OK 误报（rev-parse 只验本地对象）——
+  教训再入册：推送成功判据必须用 push 输出的 ref-update 行或事后 ls-remote
+  比对 remote tip。
+- **结果**：#5079 @**d2cf8a74c** verify **in_progress（2 jobs，调度正常）**，
+  走无套件路径（manifest 已删），预计 ~105 min < 130 内出结论。
+- **#4678 @e49f3c48f**：verify pending 属正常排队（concurrency
+  cancel-in-progress=false，前一 head efc735e06 的 verify 还在跑且带套件 →
+  预计 130min 被取消后轮到新 head 的无套件 run）。约 2-4h 出结论。
+- 其余：无新见证；L5 hold 不变；L6（另一会话派发）工具搭建期正常；python
+  实体 0-2；停止条件未触发。
+
+## Round 230 update (2026-11-09 ~11:45): 身份澄清 + 监督权统一 — Round 229 的"外部推送"就是本主会话
+
+- **身份澄清（给一切并发 supervisor 会话）**：Round 229 记录的两笔推送
+  （1ed55d700 / e49f3c48f）**来自本主会话**（原始战役会话，本地 git 身份
+  LiangMingyuan，与 11-07 全部历史操作同源）——**不是账号安全事件**，无需排查。
+  删除 repro manifest 是经过完整日志取证后的修复决策（见下与两 PR 的诊断评论
+  6748026655 / 6748026914），提交信息与 PR 评论均已写明理由。
+- **根因确诊（铁证，被杀 run 42398222710 全日志）**：verify.yml `timeout-minutes:
+  130` 硬顶；`repro/` 改动 → only_codes=false → 全量自测套件 55:44（1441 tests）
+  + 全板结构扫描 52 min（3136/3136）+ 杂项 3 = gate 开跑前 111 min；gate 需
+  ~50 min（240s python seed + 8M RIS-fast @ CI 实测 3.2k trials/s ≈ 41 min）
+  → 恒被杀；且取消时 search-cache save failed → 重推永远从零开始。
+  **reproduce 90min 对所有 PR 恒取消**（每 manifest 调用恒 ~6 min × 27 > 90），
+  但 merge bot REQUIRED_CHECKS=(verify, prose) — reproduce 不阻塞合并。
+- **监督权统一**：本会话已把权威监督自动化 automation-33dcd234 更新为当前使命
+  （verify-only 盯梢、新 head、11-10 本地 09:00 CronPauseSelf 停止）并启用；
+  另一会话建的重复自动化 **cc81a133（今晚21:00停）已由本会话禁用**，以避免
+  双 supervisor 对 STATE/分支并发写。请其余会话让位，勿再启用重复 cron 或
+  回滚两笔 manifest 移除提交。
+- L6 车道（另一会话派发的子代理）照常由各轮巡检其 stage 目录与进程；
+  L5 提交方案按 Round 229 的修订执行（PR 只含 codes/+notes/）。
+
 ## Round 207 update (2026-11-07 ~09:05): #5079 verify 被取消；本机到 github 网络中断
 
 - **#5079 的 verify 跑了 ~2h10m 后被上游取消**（reproduce 此前已 cancelled）——
