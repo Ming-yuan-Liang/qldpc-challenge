@@ -70,11 +70,35 @@ bias the briefing warns about.
 
 ## Staged survivors / gate verdicts
 
-(filled at the end of the run)
+Filled in at campaign close (2026-11-20), from the l2-q17-resume follow-up
+and the merged outcome:
+
+- **Pool index 53244 (k=20, w=10)** became the lane's one staged survivor.
+  The L2 resume deepened the draw far past this report's 20k-trial rungs
+  (19 fresh-seed 20k rungs, floor 87, two independent X-side rungs; then a
+  1M-trial numpy deep rung walked the claim to 85; the gf2_fast backend
+  calibrated on the merged [[684,12,108]] control stabilized the floor at
+  80). Staged as [[544,20,87]] -> repacked 85 -> [[544,20,80]] under
+  `research/candidates/l2-q17-resume/` (gate passed, board_advancing,
+  promote-plan promote-plan-544-20-80.json). Submitted as PR #5079, merged
+  2026-11-09; CI's 8M-trial RIS-fast and FarLab's ~9.4e8-trial GPU RIS
+  witnesses later corrected the reading to 76 (codes/544-20-76.json,
+  derating PR #6792). The witnesses carried through every correction.
+- Gate verdicts for every staged document are beside the candidates
+  (`*.verdict.json`); no other draw from this lane was ever staged.
 
 ## Dominated misses
 
-(filled at the end of the run)
+- **i=24989 (k=22, w=8, screen 98)**: DEAD, dominated miss. Rung 911001
+  completed with the weight-24 Z-logical -- the screen read 98 four hundred
+  trials earlier; the clearest local demonstration of the screen-inflation
+  bias. Rung 911002 partial (5/8 subs), not extended.
+- The k=16/k=18 98-100 screen bands and k=20 tier draws listed under
+  "Screening results" were never deep-read: the lane closed 2026-11-09/10
+  when the campaign wrapped (supervisor CLOSED-FINAL). Their screens sit
+  at 98-100 against bars d > 76-77; the offset framework put their true
+  readings at ~78-84, i.e. at or below the bars after instrument
+  calibration -- pursued no further.
 
 ## Resume 2026-11-06 (session L2 q17-k18-resume, ~11:00-12:00 UTC+8 window)
 

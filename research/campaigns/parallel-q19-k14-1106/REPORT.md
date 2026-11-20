@@ -66,11 +66,39 @@ entries. All five draws have check weight 14 or 16.
 (raw chunk records: `deep_<draw>_<seed>.jsonl`; final lines carry the rung
 readings and both witnesses)
 
-(to be filled on completion)
+Filled in at campaign close (2026-11-20); full per-rung detail in the dated
+sections below, summary here. 31 deep rungs completed across the six
+in-range draws, all witnesses persisted:
+
+| draw | k | rungs | final claim | flat at claim | outcome |
+|------|---|-------|-------------|---------------|---------|
+| 70 | 12 | 3 | 120 | 3 | staged, then DEAD by offset calibration |
+| 106 | 12 | 4 | 116 | 3 | staged, then DEAD by offset calibration |
+| 12 | 12 | 5 | 116 | 1 | closed (WL class f366a1c8 = draws 70/106/12) |
+| 229 | 14 | 10 | 115 (receded from 116) | 1 | staging window closed; corner closed as non-dominator |
+| 72 | 12 | 5 | 117 | 1 | closed (one rung found no logical at all; at the RIS edge) |
+| 84 | 12 | 4 | 112 (receded from 115) | 1 | dead by the k=12 cap (est ~107) |
+
+Draws 70/106/12 share WL signature `f366a1c8ef4edc75` -- one code up to
+isomorphism; the honest class claim is the lightest reading (116).
 
 ## Staging + gate verdicts
 
-(to be filled on completion)
+- `684-12-120.json` and `684-12-116.json` staged under
+  `research/candidates/l1-q19-resume/`; both gate runs PASSED with
+  board_advancing (verdicts beside the candidates; refutation batteries
+  4/4 exit 0: seeds 20261111/20261112 for 120, 20261221/20261222 for 116,
+  nothing lighter than the claims).
+- **Never submitted, by design**: the inc684 1M control (250/250 chunks on
+  the merged [[684,12,108]], STATE Round 102) measured the family's 1M
+  instrument offset at +5, putting the pair's estimated true distance at
+  ~105 < 108 -- dominated by the incumbent. Kept as honest negative
+  results; the witnesses are preserved in `deep_*.jsonl`.
+- Draw 229 ([[684,14,115]] lineage) never staged: it receded to 115 with
+  1 flat rung as the session window closed, and the offset-corrected
+  estimate (~110) matched the already-merged #4678 claim exactly -- no
+  domination available. STATE's closing note: if ever resumed, let a
+  1M-class instrument take the draw directly.
 
 ## Honest-claims notes
 

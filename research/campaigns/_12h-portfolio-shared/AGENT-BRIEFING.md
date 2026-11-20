@@ -1,6 +1,6 @@
 # Search agent briefing (read this first)
 
-Repo root: `C:\Users\Frieren\Desktop\qldpc\qldpc-challenge` (Windows, Git Bash shell).
+Repo root: `C:\Users\Frieren\Documents\QEC\qldpc\qldpc-challenge` (Windows, Git Bash shell).
 Machine: Intel Ultra 7 255H, 16C/16T, 31.4 GB RAM (updated 2026-11-06).
 
 ## Hard rules (violating any of these is a failed task)
