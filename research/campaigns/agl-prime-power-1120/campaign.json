@@ -1,0 +1,70 @@
+{
+ "campaign": {
+  "schema_version": 1,
+  "status": "draft",
+  "methods": {
+   "families": [
+    "generalized-bicycle",
+    "2bga-coset",
+    "topological",
+    "other"
+   ],
+   "generators": [],
+   "screening": {
+    "trials_per_candidate": 400,
+    "seeds": [
+     51,
+     52
+    ]
+   }
+  },
+  "stopping": [
+   {
+    "type": "frontier_advance"
+   },
+   {
+    "type": "budget_exhausted"
+   }
+  ],
+  "required_outputs": [
+   "experiment_ledger",
+   "surviving_candidates",
+   "research_note",
+   "negative_results",
+   "campaign_summary"
+  ],
+  "id": "agl-prime-power-1120",
+  "name": "Aff(F_q) at prime powers and q=13: AGL(1,q) 2BGA feasibility spike",
+  "objective": {
+   "metric": "kd2_over_n",
+   "direction": "maximize"
+  },
+  "constraints": {
+   "locality": "unrestricted",
+   "n": [
+    312,
+    520
+   ],
+   "min_distance": 12
+  },
+  "hypothesis": "n=2q(q-1) bands at q=13 (n=312, existing metacyclic path) and q=16 (n=480, AGL(1,16) = C_2^4 |x C_15 via a perm_group Cayley adapter -- F_16^+ is not cyclic so metacyclic does not apply) are unmined on the board. A 480-16-60-class point (eff 120) would land between the 544 and 684 anchors on the eff frontier.",
+  "cell": "unrestricted~weight-9plus",
+  "bar": {
+   "slug": "544-20-76",
+   "axes": [
+    "kd2_over_n"
+   ],
+   "note": "feasibility spike: any non-dominated board_advancing point at n 312/480 pays for the adapter"
+  },
+  "method": "q=13: kasai_affine_sweep --q-min 13 --q-max 13. q=16: write research/kit AGL(1,16) Cayley adapter (perm_group over F_16 affine maps, ~30 lines), verify against known group order 16*15=240, then build_2bga draws; screen fast; deep ladder on any screen >= board bar",
+  "budget": {
+   "cpu_hours": 15,
+   "candidates_screened": 1500
+  },
+  "abandon_criterion": {
+   "flat_fresh_rungs": 2,
+   "trials_cap": 1000000
+  },
+  "what_a_negative_would_teach": "Whether the metacyclic family's efficiency is specific to the prime-field bands or generalizes to prime powers."
+ }
+}

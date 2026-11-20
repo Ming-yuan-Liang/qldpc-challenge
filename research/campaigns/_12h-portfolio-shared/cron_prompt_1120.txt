@@ -1,0 +1,14 @@
+CI 监督轮提示词（Phase 5 用 CronCreate 创建时填入 prompt；每 5 分钟，PR 号开出后补全 SLUGS/PR 列表）：
+
+执行一轮 qLDPC 提交波次 CI 监督（仓库根：C:\Users\Frieren\Documents\QEC\qldpc\qldpc-challenge）。按 research/campaigns/_12h-portfolio-shared/STATE-1120.md 最新章节与 STATE-1106.md 的 Submission playbook 规则执行。
+
+每轮职责：
+1. 用 venv python + urllib 查询本轮 9 个 PR 的 check-runs（API: GET /repos/unitaryfoundation/qldpc-challenge/pulls/<n> 与 /commits/<sha>/check-runs；PR 号与 head sha 见 STATE-1120.md 登记表）。REQUIRED_CHECKS = verify + prose。
+2. verify=success 且 prose=success → 登记 STATE-1120.md（合并由上游 merge bot 自动处理，不代合并）。
+3. cancelled/timeout（verify 130 分钟硬上限）→ 用 commit-tree 空提交重触发同分支（STATE-1106.md Round 229 的临时 index 方法，免 worktree）。
+4. REFUTED → 下载 job 日志（PAT Authorization 头，绝不回显 token），提取 witness = [...] 行；用 _12h-portfolio-shared/verify_ci_witness.py 独立验证（H·v=0、不在对侧行空间、weight 一致）；验证通过则按 CI 读数改包（repackage_at_reading.py 模式）：git mv 三连改名 codes/notes/pr 引用，推同分支，PATCH PR body。绝不盲目重推原读数。
+5. L5/L6 其余押库码（686-98-22/23、924-29-26、966-29-27）保持 hold，未经用户明示授权绝不提交。
+6. 资源：python 实体进程 ≤16；与 Lane A1/A2/C 搜索进程共存时搜索优先。
+7. 每轮维护 STATE-1120.md（有变化就追加 Round 条目）；用中文简洁汇报。
+
+停止条件：当全部 9 个 PR 均 merged 或 closed（无 reopen 可能），先做收尾（STATE-1120.md 登记最终状态 + 中文总结），然后调用 CronPauseSelf 停止本自动化，之后不再触发。

@@ -1,0 +1,70 @@
+{
+ "campaign": {
+  "schema_version": 1,
+  "status": "draft",
+  "methods": {
+   "families": [
+    "generalized-bicycle",
+    "2bga-coset",
+    "topological",
+    "other"
+   ],
+   "generators": [],
+   "screening": {
+    "trials_per_candidate": 400,
+    "seeds": [
+     51,
+     52
+    ]
+   }
+  },
+  "stopping": [
+   {
+    "type": "frontier_advance"
+   },
+   {
+    "type": "budget_exhausted"
+   }
+  ],
+  "required_outputs": [
+   "experiment_ledger",
+   "surviving_candidates",
+   "research_note",
+   "negative_results",
+   "campaign_summary"
+  ],
+  "id": "geo-frontier-1120",
+  "name": "Geometric-efficiency record attempt (2D-local, w<=8, d<=40 tier)",
+  "objective": {
+   "metric": "geometric_efficiency",
+   "direction": "maximize"
+  },
+  "constraints": {
+   "locality": "local-2d-single",
+   "max_check_weight": 8,
+   "n": [
+    700,
+    1000
+   ],
+   "min_distance": 3
+  },
+  "hypothesis": "The geometric-efficiency record (1.7555, [[957,105,4]], w=4 d=4 exact-certified, static since 2026-10-06) lives in the sparsely contested geo track (~2.6% of board records carry geo >= 1.0). Dense hole-pattern layouts at n 700-1000 with exact-certifiable d (SAT ladder) can beat it. Barrier to entry is a verifier-accepted layout (rho, r) plus honest d -- the derating engine cannot easily attack a proven point.",
+  "cell": "local-2d-single~weight-8",
+  "bar": {
+   "slug": "957-105-4",
+   "axes": [
+    "geometric_efficiency"
+   ],
+   "note": "record holder; beat requires geo > 1.7555 with layout + certified d"
+  },
+  "method": "local_sat.py / sat_rungs.py (cadical195) over dense-packing layouts derived from the L6 boundary_engine experience; sat_certify.py ladder mode for d_lower certificates; layout must pass the verifier's locality checks",
+  "budget": {
+   "cpu_hours": 20,
+   "candidates_screened": 300
+  },
+  "abandon_criterion": {
+   "type": "budget_exhausted"
+  },
+  "what_a_negative_would_teach": "Whether 1.7555 is a structural ceiling for single-layer 2D-local layouts at this tier or just an unchallenged incumbent."
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "campaign": {
+  "schema_version": 1,
+  "status": "draft",
+  "methods": {
+   "families": [
+    "generalized-bicycle",
+    "2bga-coset",
+    "topological",
+    "other"
+   ],
+   "generators": [],
+   "screening": {
+    "trials_per_candidate": 400,
+    "seeds": [
+     51,
+     52
+    ]
+   }
+  },
+  "stopping": [
+   {
+    "type": "frontier_advance"
+   },
+   {
+    "type": "budget_exhausted"
+   }
+  ],
+  "required_outputs": [
+   "experiment_ledger",
+   "surviving_candidates",
+   "research_note",
+   "negative_results",
+   "campaign_summary"
+  ],
+  "id": "kasai-interior-1120",
+  "name": "Kasai affine 2BGA interior gaps at q=17/19 (n 544/684)",
+  "objective": {
+   "metric": "kd2_over_n",
+   "direction": "maximize"
+  },
+  "constraints": {
+   "locality": "unrestricted",
+   "max_check_weight": 20,
+   "n": [
+    544,
+    684
+   ],
+   "k": [
+    14,
+    26
+   ],
+   "min_distance": 40
+  },
+  "hypothesis": "The mid-k high-d corner (k>=14, d 60-107) at n<=684 inside the affine-2BGA family is uncontested on the board: our merged 684-14-107 (k=14) and 544-20-76 (k=20) are the only k>=14 entries above d=100/76. Interior points such as [[684,16,>=90]], [[684,18,>=85]], [[684,20,>=80]] (eff 210-290) extend the family's frontier between the merged anchors. MathysRennela mines the same paper (arXiv:2611.21389) but stays at k<=10 so far; dormant branches (684-8-116-2, 544-10-86, 544-8-88) would be answered immediately if they revive at k>10.",
+  "cell": "unrestricted~weight-9plus",
+  "bar": {
+   "slug": "684-14-107",
+   "axes": [
+    "kd2_over_n"
+   ],
+   "note": "our own merged frontier anchor; interior points must be non-dominated against it (k and d trade)"
+  },
+  "method": "kasai_affine_sweep.py pool draws per (q, k-target band); screen 400-1000-trial fast; deep ladder 3x20k -> 3x200k -> 1M-class x4 fresh; offset calibration against our own merged incumbents (684-14-107 / 544-20-76) decides stage/dead",
+  "budget": {
+   "cpu_hours": 60,
+   "candidates_screened": 6000
+  },
+  "abandon_criterion": {
+   "flat_fresh_rungs": 2,
+   "trials_cap": 2000000
+  },
+  "what_a_negative_would_teach": "Whether the k 14-26 interior of the affine-2BGA family is structurally capped (sampler-trap shape like the k=10/12 corners) or merely unexploited."
+ }
+}
