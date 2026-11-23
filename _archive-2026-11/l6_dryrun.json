@@ -1,0 +1,1025 @@
+  warning: notes/684-6-69.md exceeds 10240 bytes; truncating on render
+  warning: notes/684-6-69.md exceeds 10240 bytes; truncating on render
+  warning: notes/684-6-69.md exceeds 10240 bytes; truncating on render
+  warning: notes/684-6-69.md exceeds 10240 bytes; truncating on render
+  warning: notes/684-6-69.md exceeds 10240 bytes; truncating on render
+[
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "840-18-28",
+  "title": "Add [[840,18,28]] 2D-local bilayer at kd^2/n 18.0, n=840, k=18, d<=28",
+  "branch": "submit-840-18-28",
+  "files": {
+   "code": "codes\\840-18-28.json",
+   "note": "notes\\840-18-28.md"
+  },
+  "body_file": null,
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 840,
+     "k": 18,
+     "d": 28,
+     "family": "tile",
+     "weight_class": "weight-8",
+     "locality_class": "local-2d-bilayer",
+     "sector_distances": {
+      "X": {
+       "upper": 44,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 44,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 28,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 28,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 28,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "3db14a26c66fedc5",
+     "signature": "c605608a2810a689"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "local-2d-bilayer"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 1798377900,
+      "detail": "no lighter logical in 8000 RIS trials (seed 1798377900)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "local-2d-bilayer"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x local-2d-bilayer board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 1798377900
+    }
+   },
+   "check_prose": {
+    "ok": null,
+    "skipped": "dry run: nothing was written for the checker to read"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-840-18-28 main",
+   "git add 'codes\\840-18-28.json' 'notes\\840-18-28.md'",
+   "git commit -m 'Add [[840,18,28]] 2D-local bilayer at kd^2/n 18.0, n=840, k=18, d<=28'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-840-18-28.md'",
+   "git push -u origin submit-840-18-28",
+   "gh pr create --title 'Add [[840,18,28]] 2D-local bilayer at kd^2/n 18.0, n=840, k=18, d<=28' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-840-18-28.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 200000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 401"
+    },
+    {
+     "trials": 200000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 409"
+    },
+    {
+     "trials": 200000,
+     "d": 31,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 419"
+    },
+    {
+     "trials": 5000,
+     "d": 44,
+     "fresh": true,
+     "label": "numpy 5k cross-check X, seed 601"
+    },
+    {
+     "trials": 5000,
+     "d": 35,
+     "fresh": true,
+     "label": "numpy 5k cross-check Z, seed 602"
+    },
+    {
+     "trials": 1000000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 503"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 509"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 521"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 531"
+    },
+    {
+     "trials": 36100,
+     "d": 28,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431002"
+    },
+    {
+     "trials": 36100,
+     "d": 28,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431001"
+    }
+   ],
+   "cumulative_best_bound": 28,
+   "claimed_d": 28,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 5,
+   "deepest_fresh_trials": 1000000,
+   "trials_spent": 4682200,
+   "fresh_rungs_total": 11
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [],
+   "filed_as_non_frontier": false
+  },
+  "revision": null,
+  "note_markdown": "# [[840,18,28]] 2D-local bilayer at kd^2/n 18.0, n=840, k=18, d<=28\n\n## Direction & hypothesis\n\nAdvance the weight-8 x local-2d-bilayer cell's frontier at n in [700,1000]\nwith planar-boundary bilayer codes\n(research/local2d/boundary_engine.py::build_planar exact half-infinite\nboundary gauge over F2[t], corner completion, cleanup, weight reduction;\nbilayer layout planar.grid_coordinates(layers=2), radius 4*sqrt(2)). 21x20\n(TILE4 transposed assembly): k=18 d=28 at n=840 (old: 792-18-27).\n\n## What was searched\n\nLane w8-2dlocal-n700-1000 (Phase A: 6 seed support pairs x ~94 lattice sizes;\nPhase B: 360 single-monomial mutants around the B5 seeds, 24 screen advances).\nEscalation bar reqd(n,k) computed live from codes/; board-dup guard by\nrowspace comparison caught the known lattice twins. Ladder per the campaign\nmethod: screen 3x20k (pd22) -> 3x100k (pd20) -> deep 3x200k (pd16) -> 1M-class\nx4 fresh seeds (pd12) -> numpy per-side cross-checks (5k/side). Claim =\nlightest WITNESSED reading across all rungs (upper_bound, never 'exact'); the\ngate's fresh-seed refutation found no logical lighter than 28.\n\n## Evidence trail\n\nConfirmation ladder for the submitted code, each rung a fresh seed unless\nmarked otherwise, reading the lightest logical found:\n\n| budget (trials/side) | lightest logical |\n| ---: | ---: |\n| 200,000 (fast r3 200k pd16, seed 401) | 29 |\n| 200,000 (fast r3 200k pd16, seed 409) | 30 |\n| 200,000 (fast r3 200k pd16, seed 419) | 31 |\n| 5,000 (numpy 5k cross-check X, seed 601) | 44 |\n| 5,000 (numpy 5k cross-check Z, seed 602) | 35 |\n| 1,000,000 (fast 1M pd12, seed 503) | 29 |\n| 1,000,000 (fast 1M pd12, seed 509) | 28 |\n| 1,000,000 (fast 1M pd12, seed 521) | 28 |\n| 1,000,000 (fast 1M pd12, seed 531) | 28 |\n| 36,100 (gate_changed fresh-seed battery, seed 431002) | 28 |\n| 36,100 (gate_changed fresh-seed battery, seed 431001) | 28 |\n\n5 fresh-seed rung(s) agree at the best bound, the deepest of them at 1,000,000\ntrials per side. The submitted witness reproduces it: X: d <= 44\n(upper_bound), Z: d <= 28 (upper_bound).\n\n## Dead ends\n\nNone recorded for this candidate.\n\n## Tools\n\nModel: GLM-5.3-Flash (ZCode). The local verdict is\n`verify/validate_candidate.py`; the bundle was assembled by\n`research/kit/promote.py`.\n\n## Reproduction\n\nRebuild from committed kit code, verified bit-identical to the entry's\nfingerprint before submission. Open-boundary planar BB code\n(Liang-Yang-Iosue-Chen boundary construction, Liang-Eberhardt-Chen planar tile\nfamily): research/local2d/boundary_engine.build_planar(21, 20, S_f=[(0, 0),\n(0, 3), (2, 2), (3, 0)], S_g=[(0, 2), (1, 3), (2, 0), (3, 3)]) followed by\nreduce_weights; bilayer layout planar.grid_coordinates (A and B qubits of cell\n(i,j) at site (i,j) on two layers). Supports found by this lane's mutation\nsearch over 4+4 monomials in the B=5 box around the board's B5-29/B5-32 pairs.\nThe check matrices in codes/ are the submission artifact; the witnesses\nembedded in the distance block re-verify against them independently (H.v = 0,\noutside the rowspace, weight equals the reading).\n",
+  "body_markdown": "## Code submission\n\n- Parameters: [[n, k, d]] = [[840,18,28]]\n- Tracks: local-2d-bilayer / weight-8 (computed by the verifier from H and the layout)\n- Distance confidence: X: d <= 44 (upper_bound), Z: d <= 28 (upper_bound)\n- Search behind the claim: 1,000,000 RIS trials per side at the deepest fresh-seed rung, 5 fresh rung(s) flat there, 4,682,200 trials over the whole ladder\n\nFamily tag: tile (a self-declared filter, never used for ranking).\n\n### Checklist\n- [x] One JSON file under `codes/`, conforming to `schema/code.schema.json`\n- [x] Distance witness(es) included for each reported side\n- [x] `python verify/qldpc_verify.py codes\\840-18-28.json` passes locally\n- [x] Construction and references filled in under `provenance`\n- [x] If this may be equivalent to an existing entry, noted in `provenance.notes`: `verify/validate_candidate.py` found no board entry sharing this code's fingerprint or Weisfeiler-Leman signature\n\n### What frontier does this advance?\n\nGate novelty for this document: board-advancing in the (weight-8, local-2d-bilayer) cell, dominated_by empty, d_only_gain false, advances_by [] (pure frontier extension). kd^2/n = 18.0. Honesty note: the fast instrument reads +1..+9 over true d at these sizes (board dup-calibration), so the true distance is likely 1-5 below the claim; the witnesses carry and the CI refutation battery is the correction path.\n\n- **2D-local bilayer / weight \u2264 8**: on the Pareto frontier\n- **2D-local bilayer / any weight**: on the Pareto frontier\n- **unrestricted / weight \u2264 8**: not on the frontier (dominated by a cell entry)\n- **unrestricted / any weight**: not on the frontier (dominated by a cell entry)\n\nScore kd^2/n = 16.8, max check weight 8, locality class local-2d-bilayer. Board-relative, and literature novelty is unverified: the gate deduplicates against this board only.\n\nConstruction: Open-boundary planar BB code (Liang-Yang-Iosue-Chen boundary construction, Liang-Eberhardt-Chen planar tile family): research/local2d/boundary_engine.build_planar(21, 20, S_f=[(0, 0), (0, 3), (2, 2), (3, 0)], S_g=[(0, 2), (1, 3), (2, 0), (3, 3)]) followed by reduce_weights; bilayer layout planar.grid_coordinates (A and B qubits of cell (i,j) at site (i,j) on two layers). Supports found by this lane's mutation search over 4+4 monomials in the B=5 box around the board's B5-29/B5-32 pairs.\n\nResearch note: `notes\\840-18-28.md`\n"
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "880-18-29",
+  "title": "Add [[880,18,29]] 2D-local bilayer at kd^2/n 19.3, n=880, k=18, d<=29",
+  "branch": "submit-880-18-29",
+  "files": {
+   "code": "codes\\880-18-29.json",
+   "note": "notes\\880-18-29.md"
+  },
+  "body_file": null,
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 880,
+     "k": 18,
+     "d": 29,
+     "family": "tile",
+     "weight_class": "weight-8",
+     "locality_class": "local-2d-bilayer",
+     "sector_distances": {
+      "X": {
+       "upper": 41,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 41,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 29,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 29,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 29,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "0e61c45e4afbdabb",
+     "signature": "d03ecb4d479ff8ea"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "local-2d-bilayer"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 724521513,
+      "detail": "no lighter logical in 8000 RIS trials (seed 724521513)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "local-2d-bilayer"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [
+       "n"
+      ],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x local-2d-bilayer board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 724521513
+    }
+   },
+   "check_prose": {
+    "ok": null,
+    "skipped": "dry run: nothing was written for the checker to read"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-880-18-29 main",
+   "git add 'codes\\880-18-29.json' 'notes\\880-18-29.md'",
+   "git commit -m 'Add [[880,18,29]] 2D-local bilayer at kd^2/n 19.3, n=880, k=18, d<=29'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-880-18-29.md'",
+   "git push -u origin submit-880-18-29",
+   "gh pr create --title 'Add [[880,18,29]] 2D-local bilayer at kd^2/n 19.3, n=880, k=18, d<=29' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-880-18-29.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 200000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 401"
+    },
+    {
+     "trials": 200000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 409"
+    },
+    {
+     "trials": 200000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 419"
+    },
+    {
+     "trials": 5000,
+     "d": 41,
+     "fresh": true,
+     "label": "numpy 5k cross-check X, seed 601"
+    },
+    {
+     "trials": 1000000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 503"
+    },
+    {
+     "trials": 1000000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 509"
+    },
+    {
+     "trials": 1000000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 521"
+    },
+    {
+     "trials": 1000000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 531"
+    },
+    {
+     "trials": 37700,
+     "d": 29,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431002"
+    },
+    {
+     "trials": 37700,
+     "d": 29,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431001"
+    }
+   ],
+   "cumulative_best_bound": 29,
+   "claimed_d": 29,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 2,
+   "deepest_fresh_trials": 1000000,
+   "trials_spent": 4680400,
+   "fresh_rungs_total": 10
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [
+    "n"
+   ],
+   "filed_as_non_frontier": false
+  },
+  "revision": null,
+  "note_markdown": "# [[880,18,29]] 2D-local bilayer at kd^2/n 19.3, n=880, k=18, d<=29\n\n## Direction & hypothesis\n\nAdvance the weight-8 x local-2d-bilayer cell's frontier at n in [700,1000]\nwith planar-boundary bilayer codes\n(research/local2d/boundary_engine.py::build_planar exact half-infinite\nboundary gauge over F2[t], corner completion, cleanup, weight reduction;\nbilayer layout planar.grid_coordinates(layers=2), radius 4*sqrt(2)). 22x20\n(TILE4 transposed assembly): k=18 d=29 below n=899 (old: 899-18-31 grafted\nline).\n\n## What was searched\n\nLane w8-2dlocal-n700-1000 (Phase A: 6 seed support pairs x ~94 lattice sizes;\nPhase B: 360 single-monomial mutants around the B5 seeds, 24 screen advances).\nEscalation bar reqd(n,k) computed live from codes/; board-dup guard by\nrowspace comparison caught the known lattice twins. Ladder per the campaign\nmethod: screen 3x20k (pd22) -> 3x100k (pd20) -> deep 3x200k (pd16) -> 1M-class\nx4 fresh seeds (pd12) -> numpy per-side cross-checks (5k/side). Claim =\nlightest WITNESSED reading across all rungs (upper_bound, never 'exact'); the\ngate's fresh-seed refutation found no logical lighter than 29.\n\n## Evidence trail\n\nConfirmation ladder for the submitted code, each rung a fresh seed unless\nmarked otherwise, reading the lightest logical found:\n\n| budget (trials/side) | lightest logical |\n| ---: | ---: |\n| 200,000 (fast r3 200k pd16, seed 401) | 30 |\n| 200,000 (fast r3 200k pd16, seed 409) | 30 |\n| 200,000 (fast r3 200k pd16, seed 419) | 29 |\n| 5,000 (numpy 5k cross-check X, seed 601) | 41 |\n| 1,000,000 (fast 1M pd12, seed 503) | 29 |\n| 1,000,000 (fast 1M pd12, seed 509) | 29 |\n| 1,000,000 (fast 1M pd12, seed 521) | 29 |\n| 1,000,000 (fast 1M pd12, seed 531) | 30 |\n| 37,700 (gate_changed fresh-seed battery, seed 431002) | 29 |\n| 37,700 (gate_changed fresh-seed battery, seed 431001) | 29 |\n\n2 fresh-seed rung(s) agree at the best bound, the deepest of them at 1,000,000\ntrials per side. The submitted witness reproduces it: X: d <= 41\n(upper_bound), Z: d <= 29 (upper_bound).\n\n## Dead ends\n\nNone recorded for this candidate.\n\n## Tools\n\nModel: GLM-5.3-Flash (ZCode). The local verdict is\n`verify/validate_candidate.py`; the bundle was assembled by\n`research/kit/promote.py`.\n\n## Reproduction\n\nRebuild from committed kit code, verified bit-identical to the entry's\nfingerprint before submission. Open-boundary planar BB code\n(Liang-Yang-Iosue-Chen boundary construction, Liang-Eberhardt-Chen planar tile\nfamily): research/local2d/boundary_engine.build_planar(22, 20, S_f=[(0, 0),\n(0, 3), (2, 2), (3, 0)], S_g=[(0, 2), (1, 3), (2, 0), (3, 3)]) followed by\nreduce_weights; bilayer layout planar.grid_coordinates (A and B qubits of cell\n(i,j) at site (i,j) on two layers). Supports found by this lane's mutation\nsearch over 4+4 monomials in the B=5 box around the board's B5-29/B5-32 pairs.\nThe check matrices in codes/ are the submission artifact; the witnesses\nembedded in the distance block re-verify against them independently (H.v = 0,\noutside the rowspace, weight equals the reading).\n",
+  "body_markdown": "## Code submission\n\n- Parameters: [[n, k, d]] = [[880,18,29]]\n- Tracks: local-2d-bilayer / weight-8 (computed by the verifier from H and the layout)\n- Distance confidence: X: d <= 41 (upper_bound), Z: d <= 29 (upper_bound)\n- Search behind the claim: 1,000,000 RIS trials per side at the deepest fresh-seed rung, 2 fresh rung(s) flat there, 4,680,400 trials over the whole ladder\n\nFamily tag: tile (a self-declared filter, never used for ranking).\n\n### Checklist\n- [x] One JSON file under `codes/`, conforming to `schema/code.schema.json`\n- [x] Distance witness(es) included for each reported side\n- [x] `python verify/qldpc_verify.py codes\\880-18-29.json` passes locally\n- [x] Construction and references filled in under `provenance`\n- [x] If this may be equivalent to an existing entry, noted in `provenance.notes`: `verify/validate_candidate.py` found no board entry sharing this code's fingerprint or Weisfeiler-Leman signature\n\n### What frontier does this advance?\n\nGate novelty for this document: board-advancing in the (weight-8, local-2d-bilayer) cell, dominated_by empty, d_only_gain false, advances_by [] (pure frontier extension). kd^2/n = 19.3. Honesty note: the fast instrument reads +1..+9 over true d at these sizes (board dup-calibration), so the true distance is likely 1-5 below the claim; the witnesses carry and the CI refutation battery is the correction path.\n\n- **2D-local bilayer / weight \u2264 8**: on the Pareto frontier \u2014 dominates [[882,18,29]]\n- **2D-local bilayer / any weight**: on the Pareto frontier \u2014 dominates [[882,18,29]]\n- **unrestricted / weight \u2264 8**: not on the frontier (dominated by a cell entry) \u2014 dominates [[882,18,29]]\n- **unrestricted / any weight**: not on the frontier (dominated by a cell entry) \u2014 dominates [[882,18,29]]\n\nScore kd^2/n = 17.202, max check weight 8, locality class local-2d-bilayer. Board-relative, and literature novelty is unverified: the gate deduplicates against this board only.\n\nConstruction: Open-boundary planar BB code (Liang-Yang-Iosue-Chen boundary construction, Liang-Eberhardt-Chen planar tile family): research/local2d/boundary_engine.build_planar(22, 20, S_f=[(0, 0), (0, 3), (2, 2), (3, 0)], S_g=[(0, 2), (1, 3), (2, 0), (3, 3)]) followed by reduce_weights; bilayer layout planar.grid_coordinates (A and B qubits of cell (i,j) at site (i,j) on two layers). Supports found by this lane's mutation search over 4+4 monomials in the B=5 box around the board's B5-29/B5-32 pairs.\n\nResearch note: `notes\\880-18-29.md`\n"
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "924-29-27",
+  "title": "Add [[924,29,27]] 2D-local bilayer at kd^2/n 22.9, n=924, k=29, d<=27",
+  "branch": "submit-924-29-27",
+  "files": {
+   "code": "codes\\924-29-27.json",
+   "note": "notes\\924-29-27.md"
+  },
+  "body_file": null,
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 924,
+     "k": 29,
+     "d": 27,
+     "family": "tile",
+     "weight_class": "weight-8",
+     "locality_class": "local-2d-bilayer",
+     "sector_distances": {
+      "X": {
+       "upper": 27,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 27,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 31,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 31,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 27,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "b01a36eba967380f",
+     "signature": "75d096ac093e28af"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "local-2d-bilayer"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 2037306803,
+      "detail": "no lighter logical in 8000 RIS trials (seed 2037306803)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "local-2d-bilayer"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x local-2d-bilayer board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 2037306803
+    }
+   },
+   "check_prose": {
+    "ok": null,
+    "skipped": "dry run: nothing was written for the checker to read"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-924-29-27 main",
+   "git add 'codes\\924-29-27.json' 'notes\\924-29-27.md'",
+   "git commit -m 'Add [[924,29,27]] 2D-local bilayer at kd^2/n 22.9, n=924, k=29, d<=27'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-924-29-27.md'",
+   "git push -u origin submit-924-29-27",
+   "gh pr create --title 'Add [[924,29,27]] 2D-local bilayer at kd^2/n 22.9, n=924, k=29, d<=27' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-924-29-27.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 200000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 401"
+    },
+    {
+     "trials": 200000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 409"
+    },
+    {
+     "trials": 200000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 419"
+    },
+    {
+     "trials": 5000,
+     "d": 30,
+     "fresh": true,
+     "label": "numpy 5k cross-check X, seed 601"
+    },
+    {
+     "trials": 5000,
+     "d": 31,
+     "fresh": true,
+     "label": "numpy 5k cross-check Z, seed 602"
+    },
+    {
+     "trials": 1000000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 503"
+    },
+    {
+     "trials": 1000000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 509"
+    },
+    {
+     "trials": 1000000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 521"
+    },
+    {
+     "trials": 1000000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 531"
+    },
+    {
+     "trials": 39460,
+     "d": 27,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431001"
+    },
+    {
+     "trials": 39460,
+     "d": 27,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431002"
+    }
+   ],
+   "cumulative_best_bound": 27,
+   "claimed_d": 27,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 6,
+   "deepest_fresh_trials": 1000000,
+   "trials_spent": 4688920,
+   "fresh_rungs_total": 11
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [],
+   "filed_as_non_frontier": false
+  },
+  "revision": null,
+  "note_markdown": "# [[924,29,27]] 2D-local bilayer at kd^2/n 22.9, n=924, k=29, d<=27\n\n## Direction & hypothesis\n\nAdvance the weight-8 x local-2d-bilayer cell's frontier at n in [700,1000]\nwith planar-boundary bilayer codes\n(research/local2d/boundary_engine.py::build_planar exact half-infinite\nboundary gauge over F2[t], corner completion, cleanup, weight reduction;\nbilayer layout planar.grid_coordinates(layers=2), radius 4*sqrt(2)). 21x22\n(B5-29 supports): beats 800-29-24 on d (+3) at n +124.\n\n## What was searched\n\nLane w8-2dlocal-n700-1000 (Phase A: 6 seed support pairs x ~94 lattice sizes;\nPhase B: 360 single-monomial mutants around the B5 seeds, 24 screen advances).\nEscalation bar reqd(n,k) computed live from codes/; board-dup guard by\nrowspace comparison caught the known lattice twins. Ladder per the campaign\nmethod: screen 3x20k (pd22) -> 3x100k (pd20) -> deep 3x200k (pd16) -> 1M-class\nx4 fresh seeds (pd12) -> numpy per-side cross-checks (5k/side). Claim =\nlightest WITNESSED reading across all rungs (upper_bound, never 'exact'); the\ngate's fresh-seed refutation found no logical lighter than 27.\n\n## Evidence trail\n\nConfirmation ladder for the submitted code, each rung a fresh seed unless\nmarked otherwise, reading the lightest logical found:\n\n| budget (trials/side) | lightest logical |\n| ---: | ---: |\n| 200,000 (fast r3 200k pd16, seed 401) | 27 |\n| 200,000 (fast r3 200k pd16, seed 409) | 27 |\n| 200,000 (fast r3 200k pd16, seed 419) | 27 |\n| 5,000 (numpy 5k cross-check X, seed 601) | 30 |\n| 5,000 (numpy 5k cross-check Z, seed 602) | 31 |\n| 1,000,000 (fast 1M pd12, seed 503) | 27 |\n| 1,000,000 (fast 1M pd12, seed 509) | 27 |\n| 1,000,000 (fast 1M pd12, seed 521) | 27 |\n| 1,000,000 (fast 1M pd12, seed 531) | 27 |\n| 39,460 (gate_changed fresh-seed battery, seed 431001) | 27 |\n| 39,460 (gate_changed fresh-seed battery, seed 431002) | 27 |\n\n6 fresh-seed rung(s) agree at the best bound, the deepest of them at 1,000,000\ntrials per side. The submitted witness reproduces it: X: d <= 27\n(upper_bound), Z: d <= 31 (upper_bound).\n\n## Dead ends\n\nNone recorded for this candidate.\n\n## Tools\n\nModel: GLM-5.3-Flash (ZCode). The local verdict is\n`verify/validate_candidate.py`; the bundle was assembled by\n`research/kit/promote.py`.\n\n## Reproduction\n\nRebuild from committed kit code, verified bit-identical to the entry's\nfingerprint before submission. Open-boundary planar BB code\n(Liang-Yang-Iosue-Chen boundary construction, Liang-Eberhardt-Chen planar tile\nfamily): research/local2d/boundary_engine.build_planar(21, 22, S_f=[(0, 0),\n(1, 3), (2, 1), (4, 4)], S_g=[(0, 2), (1, 4), (3, 1), (4, 0)]) followed by\nreduce_weights; bilayer layout planar.grid_coordinates (A and B qubits of cell\n(i,j) at site (i,j) on two layers). Supports found by this lane's mutation\nsearch over 4+4 monomials in the B=5 box around the board's B5-29/B5-32 pairs.\nThe check matrices in codes/ are the submission artifact; the witnesses\nembedded in the distance block re-verify against them independently (H.v = 0,\noutside the rowspace, weight equals the reading).\n",
+  "body_markdown": "## Code submission\n\n- Parameters: [[n, k, d]] = [[924,29,27]]\n- Tracks: local-2d-bilayer / weight-8 (computed by the verifier from H and the layout)\n- Distance confidence: X: d <= 27 (upper_bound), Z: d <= 31 (upper_bound)\n- Search behind the claim: 1,000,000 RIS trials per side at the deepest fresh-seed rung, 6 fresh rung(s) flat there, 4,688,920 trials over the whole ladder\n\nFamily tag: tile (a self-declared filter, never used for ranking).\n\n### Checklist\n- [x] One JSON file under `codes/`, conforming to `schema/code.schema.json`\n- [x] Distance witness(es) included for each reported side\n- [x] `python verify/qldpc_verify.py codes\\924-29-27.json` passes locally\n- [x] Construction and references filled in under `provenance`\n- [x] If this may be equivalent to an existing entry, noted in `provenance.notes`: `verify/validate_candidate.py` found no board entry sharing this code's fingerprint or Weisfeiler-Leman signature\n\n### What frontier does this advance?\n\nGate novelty for this document: board-advancing in the (weight-8, local-2d-bilayer) cell, dominated_by empty, d_only_gain false, advances_by [] (pure frontier extension). kd^2/n = 22.9. Honesty note: the fast instrument reads +1..+9 over true d at these sizes (board dup-calibration), so the true distance is likely 1-5 below the claim; the witnesses carry and the CI refutation battery is the correction path.\n\n- **2D-local bilayer / weight \u2264 8**: on the Pareto frontier\n- **2D-local bilayer / any weight**: on the Pareto frontier\n- **unrestricted / weight \u2264 8**: not on the frontier (dominated by a cell entry)\n- **unrestricted / any weight**: not on the frontier (dominated by a cell entry)\n\nScore kd^2/n = 22.88, max check weight 8, locality class local-2d-bilayer. Board-relative, and literature novelty is unverified: the gate deduplicates against this board only.\n\nConstruction: Open-boundary planar BB code (Liang-Yang-Iosue-Chen boundary construction, Liang-Eberhardt-Chen planar tile family): research/local2d/boundary_engine.build_planar(21, 22, S_f=[(0, 0), (1, 3), (2, 1), (4, 4)], S_g=[(0, 2), (1, 4), (3, 1), (4, 0)]) followed by reduce_weights; bilayer layout planar.grid_coordinates (A and B qubits of cell (i,j) at site (i,j) on two layers). Supports found by this lane's mutation search over 4+4 monomials in the B=5 box around the board's B5-29/B5-32 pairs.\n\nResearch note: `notes\\924-29-27.md`\n"
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "968-29-28",
+  "title": "Add [[968,29,28]] 2D-local bilayer at kd^2/n 23.5, n=968, k=29, d<=28",
+  "branch": "submit-968-29-28",
+  "files": {
+   "code": "codes\\968-29-28.json",
+   "note": "notes\\968-29-28.md"
+  },
+  "body_file": null,
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 968,
+     "k": 29,
+     "d": 28,
+     "family": "tile",
+     "weight_class": "weight-8",
+     "locality_class": "local-2d-bilayer",
+     "sector_distances": {
+      "X": {
+       "upper": 30,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 30,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 28,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 28,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 28,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "e3937c13b1799108",
+     "signature": "2b4fc09121a566a9"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "local-2d-bilayer"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 1333392505,
+      "detail": "no lighter logical in 8000 RIS trials (seed 1333392505)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "local-2d-bilayer"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x local-2d-bilayer board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 1333392505
+    }
+   },
+   "check_prose": {
+    "ok": null,
+    "skipped": "dry run: nothing was written for the checker to read"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-968-29-28 main",
+   "git add 'codes\\968-29-28.json' 'notes\\968-29-28.md'",
+   "git commit -m 'Add [[968,29,28]] 2D-local bilayer at kd^2/n 23.5, n=968, k=29, d<=28'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-29-28.md'",
+   "git push -u origin submit-968-29-28",
+   "gh pr create --title 'Add [[968,29,28]] 2D-local bilayer at kd^2/n 23.5, n=968, k=29, d<=28' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-29-28.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 200000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 401"
+    },
+    {
+     "trials": 200000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 409"
+    },
+    {
+     "trials": 200000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 419"
+    },
+    {
+     "trials": 5000,
+     "d": 38,
+     "fresh": true,
+     "label": "numpy 5k cross-check X, seed 601"
+    },
+    {
+     "trials": 5000,
+     "d": 34,
+     "fresh": true,
+     "label": "numpy 5k cross-check Z, seed 602"
+    },
+    {
+     "trials": 1000000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 503"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 509"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 521"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 531"
+    },
+    {
+     "trials": 41220,
+     "d": 28,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431002"
+    },
+    {
+     "trials": 41220,
+     "d": 28,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431001"
+    }
+   ],
+   "cumulative_best_bound": 28,
+   "claimed_d": 28,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 5,
+   "deepest_fresh_trials": 1000000,
+   "trials_spent": 4692440,
+   "fresh_rungs_total": 11
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [],
+   "filed_as_non_frontier": false
+  },
+  "revision": null,
+  "note_markdown": "# [[968,29,28]] 2D-local bilayer at kd^2/n 23.5, n=968, k=29, d<=28\n\n## Direction & hypothesis\n\nAdvance the weight-8 x local-2d-bilayer cell's frontier at n in [700,1000]\nwith planar-boundary bilayer codes\n(research/local2d/boundary_engine.py::build_planar exact half-infinite\nboundary gauge over F2[t], corner completion, cleanup, weight reduction;\nbilayer layout planar.grid_coordinates(layers=2), radius 4*sqrt(2)). 22x22\n(B5-29 supports): new cell kd2/n leader (old best 20.9 = 800-29-24).\n\n## What was searched\n\nLane w8-2dlocal-n700-1000 (Phase A: 6 seed support pairs x ~94 lattice sizes;\nPhase B: 360 single-monomial mutants around the B5 seeds, 24 screen advances).\nEscalation bar reqd(n,k) computed live from codes/; board-dup guard by\nrowspace comparison caught the known lattice twins. Ladder per the campaign\nmethod: screen 3x20k (pd22) -> 3x100k (pd20) -> deep 3x200k (pd16) -> 1M-class\nx4 fresh seeds (pd12) -> numpy per-side cross-checks (5k/side). Claim =\nlightest WITNESSED reading across all rungs (upper_bound, never 'exact'); the\ngate's fresh-seed refutation found no logical lighter than 28.\n\n## Evidence trail\n\nConfirmation ladder for the submitted code, each rung a fresh seed unless\nmarked otherwise, reading the lightest logical found:\n\n| budget (trials/side) | lightest logical |\n| ---: | ---: |\n| 200,000 (fast r3 200k pd16, seed 401) | 29 |\n| 200,000 (fast r3 200k pd16, seed 409) | 30 |\n| 200,000 (fast r3 200k pd16, seed 419) | 30 |\n| 5,000 (numpy 5k cross-check X, seed 601) | 38 |\n| 5,000 (numpy 5k cross-check Z, seed 602) | 34 |\n| 1,000,000 (fast 1M pd12, seed 503) | 29 |\n| 1,000,000 (fast 1M pd12, seed 509) | 28 |\n| 1,000,000 (fast 1M pd12, seed 521) | 28 |\n| 1,000,000 (fast 1M pd12, seed 531) | 28 |\n| 41,220 (gate_changed fresh-seed battery, seed 431002) | 28 |\n| 41,220 (gate_changed fresh-seed battery, seed 431001) | 28 |\n\n5 fresh-seed rung(s) agree at the best bound, the deepest of them at 1,000,000\ntrials per side. The submitted witness reproduces it: X: d <= 30\n(upper_bound), Z: d <= 28 (upper_bound).\n\n## Dead ends\n\nNone recorded for this candidate.\n\n## Tools\n\nModel: GLM-5.3-Flash (ZCode). The local verdict is\n`verify/validate_candidate.py`; the bundle was assembled by\n`research/kit/promote.py`.\n\n## Reproduction\n\nRebuild from committed kit code, verified bit-identical to the entry's\nfingerprint before submission. Open-boundary planar BB code\n(Liang-Yang-Iosue-Chen boundary construction, Liang-Eberhardt-Chen planar tile\nfamily): research/local2d/boundary_engine.build_planar(22, 22, S_f=[(0, 0),\n(1, 3), (2, 1), (4, 4)], S_g=[(0, 2), (1, 4), (3, 1), (4, 0)]) followed by\nreduce_weights; bilayer layout planar.grid_coordinates (A and B qubits of cell\n(i,j) at site (i,j) on two layers). Supports found by this lane's mutation\nsearch over 4+4 monomials in the B=5 box around the board's B5-29/B5-32 pairs.\nThe check matrices in codes/ are the submission artifact; the witnesses\nembedded in the distance block re-verify against them independently (H.v = 0,\noutside the rowspace, weight equals the reading).\n",
+  "body_markdown": "## Code submission\n\n- Parameters: [[n, k, d]] = [[968,29,28]]\n- Tracks: local-2d-bilayer / weight-8 (computed by the verifier from H and the layout)\n- Distance confidence: X: d <= 30 (upper_bound), Z: d <= 28 (upper_bound)\n- Search behind the claim: 1,000,000 RIS trials per side at the deepest fresh-seed rung, 5 fresh rung(s) flat there, 4,692,440 trials over the whole ladder\n\nFamily tag: tile (a self-declared filter, never used for ranking).\n\n### Checklist\n- [x] One JSON file under `codes/`, conforming to `schema/code.schema.json`\n- [x] Distance witness(es) included for each reported side\n- [x] `python verify/qldpc_verify.py codes\\968-29-28.json` passes locally\n- [x] Construction and references filled in under `provenance`\n- [x] If this may be equivalent to an existing entry, noted in `provenance.notes`: `verify/validate_candidate.py` found no board entry sharing this code's fingerprint or Weisfeiler-Leman signature\n\n### What frontier does this advance?\n\nGate novelty for this document: board-advancing in the (weight-8, local-2d-bilayer) cell, dominated_by empty, d_only_gain false, advances_by [] (pure frontier extension). kd^2/n = 23.5. Honesty note: the fast instrument reads +1..+9 over true d at these sizes (board dup-calibration), so the true distance is likely 1-5 below the claim; the witnesses carry and the CI refutation battery is the correction path.\n\n- **2D-local bilayer / weight \u2264 8**: on the Pareto frontier\n- **2D-local bilayer / any weight**: on the Pareto frontier\n- **unrestricted / weight \u2264 8**: not on the frontier (dominated by a cell entry)\n- **unrestricted / any weight**: not on the frontier (dominated by a cell entry)\n\nScore kd^2/n = 23.488, max check weight 8, locality class local-2d-bilayer. Board-relative, and literature novelty is unverified: the gate deduplicates against this board only.\n\nConstruction: Open-boundary planar BB code (Liang-Yang-Iosue-Chen boundary construction, Liang-Eberhardt-Chen planar tile family): research/local2d/boundary_engine.build_planar(22, 22, S_f=[(0, 0), (1, 3), (2, 1), (4, 4)], S_g=[(0, 2), (1, 4), (3, 1), (4, 0)]) followed by reduce_weights; bilayer layout planar.grid_coordinates (A and B qubits of cell (i,j) at site (i,j) on two layers). Supports found by this lane's mutation search over 4+4 monomials in the B=5 box around the board's B5-29/B5-32 pairs.\n\nResearch note: `notes\\968-29-28.md`\n"
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "968-32-25",
+  "title": "Add [[968,32,25]] 2D-local bilayer at kd^2/n 20.7, n=968, k=32, d<=25",
+  "branch": "submit-968-32-25",
+  "files": {
+   "code": "codes\\968-32-25.json",
+   "note": "notes\\968-32-25.md"
+  },
+  "body_file": null,
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 968,
+     "k": 32,
+     "d": 25,
+     "family": "tile",
+     "weight_class": "weight-8",
+     "locality_class": "local-2d-bilayer",
+     "sector_distances": {
+      "X": {
+       "upper": 25,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 25,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 36,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 36,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 25,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "a53f0117061b7d0a",
+     "signature": "06c4249fb3670972"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "local-2d-bilayer"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 1814682224,
+      "detail": "no lighter logical in 8000 RIS trials (seed 1814682224)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "local-2d-bilayer"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x local-2d-bilayer board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 1814682224
+    }
+   },
+   "check_prose": {
+    "ok": null,
+    "skipped": "dry run: nothing was written for the checker to read"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-968-32-25 main",
+   "git add 'codes\\968-32-25.json' 'notes\\968-32-25.md'",
+   "git commit -m 'Add [[968,32,25]] 2D-local bilayer at kd^2/n 20.7, n=968, k=32, d<=25'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-32-25.md'",
+   "git push -u origin submit-968-32-25",
+   "gh pr create --title 'Add [[968,32,25]] 2D-local bilayer at kd^2/n 20.7, n=968, k=32, d<=25' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-32-25.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 200000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 401"
+    },
+    {
+     "trials": 200000,
+     "d": 25,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 409"
+    },
+    {
+     "trials": 200000,
+     "d": 26,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 419"
+    },
+    {
+     "trials": 5000,
+     "d": 27,
+     "fresh": true,
+     "label": "numpy 5k cross-check X, seed 601"
+    },
+    {
+     "trials": 5000,
+     "d": 36,
+     "fresh": true,
+     "label": "numpy 5k cross-check Z, seed 602"
+    },
+    {
+     "trials": 1000000,
+     "d": 26,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 503"
+    },
+    {
+     "trials": 1000000,
+     "d": 26,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 509"
+    },
+    {
+     "trials": 1000000,
+     "d": 26,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 521"
+    },
+    {
+     "trials": 1000000,
+     "d": 25,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 531"
+    },
+    {
+     "trials": 41220,
+     "d": 25,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431002"
+    },
+    {
+     "trials": 41220,
+     "d": 25,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431001"
+    }
+   ],
+   "cumulative_best_bound": 25,
+   "claimed_d": 25,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 3,
+   "deepest_fresh_trials": 1000000,
+   "trials_spent": 4692440,
+   "fresh_rungs_total": 11
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [],
+   "filed_as_non_frontier": false
+  },
+  "revision": null,
+  "note_markdown": "# [[968,32,25]] 2D-local bilayer at kd^2/n 20.7, n=968, k=32, d<=25\n\n## Direction & hypothesis\n\nAdvance the weight-8 x local-2d-bilayer cell's frontier at n in [700,1000]\nwith planar-boundary bilayer codes\n(research/local2d/boundary_engine.py::build_planar exact half-infinite\nboundary gauge over F2[t], corner completion, cleanup, weight reduction;\nbilayer layout planar.grid_coordinates(layers=2), radius 4*sqrt(2)). 22x22\n(B5-32 supports): k=32 point at d=25 (old: 800-32-22, d=22).\n\n## What was searched\n\nLane w8-2dlocal-n700-1000 (Phase A: 6 seed support pairs x ~94 lattice sizes;\nPhase B: 360 single-monomial mutants around the B5 seeds, 24 screen advances).\nEscalation bar reqd(n,k) computed live from codes/; board-dup guard by\nrowspace comparison caught the known lattice twins. Ladder per the campaign\nmethod: screen 3x20k (pd22) -> 3x100k (pd20) -> deep 3x200k (pd16) -> 1M-class\nx4 fresh seeds (pd12) -> numpy per-side cross-checks (5k/side). Claim =\nlightest WITNESSED reading across all rungs (upper_bound, never 'exact'); the\ngate's fresh-seed refutation found no logical lighter than 25.\n\n## Evidence trail\n\nConfirmation ladder for the submitted code, each rung a fresh seed unless\nmarked otherwise, reading the lightest logical found:\n\n| budget (trials/side) | lightest logical |\n| ---: | ---: |\n| 200,000 (fast r3 200k pd16, seed 401) | 27 |\n| 200,000 (fast r3 200k pd16, seed 409) | 25 |\n| 200,000 (fast r3 200k pd16, seed 419) | 26 |\n| 5,000 (numpy 5k cross-check X, seed 601) | 27 |\n| 5,000 (numpy 5k cross-check Z, seed 602) | 36 |\n| 1,000,000 (fast 1M pd12, seed 503) | 26 |\n| 1,000,000 (fast 1M pd12, seed 509) | 26 |\n| 1,000,000 (fast 1M pd12, seed 521) | 26 |\n| 1,000,000 (fast 1M pd12, seed 531) | 25 |\n| 41,220 (gate_changed fresh-seed battery, seed 431002) | 25 |\n| 41,220 (gate_changed fresh-seed battery, seed 431001) | 25 |\n\n3 fresh-seed rung(s) agree at the best bound, the deepest of them at 1,000,000\ntrials per side. The submitted witness reproduces it: X: d <= 25\n(upper_bound), Z: d <= 36 (upper_bound).\n\n## Dead ends\n\nNone recorded for this candidate.\n\n## Tools\n\nModel: GLM-5.3-Flash (ZCode). The local verdict is\n`verify/validate_candidate.py`; the bundle was assembled by\n`research/kit/promote.py`.\n\n## Reproduction\n\nRebuild from committed kit code, verified bit-identical to the entry's\nfingerprint before submission. Open-boundary planar BB code\n(Liang-Yang-Iosue-Chen boundary construction, Liang-Eberhardt-Chen planar tile\nfamily): research/local2d/boundary_engine.build_planar(22, 22, S_f=[(0, 0),\n(1, 3), (4, 0), (4, 4)], S_g=[(0, 4), (2, 1), (3, 2), (4, 0)]) followed by\nreduce_weights; bilayer layout planar.grid_coordinates (A and B qubits of cell\n(i,j) at site (i,j) on two layers). Supports found by this lane's mutation\nsearch over 4+4 monomials in the B=5 box around the board's B5-29/B5-32 pairs.\nThe check matrices in codes/ are the submission artifact; the witnesses\nembedded in the distance block re-verify against them independently (H.v = 0,\noutside the rowspace, weight equals the reading).\n",
+  "body_markdown": "## Code submission\n\n- Parameters: [[n, k, d]] = [[968,32,25]]\n- Tracks: local-2d-bilayer / weight-8 (computed by the verifier from H and the layout)\n- Distance confidence: X: d <= 25 (upper_bound), Z: d <= 36 (upper_bound)\n- Search behind the claim: 1,000,000 RIS trials per side at the deepest fresh-seed rung, 3 fresh rung(s) flat there, 4,692,440 trials over the whole ladder\n\nFamily tag: tile (a self-declared filter, never used for ranking).\n\n### Checklist\n- [x] One JSON file under `codes/`, conforming to `schema/code.schema.json`\n- [x] Distance witness(es) included for each reported side\n- [x] `python verify/qldpc_verify.py codes\\968-32-25.json` passes locally\n- [x] Construction and references filled in under `provenance`\n- [x] If this may be equivalent to an existing entry, noted in `provenance.notes`: `verify/validate_candidate.py` found no board entry sharing this code's fingerprint or Weisfeiler-Leman signature\n\n### What frontier does this advance?\n\nGate novelty for this document: board-advancing in the (weight-8, local-2d-bilayer) cell, dominated_by empty, d_only_gain false, advances_by [] (pure frontier extension). kd^2/n = 20.7. Honesty note: the fast instrument reads +1..+9 over true d at these sizes (board dup-calibration), so the true distance is likely 1-5 below the claim; the witnesses carry and the CI refutation battery is the correction path.\n\n- **2D-local bilayer / weight \u2264 8**: on the Pareto frontier\n- **2D-local bilayer / any weight**: on the Pareto frontier\n- **unrestricted / weight \u2264 8**: not on the frontier (dominated by a cell entry)\n- **unrestricted / any weight**: not on the frontier (dominated by a cell entry)\n\nScore kd^2/n = 20.661, max check weight 8, locality class local-2d-bilayer. Board-relative, and literature novelty is unverified: the gate deduplicates against this board only.\n\nConstruction: Open-boundary planar BB code (Liang-Yang-Iosue-Chen boundary construction, Liang-Eberhardt-Chen planar tile family): research/local2d/boundary_engine.build_planar(22, 22, S_f=[(0, 0), (1, 3), (4, 0), (4, 4)], S_g=[(0, 4), (2, 1), (3, 2), (4, 0)]) followed by reduce_weights; bilayer layout planar.grid_coordinates (A and B qubits of cell (i,j) at site (i,j) on two layers). Supports found by this lane's mutation search over 4+4 monomials in the B=5 box around the board's B5-29/B5-32 pairs.\n\nResearch note: `notes\\968-32-25.md`\n"
+ }
+]

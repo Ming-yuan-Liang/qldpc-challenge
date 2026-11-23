@@ -1,0 +1,4 @@
+research/candidates/a1-kasai-1120/684-16-126.json 2 20000 numpy 10
+research/candidates/a1-kasai-1120/684-14-128b.json 1 20000 numpy 10
+research/candidates/a1-kasai-1120/684-14-128b.json 3 20000 numpy 10
+research/candidates/a1-kasai-1120/684-14-126.json 2 20000 numpy 10

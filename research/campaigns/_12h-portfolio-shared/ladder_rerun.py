@@ -29,19 +29,24 @@ def dense(rows, n):
 def main():
     doc_path, rung = sys.argv[1], int(sys.argv[2])
     trials = int(sys.argv[3]) if len(sys.argv) > 3 else 20_000
+    backend = sys.argv[4] if len(sys.argv) > 4 else "numpy"
+    pd = int(sys.argv[5]) if len(sys.argv) > 5 else 10
     with open(doc_path, encoding="utf-8") as f:
         doc = json.load(f)
     n = doc["n"]
     hx = dense(doc["checks"]["X"], n)
     hz = dense(doc["checks"]["Z"], n)
     seed = 91000 + rung * 101 + doc["k"]
-    d = distance_rand(hx, hz, trials=trials, seed=seed, backend="numpy")
+    d = distance_rand(hx, hz, trials=trials, seed=seed, backend=backend,
+                      pair_depth=pd)
     out = doc_path.replace(".json", f"-rung{rung}.json")
     with open(out, "w", encoding="utf-8") as f:
         json.dump({"doc": os.path.basename(doc_path), "trials": trials,
                    "d": int(d), "seed": seed, "fresh": True,
-                   "label": f"rerun {rung}"}, f)
-    print(f"{os.path.basename(doc_path)} rung{rung}: d<={d} at {trials} trials")
+                   "backend": backend, "pair_depth": pd,
+                   "label": f"rerun {rung} ({backend} pd{pd})"}, f)
+    print(f"{os.path.basename(doc_path)} rung{rung}: d<={d} at {trials} "
+          f"trials [{backend} pd{pd}]")
 
 
 if __name__ == "__main__":

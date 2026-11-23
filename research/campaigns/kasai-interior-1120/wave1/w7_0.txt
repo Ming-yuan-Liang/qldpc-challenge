@@ -1,0 +1,2 @@
+research/candidates/a1-kasai-1120/684-18-124.json 27 2000000 fast
+research/candidates/a1-kasai-1120/684-18-124.json 31 2000000 fast

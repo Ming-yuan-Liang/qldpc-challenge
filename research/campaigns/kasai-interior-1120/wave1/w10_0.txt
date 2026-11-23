@@ -1,0 +1,3 @@
+research/candidates/a1-kasai-1120/684-20-124.json 1 20000
+research/candidates/a1-kasai-1120/684-18-122.json 2 20000
+research/candidates/a1-kasai-1120/684-16-125.json 3 20000

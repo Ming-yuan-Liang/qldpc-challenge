@@ -86,6 +86,23 @@ L6 = {
         "kd2n": "22.9",
         "cell": "beats 800-29-24 on d (+3) at n +124",
     },
+    "966-29-27": {
+        "lattice": "21x23 (B5-29 supports)",
+        "ladder": [
+            (200000, 27, "fast r3 200k pd16, seed 401"),
+            (200000, 27, "fast r3 200k pd16, seed 409"),
+            (200000, 27, "fast r3 200k pd16, seed 419"),
+            (5000, 29, "numpy 5k cross-check X, seed 601"),
+            (5000, 38, "numpy 5k cross-check Z, seed 602"),
+            (1000000, 27, "fast 1M pd12, seed 503"),
+            (1000000, 27, "fast 1M pd12, seed 509"),
+            (1000000, 27, "fast 1M pd12, seed 521"),
+            (1000000, 27, "fast 1M pd12, seed 531"),
+        ],
+        "kd2n": "21.9",
+        "cell": "smallest-n k=29 d>=27 point (924-29-26 has d=26; 968-29-28 "
+                "carries d=28 at n=968; board has nothing between)",
+    },
     "968-29-28": {
         "lattice": "22x22 (B5-29 supports)",
         "ladder": [

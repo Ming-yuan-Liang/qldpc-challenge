@@ -1,0 +1,1837 @@
+[
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "510-102-19",
+  "title": "Add [[510,102,19]] pair-partition CPM at kd^2/n 72.2, n=510, k=102, d<=19",
+  "branch": "submit-510-102-19",
+  "files": {
+   "code": "codes\\510-102-19.json",
+   "note": "notes\\510-102-19.md"
+  },
+  "body_file": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-510-102-19.md",
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 510,
+     "k": 102,
+     "d": 19,
+     "family": "pair-partition-cpm",
+     "weight_class": "weight-8",
+     "locality_class": "unrestricted",
+     "sector_distances": {
+      "X": {
+       "upper": 19,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 19,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 19,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 19,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 19,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "01cc4cb911ca03eb",
+     "signature": "136fa4b4db3e4871"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "unrestricted"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 2022831931,
+      "detail": "no lighter logical in 8000 RIS trials (seed 2022831931)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "unrestricted"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [
+       "d",
+       "k",
+       "n"
+      ],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x unrestricted board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 2022831931
+    }
+   },
+   "check_prose": {
+    "ok": true,
+    "returncode": 0,
+    "output": "prose check ok (2 file(s) checked)",
+    "command": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\verify\\check_prose.py --root C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge --body-file C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-510-102-19.md --files codes\\510-102-19.json notes\\510-102-19.md --pr-author Ming-yuan-Liang"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   },
+   {
+    "item": "the clean-worktree prose gate",
+    "why": "verify/prepush_prose_check.sh C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-510-102-19.md runs against committed content and refuses a dirty tree, so it can only run after the commit; it is in commands"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-510-102-19 main",
+   "git add 'codes\\510-102-19.json' 'notes\\510-102-19.md'",
+   "git commit -m 'Add [[510,102,19]] pair-partition CPM at kd^2/n 72.2, n=510, k=102, d<=19'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-510-102-19.md'",
+   "git push -u origin submit-510-102-19",
+   "gh pr create --title 'Add [[510,102,19]] pair-partition CPM at kd^2/n 72.2, n=510, k=102, d<=19' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-510-102-19.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 500000,
+     "d": 19,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 X-side, seed 840001:500000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 19,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 X-side, seed 840002:500000:pd10"
+    },
+    {
+     "trials": 2000000,
+     "d": 19,
+     "fresh": true,
+     "label": "numpy 2,000,000-trial rung pd10 X-side, seed 840003:2000000:pd10"
+    },
+    {
+     "trials": 2000000,
+     "d": 19,
+     "fresh": true,
+     "label": "numpy 2,000,000-trial rung pd10 Z-side, seed swZ:2000000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 19,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd48 X-side, seed 840011:500000:pd48"
+    },
+    {
+     "trials": 22900,
+     "d": 19,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 20270601"
+    },
+    {
+     "trials": 22900,
+     "d": 19,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 20270602"
+    }
+   ],
+   "cumulative_best_bound": 19,
+   "claimed_d": 19,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 7,
+   "deepest_fresh_trials": 2000000,
+   "trials_spent": 5545800,
+   "fresh_rungs_total": 7
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [
+    "d",
+    "k",
+    "n"
+   ],
+   "filed_as_non_frontier": false
+  },
+  "revision": null
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "588-98-22",
+  "title": "Add [[588,98,22]] pair-partition CPM at kd^2/n 80.7, n=588, k=98, d<=22",
+  "branch": "submit-588-98-22",
+  "files": {
+   "code": "codes\\588-98-22.json",
+   "note": "notes\\588-98-22.md"
+  },
+  "body_file": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-588-98-22.md",
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 588,
+     "k": 98,
+     "d": 22,
+     "family": "pair-partition-cpm",
+     "weight_class": "weight-8",
+     "locality_class": "unrestricted",
+     "sector_distances": {
+      "X": {
+       "upper": 22,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 22,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 22,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 22,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 22,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "8c869129e69caa6b",
+     "signature": "9a4370073b25bfab"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "unrestricted"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 1340417731,
+      "detail": "no lighter logical in 8000 RIS trials (seed 1340417731)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "unrestricted"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [
+       "d",
+       "k",
+       "n"
+      ],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x unrestricted board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 1340417731
+    }
+   },
+   "check_prose": {
+    "ok": true,
+    "returncode": 0,
+    "output": "prose check ok (2 file(s) checked)",
+    "command": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\verify\\check_prose.py --root C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge --body-file C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-588-98-22.md --files codes\\588-98-22.json notes\\588-98-22.md --pr-author Ming-yuan-Liang"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   },
+   {
+    "item": "the clean-worktree prose gate",
+    "why": "verify/prepush_prose_check.sh C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-588-98-22.md runs against committed content and refuses a dirty tree, so it can only run after the commit; it is in commands"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-588-98-22 main",
+   "git add 'codes\\588-98-22.json' 'notes\\588-98-22.md'",
+   "git commit -m 'Add [[588,98,22]] pair-partition CPM at kd^2/n 80.7, n=588, k=98, d<=22'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-588-98-22.md'",
+   "git push -u origin submit-588-98-22",
+   "gh pr create --title 'Add [[588,98,22]] pair-partition CPM at kd^2/n 80.7, n=588, k=98, d<=22' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-588-98-22.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 500000,
+     "d": 22,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 X-side, seed 810001:500000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 22,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 X-side, seed 810002:500000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 22,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 X-side, seed 810003:500000:pd10"
+    },
+    {
+     "trials": 2000000,
+     "d": 22,
+     "fresh": true,
+     "label": "numpy 2,000,000-trial rung pd10 X-side, seed 810009:2000000:pd10"
+    },
+    {
+     "trials": 2000000,
+     "d": 22,
+     "fresh": true,
+     "label": "numpy 2,000,000-trial rung pd10 Z-side, seed swZ:2000000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 22,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd48 X-side, seed 810010:500000:pd48"
+    },
+    {
+     "trials": 26020,
+     "d": 22,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 20270603"
+    },
+    {
+     "trials": 26020,
+     "d": 22,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 20270604"
+    }
+   ],
+   "cumulative_best_bound": 22,
+   "claimed_d": 22,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 8,
+   "deepest_fresh_trials": 2000000,
+   "trials_spent": 6052040,
+   "fresh_rungs_total": 8
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [
+    "d",
+    "k",
+    "n"
+   ],
+   "filed_as_non_frontier": false
+  },
+  "revision": null
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "686-98-24",
+  "title": "Add [[686,98,24]] pair-partition CPM at kd^2/n 82.3, n=686, k=98, d<=24",
+  "branch": "submit-686-98-24",
+  "files": {
+   "code": "codes\\686-98-24.json",
+   "note": "notes\\686-98-24.md"
+  },
+  "body_file": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-686-98-24.md",
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 686,
+     "k": 98,
+     "d": 24,
+     "family": "pair-partition-cpm",
+     "weight_class": "weight-8",
+     "locality_class": "unrestricted",
+     "sector_distances": {
+      "X": {
+       "upper": 24,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 24,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 24,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 24,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 24,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "f2300de630f44825",
+     "signature": "78014c09517ff8da"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "unrestricted"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 508594182,
+      "detail": "no lighter logical in 8000 RIS trials (seed 508594182)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "unrestricted"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [
+       "d",
+       "k",
+       "n"
+      ],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x unrestricted board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 508594182
+    }
+   },
+   "check_prose": {
+    "ok": true,
+    "returncode": 0,
+    "output": "prose check ok (2 file(s) checked)",
+    "command": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\verify\\check_prose.py --root C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge --body-file C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-686-98-24.md --files codes\\686-98-24.json notes\\686-98-24.md --pr-author Ming-yuan-Liang"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   },
+   {
+    "item": "the clean-worktree prose gate",
+    "why": "verify/prepush_prose_check.sh C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-686-98-24.md runs against committed content and refuses a dirty tree, so it can only run after the commit; it is in commands"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-686-98-24 main",
+   "git add 'codes\\686-98-24.json' 'notes\\686-98-24.md'",
+   "git commit -m 'Add [[686,98,24]] pair-partition CPM at kd^2/n 82.3, n=686, k=98, d<=24'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-686-98-24.md'",
+   "git push -u origin submit-686-98-24",
+   "gh pr create --title 'Add [[686,98,24]] pair-partition CPM at kd^2/n 82.3, n=686, k=98, d<=24' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-686-98-24.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 500000,
+     "d": 24,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 X-side, seed 820001:500000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 24,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 X-side, seed 820022:500000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 24,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 X-side, seed 820023:500000:pd10"
+    },
+    {
+     "trials": 2000000,
+     "d": 24,
+     "fresh": true,
+     "label": "numpy 2,000,000-trial rung pd10 X-side, seed 820029:2000000:pd10"
+    },
+    {
+     "trials": 2000000,
+     "d": 24,
+     "fresh": true,
+     "label": "numpy 2,000,000-trial rung pd10 Z-side, seed swZ:2000000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 24,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd48 X-side, seed 820051:500000:pd48"
+    },
+    {
+     "trials": 29940,
+     "d": 24,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 20270609"
+    },
+    {
+     "trials": 29940,
+     "d": 24,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 20270610"
+    }
+   ],
+   "cumulative_best_bound": 24,
+   "claimed_d": 24,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 8,
+   "deepest_fresh_trials": 2000000,
+   "trials_spent": 6059880,
+   "fresh_rungs_total": 8
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [
+    "d",
+    "k",
+    "n"
+   ],
+   "filed_as_non_frontier": false
+  },
+  "revision": null
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "714-102-25",
+  "title": "Add [[714,102,25]] pair-partition CPM at kd^2/n 89.4, n=714, k=102, d<=25",
+  "branch": "submit-714-102-25",
+  "files": {
+   "code": "codes\\714-102-25.json",
+   "note": "notes\\714-102-25.md"
+  },
+  "body_file": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-714-102-25.md",
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 714,
+     "k": 102,
+     "d": 25,
+     "family": "pair-partition-cpm",
+     "weight_class": "weight-8",
+     "locality_class": "unrestricted",
+     "sector_distances": {
+      "X": {
+       "upper": 25,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 25,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 25,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 25,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 25,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "90627e56708a4530",
+     "signature": "6baec874f0497a48"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "unrestricted"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 369905583,
+      "detail": "no lighter logical in 8000 RIS trials (seed 369905583)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "unrestricted"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [
+       "d",
+       "k",
+       "n"
+      ],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x unrestricted board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 369905583
+    }
+   },
+   "check_prose": {
+    "ok": true,
+    "returncode": 0,
+    "output": "prose check ok (2 file(s) checked)",
+    "command": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\verify\\check_prose.py --root C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge --body-file C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-714-102-25.md --files codes\\714-102-25.json notes\\714-102-25.md --pr-author Ming-yuan-Liang"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   },
+   {
+    "item": "the clean-worktree prose gate",
+    "why": "verify/prepush_prose_check.sh C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-714-102-25.md runs against committed content and refuses a dirty tree, so it can only run after the commit; it is in commands"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-714-102-25 main",
+   "git add 'codes\\714-102-25.json' 'notes\\714-102-25.md'",
+   "git commit -m 'Add [[714,102,25]] pair-partition CPM at kd^2/n 89.4, n=714, k=102, d<=25'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-714-102-25.md'",
+   "git push -u origin submit-714-102-25",
+   "gh pr create --title 'Add [[714,102,25]] pair-partition CPM at kd^2/n 89.4, n=714, k=102, d<=25' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-714-102-25.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 500000,
+     "d": 26,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 X-side, seed 830001:500000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 26,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 X-side, seed 830002:500000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 28,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd10 Z-side, seed 830003:500000:pd10"
+    },
+    {
+     "trials": 2000000,
+     "d": 25,
+     "fresh": true,
+     "label": "numpy 2,000,000-trial rung pd10 Z-side, seed 830009:2000000:pd10"
+    },
+    {
+     "trials": 2000000,
+     "d": 25,
+     "fresh": true,
+     "label": "numpy 2,000,000-trial rung pd10 Z-side, seed swZ:2000000:pd10"
+    },
+    {
+     "trials": 2000000,
+     "d": 25,
+     "fresh": true,
+     "label": "numpy 2,000,000-trial rung pd10 X-side, seed 830019:2000000:pd10"
+    },
+    {
+     "trials": 500000,
+     "d": 25,
+     "fresh": true,
+     "label": "numpy 500,000-trial rung pd48 X-side, seed 830020:500000:pd48"
+    },
+    {
+     "trials": 31060,
+     "d": 25,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 20270611"
+    },
+    {
+     "trials": 31060,
+     "d": 25,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 20270612"
+    }
+   ],
+   "cumulative_best_bound": 25,
+   "claimed_d": 25,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 6,
+   "deepest_fresh_trials": 2000000,
+   "trials_spent": 8062120,
+   "fresh_rungs_total": 9
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [
+    "d",
+    "k",
+    "n"
+   ],
+   "filed_as_non_frontier": false
+  },
+  "revision": null
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "840-18-28",
+  "title": "Add [[840,18,28]] 2D-local bilayer at kd^2/n 18.0, n=840, k=18, d<=28",
+  "branch": "submit-840-18-28",
+  "files": {
+   "code": "codes\\840-18-28.json",
+   "note": "notes\\840-18-28.md"
+  },
+  "body_file": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-840-18-28.md",
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 840,
+     "k": 18,
+     "d": 28,
+     "family": "tile",
+     "weight_class": "weight-8",
+     "locality_class": "local-2d-bilayer",
+     "sector_distances": {
+      "X": {
+       "upper": 44,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 44,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 28,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 28,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 28,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "3db14a26c66fedc5",
+     "signature": "c605608a2810a689"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "local-2d-bilayer"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 2016967540,
+      "detail": "no lighter logical in 8000 RIS trials (seed 2016967540)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "local-2d-bilayer"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x local-2d-bilayer board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 2016967540
+    }
+   },
+   "check_prose": {
+    "ok": true,
+    "returncode": 0,
+    "output": "prose check ok (2 file(s) checked)",
+    "command": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\verify\\check_prose.py --root C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge --body-file C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-840-18-28.md --files codes\\840-18-28.json notes\\840-18-28.md --pr-author Ming-yuan-Liang"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   },
+   {
+    "item": "the clean-worktree prose gate",
+    "why": "verify/prepush_prose_check.sh C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-840-18-28.md runs against committed content and refuses a dirty tree, so it can only run after the commit; it is in commands"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-840-18-28 main",
+   "git add 'codes\\840-18-28.json' 'notes\\840-18-28.md'",
+   "git commit -m 'Add [[840,18,28]] 2D-local bilayer at kd^2/n 18.0, n=840, k=18, d<=28'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-840-18-28.md'",
+   "git push -u origin submit-840-18-28",
+   "gh pr create --title 'Add [[840,18,28]] 2D-local bilayer at kd^2/n 18.0, n=840, k=18, d<=28' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-840-18-28.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 200000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 401"
+    },
+    {
+     "trials": 200000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 409"
+    },
+    {
+     "trials": 200000,
+     "d": 31,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 419"
+    },
+    {
+     "trials": 5000,
+     "d": 44,
+     "fresh": true,
+     "label": "numpy 5k cross-check X, seed 601"
+    },
+    {
+     "trials": 5000,
+     "d": 35,
+     "fresh": true,
+     "label": "numpy 5k cross-check Z, seed 602"
+    },
+    {
+     "trials": 1000000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 503"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 509"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 521"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 531"
+    },
+    {
+     "trials": 36100,
+     "d": 28,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431002"
+    },
+    {
+     "trials": 36100,
+     "d": 28,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431001"
+    }
+   ],
+   "cumulative_best_bound": 28,
+   "claimed_d": 28,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 5,
+   "deepest_fresh_trials": 1000000,
+   "trials_spent": 4682200,
+   "fresh_rungs_total": 11
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [],
+   "filed_as_non_frontier": false
+  },
+  "revision": null
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "880-18-29",
+  "title": "Add [[880,18,29]] 2D-local bilayer at kd^2/n 19.3, n=880, k=18, d<=29",
+  "branch": "submit-880-18-29",
+  "files": {
+   "code": "codes\\880-18-29.json",
+   "note": "notes\\880-18-29.md"
+  },
+  "body_file": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-880-18-29.md",
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 880,
+     "k": 18,
+     "d": 29,
+     "family": "tile",
+     "weight_class": "weight-8",
+     "locality_class": "local-2d-bilayer",
+     "sector_distances": {
+      "X": {
+       "upper": 41,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 41,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 29,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 29,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 29,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "0e61c45e4afbdabb",
+     "signature": "d03ecb4d479ff8ea"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "local-2d-bilayer"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 444305083,
+      "detail": "no lighter logical in 8000 RIS trials (seed 444305083)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "local-2d-bilayer"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [
+       "n"
+      ],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x local-2d-bilayer board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 444305083
+    }
+   },
+   "check_prose": {
+    "ok": true,
+    "returncode": 0,
+    "output": "prose check ok (2 file(s) checked)",
+    "command": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\verify\\check_prose.py --root C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge --body-file C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-880-18-29.md --files codes\\880-18-29.json notes\\880-18-29.md --pr-author Ming-yuan-Liang"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   },
+   {
+    "item": "the clean-worktree prose gate",
+    "why": "verify/prepush_prose_check.sh C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-880-18-29.md runs against committed content and refuses a dirty tree, so it can only run after the commit; it is in commands"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-880-18-29 main",
+   "git add 'codes\\880-18-29.json' 'notes\\880-18-29.md'",
+   "git commit -m 'Add [[880,18,29]] 2D-local bilayer at kd^2/n 19.3, n=880, k=18, d<=29'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-880-18-29.md'",
+   "git push -u origin submit-880-18-29",
+   "gh pr create --title 'Add [[880,18,29]] 2D-local bilayer at kd^2/n 19.3, n=880, k=18, d<=29' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-880-18-29.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 200000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 401"
+    },
+    {
+     "trials": 200000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 409"
+    },
+    {
+     "trials": 200000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 419"
+    },
+    {
+     "trials": 5000,
+     "d": 41,
+     "fresh": true,
+     "label": "numpy 5k cross-check X, seed 601"
+    },
+    {
+     "trials": 1000000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 503"
+    },
+    {
+     "trials": 1000000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 509"
+    },
+    {
+     "trials": 1000000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 521"
+    },
+    {
+     "trials": 1000000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 531"
+    },
+    {
+     "trials": 37700,
+     "d": 29,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431002"
+    },
+    {
+     "trials": 37700,
+     "d": 29,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431001"
+    }
+   ],
+   "cumulative_best_bound": 29,
+   "claimed_d": 29,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 2,
+   "deepest_fresh_trials": 1000000,
+   "trials_spent": 4680400,
+   "fresh_rungs_total": 10
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [
+    "n"
+   ],
+   "filed_as_non_frontier": false
+  },
+  "revision": null
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "924-29-27",
+  "title": "Add [[924,29,27]] 2D-local bilayer at kd^2/n 22.9, n=924, k=29, d<=27",
+  "branch": "submit-924-29-27",
+  "files": {
+   "code": "codes\\924-29-27.json",
+   "note": "notes\\924-29-27.md"
+  },
+  "body_file": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-924-29-27.md",
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 924,
+     "k": 29,
+     "d": 27,
+     "family": "tile",
+     "weight_class": "weight-8",
+     "locality_class": "local-2d-bilayer",
+     "sector_distances": {
+      "X": {
+       "upper": 27,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 27,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 31,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 31,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 27,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "b01a36eba967380f",
+     "signature": "75d096ac093e28af"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "local-2d-bilayer"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 955263902,
+      "detail": "no lighter logical in 8000 RIS trials (seed 955263902)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "local-2d-bilayer"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x local-2d-bilayer board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 955263902
+    }
+   },
+   "check_prose": {
+    "ok": true,
+    "returncode": 0,
+    "output": "prose check ok (2 file(s) checked)",
+    "command": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\verify\\check_prose.py --root C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge --body-file C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-924-29-27.md --files codes\\924-29-27.json notes\\924-29-27.md --pr-author Ming-yuan-Liang"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   },
+   {
+    "item": "the clean-worktree prose gate",
+    "why": "verify/prepush_prose_check.sh C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-924-29-27.md runs against committed content and refuses a dirty tree, so it can only run after the commit; it is in commands"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-924-29-27 main",
+   "git add 'codes\\924-29-27.json' 'notes\\924-29-27.md'",
+   "git commit -m 'Add [[924,29,27]] 2D-local bilayer at kd^2/n 22.9, n=924, k=29, d<=27'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-924-29-27.md'",
+   "git push -u origin submit-924-29-27",
+   "gh pr create --title 'Add [[924,29,27]] 2D-local bilayer at kd^2/n 22.9, n=924, k=29, d<=27' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-924-29-27.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 200000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 401"
+    },
+    {
+     "trials": 200000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 409"
+    },
+    {
+     "trials": 200000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 419"
+    },
+    {
+     "trials": 5000,
+     "d": 30,
+     "fresh": true,
+     "label": "numpy 5k cross-check X, seed 601"
+    },
+    {
+     "trials": 5000,
+     "d": 31,
+     "fresh": true,
+     "label": "numpy 5k cross-check Z, seed 602"
+    },
+    {
+     "trials": 1000000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 503"
+    },
+    {
+     "trials": 1000000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 509"
+    },
+    {
+     "trials": 1000000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 521"
+    },
+    {
+     "trials": 1000000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 531"
+    },
+    {
+     "trials": 39460,
+     "d": 27,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431001"
+    },
+    {
+     "trials": 39460,
+     "d": 27,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431002"
+    }
+   ],
+   "cumulative_best_bound": 27,
+   "claimed_d": 27,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 6,
+   "deepest_fresh_trials": 1000000,
+   "trials_spent": 4688920,
+   "fresh_rungs_total": 11
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [],
+   "filed_as_non_frontier": false
+  },
+  "revision": null
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "968-29-28",
+  "title": "Add [[968,29,28]] 2D-local bilayer at kd^2/n 23.5, n=968, k=29, d<=28",
+  "branch": "submit-968-29-28",
+  "files": {
+   "code": "codes\\968-29-28.json",
+   "note": "notes\\968-29-28.md"
+  },
+  "body_file": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-29-28.md",
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 968,
+     "k": 29,
+     "d": 28,
+     "family": "tile",
+     "weight_class": "weight-8",
+     "locality_class": "local-2d-bilayer",
+     "sector_distances": {
+      "X": {
+       "upper": 30,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 30,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 28,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 28,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 28,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "e3937c13b1799108",
+     "signature": "2b4fc09121a566a9"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "local-2d-bilayer"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 1634093668,
+      "detail": "no lighter logical in 8000 RIS trials (seed 1634093668)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "local-2d-bilayer"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x local-2d-bilayer board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 1634093668
+    }
+   },
+   "check_prose": {
+    "ok": true,
+    "returncode": 0,
+    "output": "prose check ok (2 file(s) checked)",
+    "command": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\verify\\check_prose.py --root C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge --body-file C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-29-28.md --files codes\\968-29-28.json notes\\968-29-28.md --pr-author Ming-yuan-Liang"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   },
+   {
+    "item": "the clean-worktree prose gate",
+    "why": "verify/prepush_prose_check.sh C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-29-28.md runs against committed content and refuses a dirty tree, so it can only run after the commit; it is in commands"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-968-29-28 main",
+   "git add 'codes\\968-29-28.json' 'notes\\968-29-28.md'",
+   "git commit -m 'Add [[968,29,28]] 2D-local bilayer at kd^2/n 23.5, n=968, k=29, d<=28'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-29-28.md'",
+   "git push -u origin submit-968-29-28",
+   "gh pr create --title 'Add [[968,29,28]] 2D-local bilayer at kd^2/n 23.5, n=968, k=29, d<=28' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-29-28.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 200000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 401"
+    },
+    {
+     "trials": 200000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 409"
+    },
+    {
+     "trials": 200000,
+     "d": 30,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 419"
+    },
+    {
+     "trials": 5000,
+     "d": 38,
+     "fresh": true,
+     "label": "numpy 5k cross-check X, seed 601"
+    },
+    {
+     "trials": 5000,
+     "d": 34,
+     "fresh": true,
+     "label": "numpy 5k cross-check Z, seed 602"
+    },
+    {
+     "trials": 1000000,
+     "d": 29,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 503"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 509"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 521"
+    },
+    {
+     "trials": 1000000,
+     "d": 28,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 531"
+    },
+    {
+     "trials": 41220,
+     "d": 28,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431002"
+    },
+    {
+     "trials": 41220,
+     "d": 28,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431001"
+    }
+   ],
+   "cumulative_best_bound": 28,
+   "claimed_d": 28,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 5,
+   "deepest_fresh_trials": 1000000,
+   "trials_spent": 4692440,
+   "fresh_rungs_total": 11
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [],
+   "filed_as_non_frontier": false
+  },
+  "revision": null
+ },
+ {
+  "schema": "qldpc-promote/1",
+  "ok": true,
+  "slug": "968-32-25",
+  "title": "Add [[968,32,25]] 2D-local bilayer at kd^2/n 20.7, n=968, k=32, d<=25",
+  "branch": "submit-968-32-25",
+  "files": {
+   "code": "codes\\968-32-25.json",
+   "note": "notes\\968-32-25.md"
+  },
+  "body_file": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-32-25.md",
+  "gates": {
+   "validate_candidate": {
+    "passed": true,
+    "candidate": {
+     "n": 968,
+     "k": 32,
+     "d": 25,
+     "family": "tile",
+     "weight_class": "weight-8",
+     "locality_class": "local-2d-bilayer",
+     "sector_distances": {
+      "X": {
+       "upper": 25,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 25,
+       "refuted_to": null
+      },
+      "Z": {
+       "upper": 36,
+       "lower": null,
+       "exact": false,
+       "witness_weight": 36,
+       "refuted_to": null
+      },
+      "d": {
+       "upper": 25,
+       "lower": null,
+       "exact": false
+      }
+     },
+     "fingerprint": "a53f0117061b7d0a",
+     "signature": "06c4249fb3670972"
+    },
+    "gates": {
+     "verify": {
+      "ok": true,
+      "failed_checks": [],
+      "weight_class": "weight-8",
+      "locality_class": "local-2d-bilayer"
+     },
+     "refute": {
+      "refuted": false,
+      "seed": 738936105,
+      "detail": "no lighter logical in 8000 RIS trials (seed 738936105)"
+     },
+     "dedup": {
+      "exact_duplicate_of": null,
+      "wl_equivalent_of": null
+     },
+     "novelty": {
+      "cell": [
+       "weight-8",
+       "local-2d-bilayer"
+      ],
+      "board": "CSS",
+      "board_advancing": true,
+      "dominated_by": [],
+      "advances_by": [],
+      "d_only_gain": false,
+      "d_only_peers": [],
+      "literature_novelty": "unverified"
+     }
+    },
+    "labels": [
+     "advances the weight-8 x local-2d-bilayer board",
+     "literature novelty UNVERIFIED"
+    ],
+    "validator": {
+     "source_sha256": "5dc78a5b90ca9e6acb27f6b46befe246f0398410537c3d89c2977824ae02bf9a",
+     "seed": 738936105
+    }
+   },
+   "check_prose": {
+    "ok": true,
+    "returncode": 0,
+    "output": "prose check ok (2 file(s) checked)",
+    "command": "C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\verify\\check_prose.py --root C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge --body-file C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-32-25.md --files codes\\968-32-25.json notes\\968-32-25.md --pr-author Ming-yuan-Liang"
+   }
+  },
+  "blocked_by": [],
+  "needs_human": [
+   {
+    "item": "literature novelty",
+    "why": "the gate deduplicates against this board only and labels literature novelty unverified; nothing here checks the wider literature"
+   },
+   {
+    "item": "the frontier claim in the PR body",
+    "why": "it is board-relative and was supplied as evidence, not derived; read it against the board before requesting review"
+   },
+   {
+    "item": "opening the PR",
+    "why": "publication authorization is the contributor's per AGENTS.md; this module writes files and never runs git or gh"
+   },
+   {
+    "item": "the circuit tier",
+    "why": "this module does not generate memory circuits; ./qldpc submit does, and d_circ is penalty-only, so the entry is submitted without one"
+   },
+   {
+    "item": "the clean-worktree prose gate",
+    "why": "verify/prepush_prose_check.sh C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-32-25.md runs against committed content and refuses a dirty tree, so it can only run after the commit; it is in commands"
+   }
+  ],
+  "commands": [
+   "git checkout -b submit-968-32-25 main",
+   "git add 'codes\\968-32-25.json' 'notes\\968-32-25.md'",
+   "git commit -m 'Add [[968,32,25]] 2D-local bilayer at kd^2/n 20.7, n=968, k=32, d<=25'",
+   "verify/prepush_prose_check.sh 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-32-25.md'",
+   "git push -u origin submit-968-32-25",
+   "gh pr create --title 'Add [[968,32,25]] 2D-local bilayer at kd^2/n 20.7, n=968, k=32, d<=25' --body-file 'C:\\Users\\Frieren\\Documents\\QEC\\qldpc\\qldpc-challenge\\research\\candidates\\pr-body-968-32-25.md'",
+   "git checkout main"
+  ],
+  "ladder": {
+   "rungs": [
+    {
+     "trials": 200000,
+     "d": 27,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 401"
+    },
+    {
+     "trials": 200000,
+     "d": 25,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 409"
+    },
+    {
+     "trials": 200000,
+     "d": 26,
+     "fresh": true,
+     "label": "fast r3 200k pd16, seed 419"
+    },
+    {
+     "trials": 5000,
+     "d": 27,
+     "fresh": true,
+     "label": "numpy 5k cross-check X, seed 601"
+    },
+    {
+     "trials": 5000,
+     "d": 36,
+     "fresh": true,
+     "label": "numpy 5k cross-check Z, seed 602"
+    },
+    {
+     "trials": 1000000,
+     "d": 26,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 503"
+    },
+    {
+     "trials": 1000000,
+     "d": 26,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 509"
+    },
+    {
+     "trials": 1000000,
+     "d": 26,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 521"
+    },
+    {
+     "trials": 1000000,
+     "d": 25,
+     "fresh": true,
+     "label": "fast 1M pd12, seed 531"
+    },
+    {
+     "trials": 41220,
+     "d": 25,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431002"
+    },
+    {
+     "trials": 41220,
+     "d": 25,
+     "fresh": true,
+     "label": "gate_changed fresh-seed battery, seed 431001"
+    }
+   ],
+   "cumulative_best_bound": 25,
+   "claimed_d": 25,
+   "reads_below_claim": false,
+   "flat_fresh_rungs_at_best": 3,
+   "deepest_fresh_trials": 1000000,
+   "trials_spent": 4692440,
+   "fresh_rungs_total": 11
+  },
+  "frontier": {
+   "board_advancing": true,
+   "dominated_by": [],
+   "advances_by": [],
+   "filed_as_non_frontier": false
+  },
+  "revision": null
+ },
+ {
+  "slug": "966-29-27",
+  "title": "Add [[966,29,27]] 2D-local bilayer at kd^2/n 21.9, n=966, k=29, d<=27",
+  "branch": "submit-966-29-27"
+ }
+]

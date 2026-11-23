@@ -1,0 +1,400 @@
+[12:54:26] START research/candidates/a1-kasai-1120/684-14-107.json 1 20000
+[12:54:26] START research/candidates/a1-kasai-1120/684-14-107.json 2 20000
+684-14-107.json rung1: d<=117 at 20000 trials
+120/684-14-107.json 3 20000
+684-14-107.json rung3: d<=115 at 20000 trials
+120/544-20-76.json 1 20000
+544-20-76.json rung1: d<=88 at 20000 trials
+[13:14:24] START research/candidates/a1-kasai-1120/684-16-124.json 2 20000
+[13:26:05] START research/candidates/a1-kasai-1120/544-20-76.json 3 20000
+[13:26:05] START research/candidates/a1-kasai-1120/684-16-124.json 1 20000
+[13:26:07] START research/candidates/a1-kasai-1120/544-20-76.json 2 20000
+FAIL research/candidates/a1-kasai-1120/684-16-124.json 2 20000
+FAIL research/candidates/a1-kasai-1120/544-20-76.json 3 20000
+[13:31:36] START research/candidates/a1-kasai-1120/684-14-128.json 3 20000
+FAIL research/candidates/a1-kasai-1120/684-16-124.json 1 20000
+[13:31:36] START research/candidates/a1-kasai-1120/684-14-128.json 1 20000
+FAIL research/candidates/a1-kasai-1120/544-20-76.json 2 20000
+[13:31:36] START research/candidates/a1-kasai-1120/684-14-128.json 2 20000
+[13:31:36] START research/candidates/a1-kasai-1120/684-16-124.json 3 20000
+[23:16:46] START research/candidates/a1-kasai-1120/544-20-76.json 2 20000
+[23:16:46] START research/candidates/a1-kasai-1120/544-20-76.json 3 20000
+[23:16:46] START research/candidates/a1-kasai-1120/684-16-124.json 1 20000
+[23:16:46] START research/candidates/a1-kasai-1120/684-16-124.json 2 20000
+684-16-124.json rung1: d<=120 at 20000 trials
+3:37:15] START research/candidates/a1-kasai-1120/684-14-128.json 1 20000
+684-14-128.json rung1: d<=18 at 20000 trials
+1120/684-16-124.json 3 20000
+684-16-124.json rung3: d<=117 at 20000 trials
+120/684-14-128.json 3 20000
+684-14-128.json rung3: d<=18 at 20000 trials
+1120/684-14-128.json 2 20000
+684-14-128.json rung2: d<=18 at 20000 trials
+1120/544-20-94.json 2 20000
+544-20-94.json rung2: d<=22 at 20000 trials
+-1120/544-20-94.json 1 20000
+544-20-94.json rung1: d<=22 at 20000 trials
+-1120/544-18-91.json 1 20000
+544-18-91.json rung1: d<=90 at 20000 trials
+-1120/544-20-94.json 3 20000
+544-20-94.json rung3: d<=22 at 20000 trials
+-1120/544-18-91.json 3 20000
+544-18-91.json rung3: d<=91 at 20000 trials [numpy]
+4-18-91.json 2 20000
+544-18-91.json rung2: d<=88 at 20000 trials [numpy]
+4-16-95.json 2 20000
+544-16-95.json rung2: d<=90 at 20000 trials [numpy]
+4-16-95.json 1 20000
+544-16-95.json rung1: d<=86 at 20000 trials [numpy]
+4-14-98.json 1 20000
+544-14-98.json rung1: d<=94 at 20000 trials [numpy]
+4-16-95.json 3 20000
+544-16-95.json rung3: d<=92 at 20000 trials [numpy]
+4-14-98.json 3 20000
+544-14-98.json rung3: d<=92 at 20000 trials [numpy]
+4-14-98.json 2 20000
+544-14-98.json rung2: d<=90 at 20000 trials [numpy]
+4-26-124.json 2 20000
+684-26-124.json rung2: d<=18 at 20000 trials [numpy]
+-26-124.json 1 20000
+684-26-124.json rung1: d<=18 at 20000 trials [numpy]
+-18-124.json 1 20000
+[01:20:24] START research/candidates/a1-kasai-1120/684-26-124.json 3 20000
+[01:42:14] START research/candidates/a1-kasai-1120/684-18-124.json 3 20000
+[01:42:42] START research/candidates/a1-kasai-1120/684-18-124.json 2 20000
+FAIL research/candidates/a1-kasai-1120/684-18-124.json 1 20000
+FAIL research/candidates/a1-kasai-1120/684-26-124.json 3 20000
+[01:58:00] worker0 done
+[01:58:00] worker1 done
+[01:58:00] worker2 done
+[01:58:00] worker3 done
+WAVE1 ALL DONE 01:58:00
+[01:59:43] START research/candidates/a1-kasai-1120/684-26-124.json 3 20000
+684-26-124.json rung3: d<=18 at 20000 trials [numpy]
+-18-124.json 1 20000
+[01:59:43] START research/candidates/a1-kasai-1120/684-18-124.json 2 20000
+684-18-124.json rung2: d<=116 at 20000 trials [numpy]
+18-124.json 3 20000
+684-18-124.json rung3: d<=114 at 20000 trials [numpy]
+16-127.json 2 20000
+684-16-127.json rung2: d<=120 at 20000 trials [numpy]
+dates/a1-kasai-1120/684-16-127.json 3 20000
+684-16-127.json rung3: d<=120 at 20000 trials [numpy]
+16-127.json 1 20000
+684-16-127.json rung1: d<=121 at 20000 trials [numpy]
+[03:18:57] worker0 done
+WAVE1 ALL DONE 03:18:57
+[03:19:47] START research/candidates/a1-kasai-1120/684-18-124.json 4 200000 fast
+684-18-124.json rung4: d<=114 at 200000 trials [fast]
+18-124.json 5 200000 fast
+[03:19:47] START research/candidates/a1-kasai-1120/684-18-124.json 6 200000 fast
+684-18-124.json rung6: d<=116 at 200000 trials [fast]
+16-127.json 4 200000 fast
+684-16-127.json rung4: d<=112 at 200000 trials [fast]
+16-127.json 5 200000 fast
+684-16-127.json rung5: d<=116 at 200000 trials [fast]
+16-127.json 6 200000 fast
+684-16-127.json rung6: d<=116 at 200000 trials [fast]
+[03:27:07] wave2-worker2 done
+[03:27:08] wave2-worker0 done
+WAVE2 ALL DONE 03:27:08
+[03:27:20] START research/candidates/a1-kasai-1120/684-18-124.json 7 1000000 fast
+684-18-124.json rung7: d<=114 at 1000000 trials [fast]
+8-124.json 8 1000000 fast
+[03:27:20] START research/candidates/a1-kasai-1120/684-18-124.json 9 1000000 fast
+684-18-124.json rung8: d<=114 at 1000000 trials [fast]
+8-124.json 10 1000000 fast
+684-18-124.json rung10: d<=114 at 1000000 trials [fast]
+-127.json 7 1000000 fast
+684-16-127.json rung7: d<=111 at 1000000 trials [fast]
+6-127.json 9 1000000 fast
+684-16-127.json rung9: d<=114 at 1000000 trials [fast]
+6-127.json 8 1000000 fast
+684-16-127.json rung8: d<=114 at 1000000 trials [fast]
+6-127.json 10 1000000 fast
+684-16-127.json rung10: d<=114 at 1000000 trials [fast]
+ne
+[04:05:19] wave3-worker3 done
+[04:05:23] wave3-worker1 done
+WAVE3 ALL DONE 04:05:24
+[04:06:24] START research/candidates/a1-kasai-1120/684-18-124.json 11 1000000 fast
+684-18-124.json rung11: d<=112 at 1000000 trials [fast]
+-124.json 13 1000000 fast
+[04:06:24] START research/candidates/a1-kasai-1120/684-18-124.json 12 1000000 fast
+[04:06:24] START research/candidates/a1-kasai-1120/684-18-124.json 14 1000000 fast
+684-18-124.json rung14: d<=112 at 1000000 trials [fast]
+-127.json 11 1000000 fast
+684-16-127.json rung11: d<=113 at 1000000 trials [fast]
+-127.json 13 1000000 fast
+684-16-127.json rung13: d<=114 at 1000000 trials [fast]
+-127.json 12 1000000 fast
+684-16-127.json rung12: d<=113 at 1000000 trials [fast]
+-127.json 14 1000000 fast
+684-16-127.json rung14: d<=113 at 1000000 trials [fast]
+ne
+[04:43:12] wave3-worker1 done
+[04:43:27] wave3-worker3 done
+WAVE4 ALL DONE 04:43:27
+[05:20:16] START research/candidates/a1-kasai-1120/684-18-124.json 15 1000000 fast
+[05:20:16] START research/candidates/a1-kasai-1120/684-18-124.json 16 1000000 fast
+[05:20:16] START research/candidates/a1-kasai-1120/684-18-124.json 17 1000000 fast
+684-18-124.json rung17: d<=112 at 1000000 trials [fast]
+-124.json 18 1000000 fast
+684-18-124.json rung18: d<=114 at 1000000 trials [fast]
+[05:36:46] START research/candidates/a1-kasai-1120/684-18-124.json 22 1000000 fast
+684-18-124.json rung22: d<=114 at 1000000 trials [fast]
+-124.json 20 1000000 fast
+684-18-124.json rung20: d<=112 at 1000000 trials [fast]
+-124.json 19 1000000 fast
+684-18-124.json rung19: d<=114 at 1000000 trials [fast]
+-124.json 21 1000000 fast
+684-18-124.json rung21: d<=112 at 1000000 trials [fast]
+-127.json 16 1000000 fast
+684-16-127.json rung16: d<=113 at 1000000 trials [fast]
+-127.json 18 1000000 fast
+684-16-127.json rung18: d<=113 at 1000000 trials [fast]
+-127.json 15 1000000 fast
+684-16-127.json rung15: d<=114 at 1000000 trials [fast]
+-127.json 17 1000000 fast
+684-16-127.json rung17: d<=107 at 1000000 trials [fast]
+-127.json 22 1000000 fast
+684-16-127.json rung22: d<=113 at 1000000 trials [fast]
+-127.json 20 1000000 fast
+684-16-127.json rung20: d<=111 at 1000000 trials [fast]
+-127.json 19 1000000 fast
+684-16-127.json rung19: d<=112 at 1000000 trials [fast]
+-127.json 21 1000000 fast
+684-16-127.json rung21: d<=113 at 1000000 trials [fast]
+ne
+[06:22:09] wave3-worker0 done
+[06:22:11] wave3-worker2 done
+WAVE5 ALL DONE 06:22:11
+[06:22:35] START research/candidates/a1-kasai-1120/684-18-124.json 23 2000000 fast
+[06:22:35] START research/candidates/a1-kasai-1120/684-18-124.json 24 2000000 fast
+[06:22:35] START research/candidates/a1-kasai-1120/684-18-124.json 25 2000000 fast
+[06:22:35] START research/candidates/a1-kasai-1120/684-18-124.json 26 2000000 fast
+[06:57:40] START research/candidates/a1-kasai-1120/684-18-124.json 23 2000000 fast
+684-18-124.json rung23: d<=114 at 2000000 trials [fast]
+-124.json 24 2000000 fast
+684-18-124.json rung24: d<=112 at 2000000 trials [fast]
+-124.json 25 2000000 fast
+[06:57:40] START research/candidates/a1-kasai-1120/684-18-124.json 26 2000000 fast
+684-18-124.json rung25: d<=112 at 2000000 trials [fast]
+[07:30:23] wave6-worker3 done
+[07:30:24] wave6-worker2 done
+[07:30:25] wave6-worker1 done
+WAVE6 ALL DONE 07:30:25
+[07:31:21] START research/candidates/a1-kasai-1120/684-18-124.json 27 2000000 fast
+684-18-124.json rung27: d<=110 at 2000000 trials [fast]
+-124.json 28 2000000 fast
+[07:31:21] START research/candidates/a1-kasai-1120/684-18-124.json 29 2000000 fast
+684-18-124.json rung29: d<=112 at 2000000 trials [fast]
+-124.json 30 2000000 fast
+684-18-124.json rung30: d<=108 at 2000000 trials [fast]
+-124.json 32 2000000 fast
+684-18-124.json rung32: d<=112 at 2000000 trials [fast]
+-124.json 34 2000000 fast
+684-18-124.json rung34: d<=112 at 2000000 trials [fast]
+-124.json 33 2000000 fast
+684-18-124.json rung33: d<=112 at 2000000 trials [fast]
+-124.json 31 2000000 fast
+684-18-124.json rung31: d<=112 at 2000000 trials [fast]
+[08:36:43] wave6-worker0 done
+[08:36:44] wave6-worker3 done
+[08:36:48] wave6-worker2 done
+WAVE7 ALL DONE 08:36:48
+[08:37:09] START research/candidates/a1-kasai-1120/684-18-124.json 35 8000000 fast
+[08:37:09] START research/candidates/a1-kasai-1120/684-18-124.json 36 8000000 fast
+684-18-124.json rung35: d<=110 at 8000000 trials [fast]
+-124.json 37 8000000 fast
+684-18-124.json rung37: d<=110 at 8000000 trials [fast]
+-124.json 38 8000000 fast
+684-18-124.json rung38: d<=108 at 8000000 trials [fast]
+[10:34:39] wave6-worker3 done
+[10:34:42] wave6-worker1 done
+[10:34:44] wave6-worker2 done
+[10:34:46] wave6-worker0 done
+WAVE8 ALL DONE 10:34:46
+[10:36:38] START research/candidates/a1-kasai-1120/684-18-124.json 39 8000000 fast
+[10:36:38] START research/candidates/a1-kasai-1120/684-18-124.json 40 8000000 fast
+[10:36:38] START research/candidates/a1-kasai-1120/684-18-124.json 41 8000000 fast
+[10:36:38] START research/candidates/a1-kasai-1120/684-18-124.json 42 8000000 fast
+[10:42:00] START research/candidates/a1-kasai-1120/684-18-124.json 39 2000000 fast 32
+[10:42:00] START research/candidates/a1-kasai-1120/684-18-124.json 40 2000000 fast 32
+684-18-124.json rung40: d<=110 at 2000000 trials [fast pd32]
+json 41 2000000 fast 32
+684-18-124.json rung41: d<=108 at 2000000 trials [fast pd32]
+json 42 2000000 fast 32
+684-18-124.json rung42: d<=112 at 2000000 trials [fast pd32]
+[11:10:32] wave9-worker3 done
+[11:10:35] wave9-worker0 done
+[11:10:35] wave9-worker2 done
+[11:10:35] wave9-worker1 done
+WAVE9 ALL DONE 11:10:35
+[13:22:50] START research/candidates/a1-kasai-1120/684-20-124.json 1 20000
+[13:22:50] START research/candidates/a1-kasai-1120/684-20-124.json 2 20000
+684-20-124.json rung1: d<=18 at 20000 trials [numpy pd10]
+24.json 3 20000
+684-20-124.json rung3: d<=18 at 20000 trials [numpy pd10]
+22.json 1 20000
+684-18-122.json rung1: d<=118 at 20000 trials [numpy pd10]
+[13:51:06] START research/candidates/a1-kasai-1120/684-16-125.json 2 20000
+684-16-125.json rung2: d<=120 at 20000 trials [numpy pd10]
+2.json 3 20000
+684-18-122.json rung3: d<=119 at 20000 trials [numpy pd10]
+5.json 1 20000
+684-16-125.json rung1: d<=119 at 20000 trials [numpy pd10]
+2.json 2 20000
+684-18-122.json rung2: d<=117 at 20000 trials [numpy pd10]
+e
+[14:19:38] wave10-worker1 done
+[14:19:42] START research/candidates/a1-kasai-1120/684-16-125.json 3 20000
+684-16-125.json rung3: d<=121 at 20000 trials [numpy pd10]
+2.json 4 200000 fast 12
+[14:27:08] START research/candidates/a1-kasai-1120/684-18-122.json 5 200000 fast 12
+684-18-122.json rung4: d<=113 at 200000 trials [fast pd12]
+2.json 6 200000 fast 12
+684-18-122.json rung6: d<=115 at 200000 trials [fast pd12]
+2.json 7 2000000 fast 12
+684-18-122.json rung7: d<=110 at 2000000 trials [fast pd12]
+.json 10 8000000 fast 10
+684-18-122.json rung10: d<=110 at 8000000 trials [fast pd10]
+json 9 8000000 fast 10
+684-18-122.json rung9: d<=105 at 8000000 trials [fast pd10]
+.json 8 2000000 fast 12
+684-18-122.json rung8: d<=107 at 2000000 trials [fast pd12]
+3:48] wave11-worker3 done
+[14:56:20] wave11-worker0 done
+[16:10:53] wave11-worker1 done
+[16:10:54] wave11-worker2 done
+WAVE11 ALL DONE 16:10:54
+[16:14:02] START research/candidates/a1-kasai-1120/684-16-125.json 4 200000 fast 12
+684-16-125.json rung4: d<=113 at 200000 trials [fast pd12]
+5.json 5 200000 fast 12
+[16:14:02] START research/candidates/a1-kasai-1120/684-16-125.json 6 200000 fast 12
+684-16-125.json rung6: d<=115 at 200000 trials [fast pd12]
+5.json 7 2000000 fast 12
+684-16-125.json rung7: d<=113 at 2000000 trials [fast pd12]
+.json 9 8000000 fast 10
+684-16-125.json rung9: d<=110 at 8000000 trials [fast pd10]
+.json 8 2000000 fast 12
+684-16-125.json rung8: d<=112 at 2000000 trials [fast pd12]
+.json 10 8000000 fast 10
+684-16-125.json rung10: d<=111 at 8000000 trials [fast pd10]
+[17:23:00] START research/candidates/a1-kasai-1120/684-16-126.json 1 20000 numpy 10
+684-16-126.json rung1: d<=117 at 20000 trials [numpy pd10]
+6.json 2 20000 numpy 10
+684-16-126.json rung2: d<=116 at 20000 trials [numpy pd10]
+6.json 3 20000 numpy 10
+684-16-126.json rung3: d<=118 at 20000 trials [numpy pd10]
+8b.json 1 20000 numpy 10
+684-14-128b.json rung1: d<=121 at 20000 trials [numpy pd10]
+
+WAVE12 ALL DONE 18:02:53
+[18:18:53] START research/candidates/a1-kasai-1120/684-14-128b.json 3 20000 numpy 10
+684-14-128b.json rung3: d<=121 at 20000 trials [numpy pd10]
+b.json 2 20000 numpy 10
+684-14-128b.json rung2: d<=121 at 20000 trials [numpy pd10]
+.json 4 200000 fast 12
+684-16-126.json rung4: d<=116 at 200000 trials [fast pd12]
+6.json 5 200000 fast 12
+684-16-126.json rung5: d<=114 at 200000 trials [fast pd12]
+[18:28:52] wave14-worker1 done
+[18:28:52] START research/candidates/a1-kasai-1120/684-16-126.json 6 200000 fast 12
+684-16-126.json rung6: d<=115 at 200000 trials [fast pd12]
+[18:31:30] wave14-worker0 done
+WAVE14 ALL DONE 18:31:30
+[18:36:40] START research/candidates/a1-kasai-1120/684-16-126.json 7 2000000 fast 12
+684-16-126.json rung7: d<=112 at 2000000 trials [fast pd12]
+.json 8 2000000 fast 12
+684-16-126.json rung8: d<=114 at 2000000 trials [fast pd12]
+.json 2 20000 numpy 10
+684-14-126.json rung2: d<=119 at 20000 trials [numpy pd10]
+6.json 1 20000 numpy 10
+684-14-126.json rung1: d<=121 at 20000 trials [numpy pd10]
+e
+WAVE15 ALL DONE 19:03:46
+[19:07:53] START research/candidates/a1-kasai-1120/684-16-126.json 9 8000000 fast 10
+[19:07:53] START research/candidates/a1-kasai-1120/684-16-126.json 10 8000000 fast 10
+[19:14:02] START research/candidates/a1-kasai-1120/684-14-126.json 3 20000 numpy 10
+684-14-126.json rung3: d<=117 at 20000 trials [numpy pd10]
+didates/a1-kasai-1120/684-14-128b.json 4 200000 fast 12
+684-14-128b.json rung4: d<=114 at 200000 trials [fast pd12]
+[19:20:57] START research/candidates/a1-kasai-1120/684-14-128b.json 5 200000 fast 12
+684-14-128b.json rung5: d<=111 at 200000 trials [fast pd12]
+[19:23:37] START research/candidates/a1-kasai-1120/684-14-128b.json 6 200000 fast 12
+684-14-128b.json rung6: d<=114 at 200000 trials [fast pd12]
+[19:26:17] wave17-worker0 done
+WAVE17 ALL DONE 19:26:17
+[19:28:45] START research/candidates/a1-kasai-1120/684-14-128b.json 7 2000000 fast 12
+684-14-128b.json rung7: d<=110 at 2000000 trials [fast pd12]
+[19:55:18] START research/candidates/a1-kasai-1120/684-14-128b.json 8 2000000 fast 12
+[05:19:11] START research/candidates/a1-kasai-1120/684-16-126b.json 1 20000 numpy 10
+684-16-126b.json rung1: d<=117 at 20000 trials [numpy pd10]
+b.json 2 20000 numpy 10
+684-16-126b.json rung2: d<=118 at 20000 trials [numpy pd10]
+[05:47:38] START research/candidates/a1-kasai-1120/544-20-92.json 1 20000 numpy 10
+544-20-92.json rung1: d<=89 at 20000 trials [numpy pd10]
+126b.json 3 20000 numpy 10
+684-16-126b.json rung3: d<=117 at 20000 trials [numpy pd10]
+json 3 20000 numpy 10
+544-20-92.json rung3: d<=90 at 20000 trials [numpy pd10]
+92.json 2 20000 numpy 10
+544-20-92.json rung2: d<=90 at 20000 trials [numpy pd10]
+96.json 2 20000 numpy 10
+544-14-96.json rung2: d<=90 at 20000 trials [numpy pd10]
+96.json 1 20000 numpy 10
+544-14-96.json rung1: d<=90 at 20000 trials [numpy pd10]
+andidates/a1-kasai-1120/544-20-92.json 4 200000 fast 12
+[06:42:05] START research/candidates/a1-kasai-1120/544-20-92.json 5 200000 fast 12
+544-20-92.json rung4: d<=83 at 200000 trials [fast pd12]
+[06:43:44] wave34-worker1 done
+[06:43:44] START research/candidates/a1-kasai-1120/544-20-92.json 6 200000 fast 12
+544-20-92.json rung6: d<=86 at 200000 trials [fast pd12]
+[06:45:21] wave34-worker0 done
+WAVE34 ALL DONE 06:45:21
+[06:50:41] START research/candidates/a1-kasai-1120/544-14-96.json 3 20000 numpy 10
+544-14-96.json rung3: d<=90 at 20000 trials [numpy pd10]
+92.json 7 2000000 fast 12
+544-20-92.json rung7: d<=83 at 2000000 trials [fast pd12]
+2.json 8 2000000 fast 12
+544-20-92.json rung8: d<=83 at 2000000 trials [fast pd12]
+:12:26] START research/candidates/a1-kasai-1120/544-14-96.json 4 200000 fast 12
+[07:12:26] START research/candidates/a1-kasai-1120/544-14-96.json 5 200000 fast 12
+544-14-96.json rung4: d<=86 at 200000 trials [fast pd12]
+[07:14:31] wave37-worker1 done
+[07:14:32] START research/candidates/a1-kasai-1120/544-14-96.json 6 200000 fast 12
+544-14-96.json rung6: d<=88 at 200000 trials [fast pd12]
+[07:16:48] wave37-worker0 done
+WAVE37 ALL DONE 07:16:48
+[07:19:58] wave35-worker0 done
+[07:19:59] wave35-worker1 done
+WAVE35 ALL DONE 07:19:59
+[07:20:00] START research/candidates/a1-kasai-1120/684-16-126b.json 4 200000 fast 12
+684-16-126b.json rung4: d<=114 at 200000 trials [fast pd12]
+b.json 5 200000 fast 12
+684-16-126b.json rung5: d<=115 at 200000 trials [fast pd12]
+[07:23:19] wave36-worker1 done
+[07:23:20] START research/candidates/a1-kasai-1120/684-16-126b.json 6 200000 fast 12
+684-16-126b.json rung6: d<=115 at 200000 trials [fast pd12]
+[07:27:13] wave36-worker0 done
+WAVE36 ALL DONE 07:27:13
+[07:27:21] START research/candidates/a1-kasai-1120/544-20-92.json 9 8000000 fast 10
+544-20-92.json rung9: d<=32 at 8000000 trials [fast pd10]
+2.json 10 8000000 fast 10
+544-20-92.json rung10: d<=82 at 8000000 trials [fast pd10]
+.json 7 2000000 fast 12
+544-14-96.json rung7: d<=83 at 2000000 trials [fast pd12]
+6.json 8 2000000 fast 12
+544-14-96.json rung8: d<=85 at 2000000 trials [fast pd12]
+[08:03:52] wave39-worker1 done
+WAVE39 ALL DONE 08:03:52
+[08:04:28] START research/candidates/a1-kasai-1120/544-14-96.json 9 8000000 fast 10
+[08:04:28] START research/candidates/a1-kasai-1120/544-14-96.json 10 8000000 fast 10
+544-14-96.json rung9: d<=83 at 8000000 trials [fast pd10]
+
+e
+WAVE38 ALL DONE 08:58:29
+[09:22:55] wave40-worker1 done
+[09:22:59] wave40-worker0 done
+WAVE40 ALL DONE 09:22:59
